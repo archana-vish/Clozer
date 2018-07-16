@@ -5704,8 +5704,8 @@ textarea.form-control {
   align-items: center;
   justify-content: center;
   /*background-image: url('assets/img/daniel-olahh.jpg');*/
-  -webkit-animation: fade-slide-down 5s ease-in forwards;
-  animation: fade-slide-down  5s ease-in forwards;
+  -webkit-animation: fade-slide-down 1s ease-in forwards;
+  animation: fade-slide-down 1s ease-in forwards;
 
 
 }
@@ -5909,9 +5909,9 @@ textarea.form-control {
   background: -ms-linear-gradient(top, #FFFFFF 35%, #4e6773 100%);
   background: linear-gradient(to bottom, #FFFFFF 35%, #4e6773 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-animation: light-to-bold 5s ease-in forwards;
-  animation: light-to-bold  5s ease-in forwards;
+  /*-webkit-text-fill-color: transparent;*/
+  /*-webkit-animation: light-to-bold 5s ease-in-out forwards;*/
+  /*animation: light-to-bold  5s ease-in-out forwards;*/
 }
 
 .presentation-subtitle {
@@ -6020,5 +6020,16 @@ textarea.form-control {
 }
 
 .banner {
-  background-image: url('assets/img/daniel-olahh.jpg');
+  background-attachment: fixed;
+}
+
+body.is-loading *, body.is-loading *:after, body.is-loading *:before {
+  -moz-transition: none !important;
+  -webkit-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+  -moz-animation: none !important;
+  -webkit-animation: none !important;
+  -ms-animation: none !important;
+  animation: none !important;
 }

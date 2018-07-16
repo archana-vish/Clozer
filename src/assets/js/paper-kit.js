@@ -22,13 +22,6 @@ var fixedTop = false;
 var navbar_initialized = false;
 
 $(document).ready(function(){
-    //alert('doc ready called..');
-
-    window.setTimeout(function() {
-       // alert('preloaded removed');
-       // $(body).removeClass('is-preload');
-    }, 100);
-
     window_width = $(window).width();
 
     //  Activate the tooltips
@@ -285,3 +278,5 @@ function debounce(func, wait, immediate) {
 		if (immediate && !timeout) func.apply(context, args);
 	};
 };
+
+

@@ -13,13 +13,13 @@
     <div class="collapse navbar-collapse" id="navbarToggler">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a href="#search" class="nav-link"><i class="nc-icon nc-zoom-split"></i> Search</a>
+          <a [ngx-scroll-to]="'#video'" class="nav-link"><i class="nc-icon nc-zoom-split"></i> Search</a>
         </li>
         <li class="nav-item">
-          <a href="#skillset" class="nav-link"><i class="nc-icon nc-settings-gear-65"></i> Personalise</a>
+          <a [ngx-scroll-to]="'#video'" class="nav-link"><i class="nc-icon nc-settings-gear-65"></i> Personalise</a>
         </li>
         <li class="nav-item">
-          <a href="#experience" class="nav-link"><i class="nc-icon nc-paper"></i> FAQ</a>
+          <a [ngx-scroll-to]="'#video'" class="nav-link"><i class="nc-icon nc-paper"></i> FAQ</a>
         </li>
 
       </ul>
@@ -32,13 +32,7 @@
     <div class="content-center">
       <div class="container">
         <div class="title-brand">
-          <h1 class="presentation-title2">Pettai Rap</h1> <!-- class="presentation-title" -->
-          <div class="fog-low">
-            <!--<img src="assets/img/fog-low.png" alt="">-->
-          </div>
-          <div class="fog-low right">
-            <!--<img src="assets/img/fog-low.png" alt="">-->
-          </div>
+          <h1 class="presentation-title2">PR</h1> <!-- class="presentation-title" -->
         </div>
         <h2 class="presentation-subtitle">
           <div class="row">
@@ -48,17 +42,21 @@
           </div>
         </h2>
         <h2 class="presentation-subtitle text-center">Your search for the perfect house begins here</h2>
-        <div align="center"> <a class="btn btn-info btn-round text-center" target="#">Let's go</a> </div>
+
       </div>
     </div>
+  </div>
+  <div>
+    <a class="btn btn-info btn-round" [ngx-scroll-to]="'#video'">Go to video</a>
   </div>
 </div>
 
 <div class="section video-summary" id="video">
-
+    <a class="btn btn-info btn-round" id="videoBtn" [ngx-scroll-to]="'#search'">Go to Search</a>
 </div>
 
-<div class="section section-dark section-search" id="search">
+<div class="section section-dark section-search" id="search" >
+  <a class="btn btn-info btn-round" [ngx-scroll-to]="'#video'">Go to video</a>
 
 </div>
 
