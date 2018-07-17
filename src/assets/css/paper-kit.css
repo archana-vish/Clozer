@@ -6033,9 +6033,9 @@ body.is-loading *, body.is-loading *:after, body.is-loading *:before {
 
 
 .video {
-  width: 90%;
+  width: 100%;
 }
 
 .search-screen {
-  width: 90%;
+  width: 100%;
 }
