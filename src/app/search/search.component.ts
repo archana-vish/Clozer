@@ -8,15 +8,30 @@ import { Component, OnInit } from '@angular/core';
 export class SearchComponent implements OnInit {
 
   priceRange: Array<any> = new Array(20);
+  time: Array<any> = new Array(20);
+  distance: Array<any> = new Array(20);
 
 
   constructor() { }
 
   ngOnInit() {
-    for (var j = 0, i = 50000; j < 20; i += 10000) {
+    for (let j = 0, i = 50000; j < 20; i += 10000) {
       this.priceRange[j] = i;
       j++;
     }
+
+    for ( let j = 0, tc = 10; j < 20; tc += 10) {
+      this.time[j] = tc + 'min';
+      j++;
+    }
+
+    for (let j = 0, dist = 2; j < 20; dist += 3) {
+      this.distance[j] = dist + 'miles';
+      j++;
+    }
+
+
+
   }
 
 

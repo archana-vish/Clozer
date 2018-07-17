@@ -3,69 +3,96 @@
 
 
     <div class=" form-group row col-md-12">
-        <label for="housePrice" class="col-md-3 col-form-label">My budget is </label>
-        <div class="col-md-5 float-md-left">
+        <label for="housePriceFrom" class="col-md-3 col-form-label">My budget is from </label>
+        <div class="col-md-3 float-md-left">
           <!--<input type="text" class="form-control" id="housePrice"  placeholder="Enter your work postcode">-->
-          <select class="form-control" id="housePrice">
+          <select class="form-control" id="housePriceFrom">
             <option *ngFor="let price of priceRange">
               {{price}}
             </option>
           </select>
         </div>
-        <div col="col-md-4"></div>
+      <div class="col-md-3 float-md-left">
+          <!--<input type="text" class="form-control" id="housePrice"  placeholder="Enter your work postcode">-->
+          <select class="form-control" id="housePriceTo">
+            <option *ngFor="let price of priceRange">
+              {{price}}
+            </option>
+          </select>
+        </div>
+        <!--<div col="col-md-4"></div>-->
+      <div class="col-md-3"></div>
+
     </div>
 
     <div class="form-group row col-md-12">
-        <label for="workzipcode" class="col-md-3 col-form-label float-md-right">I work at..</label>
+        <label for="workzipcode" class="col-md-3 col-form-label float-md-right">Postcodes that matter to me </label>
         <div class="col-md-3 float-md-left">
-          <input type="text" class="form-control" id="workzipcode"  placeholder="Enter your work postcode">
+          <input type="text" class="form-control" id="workzipcode"  placeholder="Where I live now">
         </div>
-        <div class="col-md-1"></div>
-        <label for="homezipcode" class="col-md-2 col-form-label">I currently live at..</label>
+        <!--<div class="col-md-1"></div>-->
+        <!--<label for="homezipcode" class="col-md-2 col-form-label">I currently live at..</label>-->
         <div class="col-md-3 float-md-left">
-          <input type="text" class="form-control" id="homezipcode" placeholder="Enter your work postcode">
+          <input type="text" class="form-control" id="homezipcode" placeholder="Where I work..">
         </div>
+      <div class="col-md-3"></div>
+
     </div>
 
     <div class="form-group row col-md-12">
       <label for="timeToTravel" class="col-md-3 col-form-label">Can travel up to</label>
       <div class="col-md-3 float-md-left">
-        <input type="text" class="form-control" id="timeToTravel"  placeholder="Enter your work postcode">
+        <!--<input type="text" class="form-control" id="timeToTravel"  placeholder="time">-->
+        <select class="form-control" id="timeToTravel">
+          <option *ngFor="let t of time">
+            {{t}}
+          </option>
+        </select>
       </div>
-      <div class="col-md-1"></div>
-      <label for="distanceToTravel" class="col-md-2 col-form-label">and not more than</label>
+      <!--<div class="col-md-1"></div>-->
+      <!--<label for="distanceToTravel" class="col-md-2 col-form-label">and not more than</label>-->
       <div class="col-md-3 float-md-left">
-        <input type="text" class="form-control" id="distanceToTravel" placeholder="Enter your work postcode">
+        <!--<input type="text" class="form-control" id="distanceToTravel" placeholder="distance">-->
+        <select class="form-control" id="distanceToTravel">
+          <option *ngFor="let dist of distance">
+            {{dist}}
+          </option>
+        </select>
       </div>
+      <div class="col-md-3"></div>
     </div>
 
     <div class=" form-group row col-md-12">
       <label class="col-md-3 col-form-label">I love to travel by </label>
-      <div class="btn-group btn-group-toggle col-md-5" data-toggle="buttons">
-        <label class="btn btn-secondary active">
+      <div class="btn-group btn-group-toggle     col-md-5" data-toggle="buttons">
+        <label class="btn btn-secondary btn-round active">
           <input type="radio" name="options" id="option1" autocomplete="off" checked> <i class="fa fa-train"></i> Train
         </label>
-        <label class="btn btn-secondary">
+        <label class="btn btn-secondary btn-round ">
           <input type="radio" name="options" id="option2" autocomplete="off"> <i class="fas fa-bus"></i> Bus
         </label>
-        <label class="btn btn-secondary">
+        <label class="btn btn-secondary btn-round ">
           <input type="radio" name="options" id="option3" autocomplete="off"> <i class="fas fa-car"></i> Car
         </label>
-        <label class="btn btn-secondary">
+        <label class="btn btn-secondary btn-round ">
           <input type="radio" name="options" id="option4" autocomplete="off"> <i class="fas fa-bicycle"></i> Cycle
         </label>
-        <label class="btn btn-secondary">
+        <label class="btn btn-secondary btn-round">
           <input type="radio" name="options" id="option5" autocomplete="off"> <i class="fas fa-walking"></i> Walk
         </label>
       </div>
 
-      <div col="col-md-4"></div>
+      <div col="col-md-2">
+        <!--<button type="submit" class="btn btn-info btn-round">Round</button>-->
+      </div>
     </div>
 
 
-    <div class="form-group row">
-      <div class="col-md-10">
-        <button type="submit" class="btn btn-info">Sign in</button>
+    <div class="form-group row col-md-12">
+      <div class="col-md-3"> </div>
+      <div class="col-md-9">
+        <button type="submit" class="btn btn-info btn-round">Reset</button>
+        <button type="submit" class="btn btn-info btn-round">Search</button>
       </div>
     </div>
   </form>
