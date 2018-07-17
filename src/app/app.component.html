@@ -26,13 +26,13 @@
     </div>
   </div>
 </nav>
-<div class="page-header section-dark" style="background-image: url('assets/img/skyline/banner.jpg') ">
+<div class="page-header section-dark">
   <div class="banner">
-    <div class="filter"></div>
+    <!--<div class="filter"></div>-->
     <div class="content-center">
       <div class="container">
         <div class="title-brand">
-          <h1 class="presentation-title2">PR</h1> <!-- class="presentation-title" -->
+          <h1 class="presentation-title">PR</h1> <!-- class="presentation-title" -->
         </div>
         <h2 class="presentation-subtitle">
           <div class="row">
@@ -41,23 +41,23 @@
             <hr class="hr-title-line">
           </div>
         </h2>
+        <div class="fog-low"></div>
         <h2 class="presentation-subtitle text-center">Your search for the perfect house begins here</h2>
-
+        <br>
+        <div align="center">
+          <a class="btn btn-info btn-round" [ngx-scroll-to]="'#search'">Let's Go</a>
+        </div>
       </div>
     </div>
   </div>
-  <div>
-    <a class="btn btn-info btn-round" [ngx-scroll-to]="'#video'">Go to video</a>
-  </div>
 </div>
 
-<div class="section video-summary" id="video">
-    <a class="btn btn-info btn-round" id="videoBtn" [ngx-scroll-to]="'#search'">Go to Search</a>
+<div class="section video-summary" id="video" align="center">
+    <app-video></app-video>
 </div>
 
-<div class="section section-dark section-search" id="search" >
-  <a class="btn btn-info btn-round" [ngx-scroll-to]="'#video'">Go to video</a>
-
+<div class="section section-light-blue search-screen" id="search" >
+  <app-search></app-search>
 </div>
 
 
