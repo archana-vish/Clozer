@@ -28,12 +28,12 @@
     <div class="form-group row col-md-12">
         <label for="workzipcode" class="col-md-3 col-form-label float-md-right">Postcodes that matter to me </label>
         <div class="col-md-3 float-md-left">
-          <input type="text" class="form-control" id="workzipcode"  placeholder="Where I live now">
+          <input type="text" class="form-control" id="workzipcode"  placeholder="Where I work now" name="workPostCode">
         </div>
         <!--<div class="col-md-1"></div>-->
         <!--<label for="homezipcode" class="col-md-2 col-form-label">I currently live at..</label>-->
         <div class="col-md-3 float-md-left">
-          <input type="text" class="form-control" id="homezipcode" placeholder="Where I work..">
+          <input type="text" class="form-control" id="homezipcode" name="homePostCode">
         </div>
       <div class="col-md-3"></div>
 
@@ -92,9 +92,18 @@
       <div class="col-md-3"> </div>
       <div class="col-md-9">
         <button type="submit" class="btn btn-info btn-round">Reset</button>
-        <button type="submit" class="btn btn-info btn-round">Search</button>
+        <button type="submit" class="btn btn-info btn-round" (click)="getAreaSearchResults()">Search</button>
       </div>
     </div>
   </form>
+</div>
+
+<div class="results">
+  <div *ngIf="areaSearchResults">
+      <div *ngFor = "let areaDetail of areaSearchResults">
+        <p> {{areaDetail.stations}} </p>
+        <p> {{areaDetail.areaName}} </p>
+      </div>
+  </div>
 </div>
 
