@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import { SearchModel } from '../../model/SearchModel';
 import {SearchAreaService} from '../../services/search-area.service';
 import {SearchAreaModel} from '../../model/SearchAreaModel';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -10,9 +11,9 @@ import {SearchAreaModel} from '../../model/SearchAreaModel';
 })
 export class SearchComponent implements OnInit {
 
-  priceRange: Array<any> = new Array(20);
-  time: Array<any> = new Array(20);
-  distance: Array<any> = new Array(20);
+  priceRange: Array<any> = [];
+  time: Array<any> = [];
+  distance: Array<any> = [] ;
 
   // searchModel: SearchModel = {
   //   minPrice: 50000,
@@ -27,23 +28,20 @@ export class SearchComponent implements OnInit {
   @Input() searchModel: SearchModel;
   areaSearchResults: SearchAreaModel[];
 
-  constructor(private searchAreaService: SearchAreaService ) { }
+  constructor(private searchAreaService: SearchAreaService, private router: Router ) { }
 
   ngOnInit() {
 
-    for (let j = 0, i = 50000; j < 20; i += 10000) {
-      this.priceRange[j] = i;
-      j++;
+    for (let i = 50000; i < 200000; i += 10000) {
+      this.priceRange.push(i);
     }
 
-    for ( let j = 0, tc = 10; j < 20; tc += 10) {
-      this.time[j] = tc + ' min';
-      j++;
+    for ( let tc = 10; tc < 200 ; tc += 10) {
+      this.time.push(tc + ' min');
     }
 
-    for (let j = 0, dist = 5; j < 20; dist += 5) {
-      this.distance[j] = dist + ' miles';
-      j++;
+    for (let dist = 5; dist < 100; dist += 5) {
+      this.distance.push(dist + ' miles');
     }
   }
 
@@ -52,6 +50,15 @@ export class SearchComponent implements OnInit {
       .subscribe(areaDetails => {
         this.areaSearchResults = areaDetails;
         console.log('returned areadetails :: ' + this.areaSearchResults);
+      });
+  }
+
+  navigateToSearchDetails(): void {
+    this.searchAreaService.getAreaDetails()
+      .subscribe(areaDetails => {
+        this.areaSearchResults = areaDetails;
+        console.log('returned areadetails :: ' + this.areaSearchResults);
+        this.router.navigateByUrl('/areaDetails');
       });
   }
 
