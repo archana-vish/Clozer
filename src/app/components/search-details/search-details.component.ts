@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {SearchAreaService} from '../../services/search-area.service';
+import {SearchAreaModel} from '../../model/SearchAreaModel';
 
 @Component({
   selector: 'app-search-details',
@@ -8,13 +10,30 @@ import {Router} from '@angular/router';
 })
 export class SearchDetailsComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  areaSearchResults: SearchAreaModel[];
+
+  constructor(private router: Router, private searchAreaService: SearchAreaService, ) { }
 
   ngOnInit() {
     this.getAreaDetails();
   }
 
-  getAreaDetails(): void {}
+  // ngAfterViewInit() {
+  //   this.searchAreaService.getAreaDetails()
+  //     .subscribe(areaDetails => {
+  //       this.areaSearchResults = areaDetails;
+  //       console.log('returned areadetails :: ' + this.areaSearchResults[0].areaName);
+  //     });
+  // }
+
+  getAreaDetails(): void {
+    this.searchAreaService.getAreaDetails().subscribe(
+      areaDetails => {
+        this.areaSearchResults = areaDetails;
+        console.log('returned... ' + this.areaSearchResults[0].areaName);
+      }
+    );
+  }
 
 
 

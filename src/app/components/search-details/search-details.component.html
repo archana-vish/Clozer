@@ -1,3 +1,9 @@
-<p>
-  search-details works!
-</p>
+
+<div class="results">
+  <div *ngIf="areaSearchResults">
+    <div *ngFor = "let areaDetail of areaSearchResults">
+      <p> {{areaDetail.stations}} </p>
+      <p> {{areaDetail.areaName}} </p>
+    </div>
+  </div>
+</div>

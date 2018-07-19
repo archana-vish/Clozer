@@ -53,14 +53,14 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  navigateToSearchDetails(): void {
-    this.searchAreaService.getAreaDetails()
-      .subscribe(areaDetails => {
-        this.areaSearchResults = areaDetails;
-        console.log('returned areadetails :: ' + this.areaSearchResults);
-        this.router.navigateByUrl('/areaDetails');
-      });
-  }
+  // navigateToSearchDetails(): void {
+  //   this.searchAreaService.getAreaDetails()
+  //     .subscribe(areaDetails => {
+  //       this.areaSearchResults = areaDetails;
+  //       console.log('returned areadetails :: ' + this.areaSearchResults);
+  //       this.router.navigateByUrl('/areaDetails');
+  //     });
+  // }
 
 
 
