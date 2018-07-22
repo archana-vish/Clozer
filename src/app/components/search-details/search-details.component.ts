@@ -27,14 +27,15 @@ export class SearchDetailsComponent implements OnInit {
   // }
 
   getAreaDetails(): void {
-    this.searchAreaService.getAreaDetails().subscribe(
-      areaDetails => {
-        this.areaSearchResults = areaDetails;
-        console.log('returned... ' + this.areaSearchResults[0].areaName);
-      }
-    );
+    //if (this.areaSearchResults.length === 0)
+    {
+      this.searchAreaService.getAreaDetails().subscribe(
+        areaDetails => {
+          this.areaSearchResults = areaDetails;
+          console.log('returned... ' + this.areaSearchResults[0].areaName);
+        }
+      );
+    }
   }
-
-
 
 }
