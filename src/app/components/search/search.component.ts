@@ -14,46 +14,55 @@ export class SearchComponent implements OnInit {
   priceRange: Array<any> = [];
   time: Array<any> = [];
   distance: Array<any> = [] ;
-
-  // searchModel: SearchModel = {
-  //   minPrice: 50000,
-  //   maxPrice: 50000,
-  //   timeToTravel: 30,
-  //   distanceToTravel: 5,
-  //   workPostcode: 'SE9 2PG',
-  //   homePostcode: 'BR7 6JN',
-  //   travelMode: 'car'
-  // };
-
-  @Input() searchModel: SearchModel;
+  submitted: boolean;
+  isLoading: boolean;
+  @Input() searchModel: SearchModel = new SearchModel();
   areaSearchResults: SearchAreaModel[];
 
   constructor(private searchAreaService: SearchAreaService, private router: Router ) { }
 
   ngOnInit() {
 
+    this.submitted = false;
+    this.isLoading = false;
+
     for (let i = 50000; i < 200000; i += 10000) {
       this.priceRange.push(i);
     }
 
     for ( let tc = 10; tc < 200 ; tc += 10) {
-      this.time.push(tc + ' min');
+      this.time.push(tc);
     }
 
     for (let dist = 5; dist < 100; dist += 5) {
-      this.distance.push(dist + ' miles');
+      this.distance.push(dist);
     }
   }
 
   getAreaSearchResults(): void {
-    this.searchAreaService.getAreaDetails()
-      .subscribe(areaDetails => {
-        this.areaSearchResults = areaDetails;
-        console.log('returned areadetails :: ' + this.areaSearchResults);
-        // if (this.areaSearchResults.length > 0) {
-          //this.router.navigateByUrl('/areaDetails');
-        // }
-      });
+      console.log(this.searchModel.minPrice);
+      console.log(this.searchModel.maxPrice);
+      console.log(this.searchModel.distanceToTravel);
+      console.log(this.searchModel.timeToTravel);
+      console.log(this.searchModel.homePostcode);
+      console.log(this.searchModel.workPostcode);
+      console.log(this.searchModel.travelMode);
+
+      this.submitted = true;
+      this.isLoading = true;
+
+
+
+    // setTimeout( () => {
+    //   this.searchAreaService.getAreaDetails().subscribe(
+    //     areaDetails => {
+    //       this.areaSearchResults = areaDetails;
+    //      this.isLoading = false;
+    //       console.log('returned... ' + this.areaSearchResults.length);
+    //     }
+    //   );
+    // }, 10000);
+     // this.router.navigateByUrl('/areaDetails');
   }
 
   // navigateToSearchDetails(): void {

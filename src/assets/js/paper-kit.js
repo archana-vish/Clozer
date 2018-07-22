@@ -68,9 +68,9 @@ $(document).ready(function(){
     $('.label-tooltip').tooltip();
 
 	// Carousel
-	$('.carousel').carousel({
-      interval: 4000
-    });
+	// $('.carousel').carousel({
+     //  interval: 4000
+    // });
 
     $('.form-control').on("focus", function(){
         $(this).parent('.input-group').addClass("input-group-focus");

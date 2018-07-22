@@ -1,19 +1,19 @@
 <div class="search col-md-12">
-  <form>
+  <form (ngSubmit) = "getAreaSearchResults()">
     <div class=" form-group row col-md-12">
         <label for="housePriceFrom" class="col-md-3 col-form-label">My budget is from </label>
         <div class="col-md-3 float-md-left">
           <!--<input type="text" class="form-control" id="housePrice"  placeholder="Enter your work postcode">-->
-          <select class="form-control" id="housePriceFrom">
-            <option *ngFor="let price of priceRange">
+          <select class="form-control" id="housePriceFrom" [(ngModel)] = "searchModel.minPrice" name="minPrice">
+            <option *ngFor="let price of priceRange" value="{{price}}">
               {{price}}
             </option>
           </select>
         </div>
       <div class="col-md-3 float-md-left">
           <!--<input type="text" class="form-control" id="housePrice"  placeholder="Enter your work postcode">-->
-          <select class="form-control" id="housePriceTo">
-            <option *ngFor="let price of priceRange">
+          <select class="form-control" id="housePriceTo" [(ngModel)] = "searchModel.maxPrice" name="maxPrice">
+            <option *ngFor="let price of priceRange" value="{{price}}">
               {{price}}
             </option>
           </select>
@@ -26,12 +26,16 @@
     <div class="form-group row col-md-12">
         <label for="workzipcode" class="col-md-3 col-form-label float-md-right">Postcodes that matter to me </label>
         <div class="col-md-3 float-md-left">
-          <input type="text" class="form-control" id="workzipcode"  placeholder="Where I work now" name="workPostCode">
+          <input type="text" class="form-control" id="workzipcode"
+                 [(ngModel)] = "searchModel.workPostcode"
+                 placeholder="Where I work now" name="workPostCode">
         </div>
         <!--<div class="col-md-1"></div>-->
         <!--<label for="homezipcode" class="col-md-2 col-form-label">I currently live at..</label>-->
         <div class="col-md-3 float-md-left">
-          <input type="text" class="form-control" id="homezipcode" name="homePostCode">
+          <input type="text" class="form-control" id="homezipcode"
+                 [(ngModel)] = "searchModel.homePostcode"
+                 placeholder="Where I currently live" name="homePostCode">
         </div>
       <div class="col-md-3"></div>
 
@@ -41,9 +45,9 @@
       <label for="timeToTravel" class="col-md-3 col-form-label">Can travel up to</label>
       <div class="col-md-3 float-md-left">
         <!--<input type="text" class="form-control" id="timeToTravel"  placeholder="time">-->
-        <select class="form-control" id="timeToTravel">
-          <option *ngFor="let t of time">
-            {{t}}
+        <select class="form-control" id="timeToTravel" [(ngModel)] = "searchModel.timeToTravel" name="timeToTravel">
+          <option *ngFor="let t of time" value="{{t}}">
+            {{t}} mins
           </option>
         </select>
       </div>
@@ -51,9 +55,9 @@
       <!--<label for="distanceToTravel" class="col-md-2 col-form-label">and not more than</label>-->
       <div class="col-md-3 float-md-left">
         <!--<input type="text" class="form-control" id="distanceToTravel" placeholder="distance">-->
-        <select class="form-control" id="distanceToTravel">
-          <option *ngFor="let dist of distance">
-            {{dist}}
+        <select class="form-control" id="distanceToTravel" [(ngModel)] = "searchModel.distanceToTravel" name="distanceToTravel">
+          <option *ngFor="let dist of distance" value="{{dist}}">
+            {{dist}} miles
           </option>
         </select>
       </div>
@@ -64,19 +68,34 @@
       <label class="col-md-3 col-form-label">I love to travel by </label>
       <div class="btn-group btn-group-toggle     col-md-5" data-toggle="buttons">
         <label class="btn btn-secondary btn-round active">
-          <input type="radio" name="options" id="option1" autocomplete="off" checked> <i class="fa fa-train"></i> Train
+          <input type="radio"
+                 autocomplete="off" checked
+                  [(ngModel)] = "searchModel.travelMode" name="travelMode" value="Train">
+          <i class="fa fa-train"></i> Train
         </label>
         <label class="btn btn-secondary btn-round ">
-          <input type="radio" name="options" id="option2" autocomplete="off"> <i class="fas fa-bus"></i> Bus
+          <input type="radio" name="travelMode"
+                 autocomplete="off"
+                 [(ngModel)] = "searchModel.travelMode" name="travelMode" value="Bus">
+          <i class="fas fa-bus"></i> Bus
         </label>
         <label class="btn btn-secondary btn-round ">
-          <input type="radio" name="options" id="option3" autocomplete="off"> <i class="fas fa-car"></i> Car
+          <input type="radio"
+                 autocomplete="off"
+                 [(ngModel)] = "searchModel.travelMode" name="travelMode" value="Car">
+          <i class="fas fa-car"></i> Car
         </label>
         <label class="btn btn-secondary btn-round ">
-          <input type="radio" name="options" id="option4" autocomplete="off"> <i class="fas fa-bicycle"></i> Cycle
+          <input type="radio"
+                 autocomplete="off"
+                 [(ngModel)] = "searchModel.travelMode" name="travelMode" value="Cycle">
+          <i class="fas fa-bicycle"></i> Cycle
         </label>
         <label class="btn btn-secondary btn-round">
-          <input type="radio" name="options" id="option5" autocomplete="off"> <i class="fas fa-walking"></i> Walk
+          <input type="radio"
+                 autocomplete="off"
+                 [(ngModel)] = "searchModel.travelMode" name="travelMode" value="Walk">
+          <i class="fas fa-walking"></i> Walk
         </label>
       </div>
 
@@ -90,10 +109,15 @@
       <div class="col-md-3"> </div>
       <div class="col-md-9">
         <button type="submit" class="btn btn-info btn-round" routerLink="/areaDetails">Reset</button>
-        <button type="submit" class="btn btn-info btn-round" (click)="getAreaSearchResults()">Search</button>
+        <button type="submit" class="btn btn-info btn-round">Search</button>
       </div>
     </div>
+
   </form>
+
+  <div class="searchresults" *ngIf="submitted">
+      <app-search-details></app-search-details>
+  </div>
 </div>
 
 
