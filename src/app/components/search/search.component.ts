@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import { SearchModel } from '../../model/SearchModel';
 import {SearchAreaService} from '../../services/search-area.service';
 import {SearchAreaModel} from '../../model/SearchAreaModel';
 import {Router} from '@angular/router';
+import {AreaDetailsComponent} from '../area-details/area-details.component';
 
 @Component({
   selector: 'app-search',
@@ -17,7 +18,8 @@ export class SearchComponent implements OnInit {
   submitted: boolean;
   isLoading: boolean;
   @Input() searchModel: SearchModel = new SearchModel();
-  areaSearchResults: SearchAreaModel[];
+  @Output() outputSearchResults: SearchAreaModel[];
+  @Output() outputSearchModel: SearchModel;
 
   constructor(private searchAreaService: SearchAreaService, private router: Router ) { }
 
@@ -40,41 +42,20 @@ export class SearchComponent implements OnInit {
   }
 
   getAreaSearchResults(): void {
-      console.log(this.searchModel.minPrice);
-      console.log(this.searchModel.maxPrice);
-      console.log(this.searchModel.distanceToTravel);
-      console.log(this.searchModel.timeToTravel);
-      console.log(this.searchModel.homePostcode);
-      console.log(this.searchModel.workPostcode);
-      console.log(this.searchModel.travelMode);
-
-      this.submitted = true;
-      this.isLoading = true;
+    console.log(this.searchModel.minPrice);
+    console.log(this.searchModel.maxPrice);
+    console.log(this.searchModel.distanceToTravel);
+    console.log(this.searchModel.timeToTravel);
+    console.log(this.searchModel.homePostcode);
+    console.log(this.searchModel.workPostcode);
+    console.log(this.searchModel.travelMode);
 
 
+    this.outputSearchModel = this.searchModel;
 
-    // setTimeout( () => {
-    //   this.searchAreaService.getAreaDetails().subscribe(
-    //     areaDetails => {
-    //       this.areaSearchResults = areaDetails;
-    //      this.isLoading = false;
-    //       console.log('returned... ' + this.areaSearchResults.length);
-    //     }
-    //   );
-    // }, 10000);
-     // this.router.navigateByUrl('/areaDetails');
+
+    this.submitted = true;
   }
-
-  // navigateToSearchDetails(): void {
-  //   this.searchAreaService.getAreaDetails()
-  //     .subscribe(areaDetails => {
-  //      // this.areaSearchResults = areaDetails;
-  //       //console.log('returned areadetails :: ' + this.areaSearchResults);
-  //       this.router.navigateByUrl('/areaDetails');
-  //     });
-  // }
-
-
 
 
 }

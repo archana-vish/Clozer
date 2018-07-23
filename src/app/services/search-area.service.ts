@@ -119,6 +119,6 @@ export class SearchAreaService {
     // console.log('app string :: ' + this.serverStr);
     // console.log(this.searchAreaModel);
      return of(this.searchAreaModel);
-      //return this.http.get<SearchAreaModel[]>(this.serverStr + '/getAreaDetails?work_post_code=BR7+6JN&additional_post_code=SE12+8AW&max_journey_time=60&max_journey_distance=5000&min_house_price=300000&max_house_price=1100000&pref_travel_mode=car');
+    //return this.http.get<SearchAreaModel[]>(this.serverStr + '/getAreaDetails?work_post_code=BR7+6JN&additional_post_code=SE12+8AW&max_journey_time=60&max_journey_distance=5000&min_house_price=300000&max_house_price=1100000&pref_travel_mode=car');
   }
 }

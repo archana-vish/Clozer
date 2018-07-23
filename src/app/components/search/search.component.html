@@ -116,7 +116,7 @@
   </form>
 
   <div class="searchresults" *ngIf="submitted">
-      <app-search-details></app-search-details>
+      <app-search-details [searchModel]="outputSearchModel"></app-search-details>
   </div>
 </div>
 
