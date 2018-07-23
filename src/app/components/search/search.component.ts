@@ -15,17 +15,17 @@ export class SearchComponent implements OnInit {
   priceRange: Array<any> = [];
   time: Array<any> = [];
   distance: Array<any> = [] ;
-  submitted: boolean;
+  isLoaded: boolean;
   isLoading: boolean;
   @Input() searchModel: SearchModel = new SearchModel();
-  @Output() outputSearchResults: SearchAreaModel[];
+  @Output() areaSearchResults: SearchAreaModel[];
   @Output() outputSearchModel: SearchModel;
 
   constructor(private searchAreaService: SearchAreaService, private router: Router ) { }
 
   ngOnInit() {
 
-    this.submitted = false;
+    this.isLoaded = false;
     this.isLoading = false;
 
     for (let i = 50000; i < 200000; i += 10000) {
@@ -42,20 +42,35 @@ export class SearchComponent implements OnInit {
   }
 
   getAreaSearchResults(): void {
-    console.log(this.searchModel.minPrice);
-    console.log(this.searchModel.maxPrice);
-    console.log(this.searchModel.distanceToTravel);
-    console.log(this.searchModel.timeToTravel);
-    console.log(this.searchModel.homePostcode);
-    console.log(this.searchModel.workPostcode);
-    console.log(this.searchModel.travelMode);
+
+      this.isLoading = true;
+      this.isLoaded = false;
+      this.areaSearchResults = [];
+
+      console.log(this.searchModel.minPrice);
+      console.log(this.searchModel.maxPrice);
+      console.log(this.searchModel.distanceToTravel);
+      console.log(this.searchModel.timeToTravel);
+      console.log(this.searchModel.homePostcode);
+      console.log(this.searchModel.workPostcode);
+      console.log(this.searchModel.travelMode);
+
+    setTimeout( () => {
+      this.searchAreaService.getAreaDetails().subscribe(
+        areaDetails => {
+          this.areaSearchResults = areaDetails;
+          this.isLoading = false;
+          this.isLoaded = true;
+          console.log('returned... ' + this.areaSearchResults.length);
+        }
+      );
+    }, 3000);
 
 
-    this.outputSearchModel = this.searchModel;
+     // this.outputSearchModel = this.searchModel;
 
 
-    this.submitted = true;
-  }
-
+      //this.submitted = true;
+    }
 
 }

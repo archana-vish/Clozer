@@ -2,12 +2,12 @@
   <i class="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>
   <span class="sr-only">Saving. Hang tight!</span>
 </div>
-<div class="search container-fluid col-md-12" *ngIf="!isLoading">
+<div class="search container-fluid col-md-12" *ngIf="areaSearchResults">
   <div class="row">
     <p> You have {{areaSearchResults.length}} area(s) matching your criteria </p>
     <br>
   </div>
-  <div id="myCarousel" class="carousel slide col-md-12" data-ride="carousel" *ngIf="areaSearchResults.length > 2">
+  <div id="myCarousel" class="carousel slide col-md-12" data-ride="carousel">
       <div class="carousel-inner row w-100 mx-auto">
         <div class="carousel-item col-md-4 active">
           <div class="card-plain bg-dark text-white text-center">
