@@ -6,4 +6,5 @@ export class SearchModel {
   workPostcode: string;
   homePostcode: string;
   travelMode: string;
+  areaCode: string;
 }

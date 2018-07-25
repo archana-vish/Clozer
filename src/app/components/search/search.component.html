@@ -117,16 +117,15 @@
   </div>
 </div>
 <!-- Search results -->
-<div class="section video-summary" id="video" align="center">
+<div class="section areasearch-results-summary" id="searchresults" align="center">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="spinning" *ngIf="isLoading">
           <i class="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>
-          <span class="sr-only">Saving. Hang tight!</span>
         </div>
         <!-- REsults -->
-        <div class="search container-fluid col-md-12" *ngIf="isLoaded">
+        <div class="search container-fluid col-md-12" *ngIf="areaSearchResults">
           <div class="row">
             <p> You have {{areaSearchResults.length}} area(s) matching your criteria </p>
             <br>
@@ -137,24 +136,54 @@
                 <div class="card-plain bg-dark text-white text-center">
                   <img class="card-img" src="../../../assets/img/gradient-card.png" alt="Card image">
                   <div class="card-img-overlay">
-                    <h5 class="card-title text-white">{{areaSearchResults[0].areaCode}}</h5>
-                    <p class="card-text">Area Names :  {{areaSearchResults[0].areaName}}</p>
-                    <p class="card-text">Total Score: {{areaSearchResults[0].totalScore}}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item col-md-4 " *ngFor="let searchDetail of areaSearchResults.splice(1)">
-                <div class="card-deck">
-                  <div class="card-plain bg-dark text-white text-center">
-                    <img class="card-img" src="../../../assets/img/gradient-card.png" alt="Card image">
-                    <div class="card-img-overlay">
-                      <h5 class="card-title text-white">{{searchDetail.areaCode}}</h5>
-                      <p class="card-text">Area Names :  {{searchDetail.areaName}}</p>
-                      <p class="card-text">Total Score: {{searchDetail.totalScore}}</p>
+                    <div class="card-header">
+                      <h5 class="card-title text-white">{{areaSearchResults[0].areaCode}}</h5>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text">Area Names :  {{areaSearchResults[0].areaName}}</p>
+                      <p class="card-text">Average Detached House Price :  {{areaSearchResults[0].averageDetachedHousePrice}}</p>
+                      <p class="card-text">Average Journey Time :  {{areaSearchResults[0].averageJourneyTime}}</p>
+                      <p class="card-text">Good Schools :  {{areaSearchResults[0].goodSchools}}</p>
+                      <p class="card-text">Safety Score :  {{areaSearchResults[0].safetyScore}}</p>
+                      <p class="card-text">Total Stations :  {{areaSearchResults[0].stationsCount}}</p>
+                      <p class="card-text">Total Score: {{areaSearchResults[0].totalScore}}</p>
+                    </div>
+                    <div class="card-footer">
+                      <p class="card-text">
+                        <!--<input type="button" class="btn btn-info btn-round" name="Explore" value="Explore" data-toggle="modal" data-target="#exampleModal">-->
+                        <input type="button" class="btn btn-info btn-round" name="Explore" value="Explore" (click) = "getSectorSearchResults(areaSearchResults[0])">
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="carousel-item col-md-4 " *ngFor="let searchDetail of areaSearchResults">
+                <!--<div class="card-deck">-->
+                  <div class="card-plain bg-dark text-white text-center">
+                    <img class="card-img" src="../../../assets/img/gradient-card.png">
+                    <div class="card-img-overlay">
+                      <div class="card-header">
+                        <h5 class="card-title text-white">{{searchDetail.areaCode}}</h5>
+                      </div>
+                      <div class="card-bod">
+                        <p class="card-text">Area Names :  {{searchDetail.areaName}}</p>
+                        <p class="card-text">Average Detached House Price :  {{searchDetail.averageDetachedHousePrice}}</p>
+                        <p class="card-text">Average Journey Time :  {{searchDetail.averageJourneyTime}}</p>
+                        <p class="card-text">Good Schools :  {{searchDetail.goodSchools}}</p>
+                        <p class="card-text">Safety Score :  {{searchDetail.safetyScore}}</p>
+                        <p class="card-text">Total Stations :  {{searchDetail.stationsCount}}</p>
+                        <p class="card-text">Total Score: {{searchDetail.totalScore}}</p>
+                      </div>
+                      <div class="card-footer">
+                        <p class="card-text">
+                          <input type="button" class="btn btn-info btn-round" name="Explore" value="Explore" (click) = "getSectorSearchResults(searchDetail)">
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                <!--</div>-->
+              </div>
+              <div></div>
             </div>
             <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -167,13 +196,39 @@
           </div>
         </div>
         <!-- End Results -->
+        <!-- Modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="card-plain card-chart">
+                  <div class="card-header card-header-danger">
+                    header
+                  </div>
+                  <div class="card-body">
+                    <div class="ct-chart" id="completedTasksChart"></div>
+                  </div>
+                  <div class="card-footer">
+                    <div class="stats">
+                      <button type="button" class="btn btn-round btn-info" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End modal -->
       </div>
     </div>
   </div>
 </div>
 <!-- End of search results -->
 
+<!-- Sector search results -->
 
+<!-- End of sector search -->
 
 
 

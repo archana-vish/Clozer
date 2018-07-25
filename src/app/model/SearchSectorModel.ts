@@ -1,0 +1,31 @@
+export class SearchSectorModel {
+  areaCode: string;
+  areaName: string;
+  averageDetachedHousePrice: number;
+  averageFlatPrice: number;
+  averageSemiDetachedHousePrice: number;
+  averageJourneyTime: number;
+  distanceToWork: number;
+  facilitiesScore: number;
+  goodSchools: number;
+  highestHousePrice: number;
+  lowestHousePrice: number;
+  outstandingSchools: number;
+  poorSchools: number;
+  postcode: string;
+  primarySchools: number;
+  privateSchools: number;
+  safetyScore: number;
+  schoolScore: number;
+  secondarySchools: number;
+  sectorCode: string;
+  stations: string;
+  stationsCount: number;
+  totalSchools: number;
+  travelScore: number;
+  facilitiesScoreRating: string;
+  safetyScoreRating: string;
+  travelScoreRating: string;
+  schoolScoreRating: string;
+  totalScore: number;
+}
