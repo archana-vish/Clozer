@@ -17,19 +17,25 @@ export class SearchComponent implements OnInit {
   priceRange: Array<any> = [];
   time: Array<any> = [];
   distance: Array<any> = [] ;
-  isLoaded: boolean;
+  hasLoaded: boolean;
   isLoading: boolean;
+  sectorLoaded: boolean;
+  sectorLoading: boolean;
   @Input() searchModel: SearchModel = new SearchModel();
   @Output() areaSearchResults;
   @Output() sectorSearchResults;
   @Output() outputSearchModel: SearchModel;
+  displayedColumns: Array<any>;
 
   constructor(private searchAreaService: SearchAreaService, private router: Router ) { }
 
   ngOnInit() {
 
-    this.isLoaded = false;
+    this.hasLoaded = false;
     this.isLoading = false;
+
+    this.sectorLoaded = false;
+    this.sectorLoading = false;
 
     for (let i = 50000; i < 200000; i += 10000) {
       this.priceRange.push(i);
@@ -106,6 +112,7 @@ export class SearchComponent implements OnInit {
   getAreaSearchResults(): void {
 
       this.isLoading = true;
+      this.hasLoaded = false;
       this.areaSearchResults = [];
 
     console.log('##############################');
@@ -123,9 +130,15 @@ export class SearchComponent implements OnInit {
     setTimeout( () => {
         this.searchAreaService.getAreaDetails().subscribe(
           areaDetails => {
+            console.log('returned :: ' + areaDetails[0].area_code);
+            console.log('returned ob :: '+ areaDetails);
             this.areaSearchResults = areaDetails;
             this.isLoading = false;
+            this.hasLoaded = true;
             console.log('returned... ' + this.areaSearchResults.length);
+            console.log(this.areaSearchResults[0].area_name);
+            console.log(this.areaSearchResults[1].area_name);
+            console.log(this.areaSearchResults[2].area_name);
           }
         );
       });
@@ -134,9 +147,11 @@ export class SearchComponent implements OnInit {
 
     getSectorSearchResults(areaDetail: SearchAreaModel): void {
 
-      console.log(areaDetail.areaCode);
-      this.searchModel.areaCode = areaDetail.areaCode;
+      console.log(areaDetail.area_code);
+      this.searchModel.areaCode = areaDetail.area_code;
       this.sectorSearchResults = [];
+      this.sectorLoading = true;
+      this.sectorLoaded = false;
 
        // this.searchModel.areaCode = this.areaCode;
 
@@ -155,12 +170,14 @@ export class SearchComponent implements OnInit {
       console.log('********************************');
 
 
+      this.displayedColumns = ['areaName', 'totalScore'];
 
       setTimeout( () => {
         this.searchAreaService.getSectorDetails().subscribe(
           sectorDetails => {
             this.sectorSearchResults = sectorDetails;
-            this.isLoading = false;
+            this.sectorLoading = false;
+            this.sectorLoaded = true;
             console.log('returned... ' + this.sectorSearchResults.length);
           }
         );

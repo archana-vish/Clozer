@@ -125,7 +125,7 @@
           <i class="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>
         </div>
         <!-- REsults -->
-        <div class="search container-fluid col-md-12" *ngIf="areaSearchResults">
+        <div class="search container-fluid col-md-12" *ngIf="hasLoaded">
           <div class="row">
             <p> You have {{areaSearchResults.length}} area(s) matching your criteria </p>
             <br>
@@ -137,16 +137,16 @@
                   <img class="card-img" src="../../../assets/img/gradient-card.png" alt="Card image">
                   <div class="card-img-overlay">
                     <div class="card-header">
-                      <h5 class="card-title text-white">{{areaSearchResults[0].areaCode}}</h5>
+                      <h5 class="card-title text-white">{{areaSearchResults[0].area_code}}</h5>
                     </div>
                     <div class="card-body">
-                      <p class="card-text">Area Names :  {{areaSearchResults[0].areaName}}</p>
-                      <p class="card-text">Average Detached House Price :  {{areaSearchResults[0].averageDetachedHousePrice}}</p>
-                      <p class="card-text">Average Journey Time :  {{areaSearchResults[0].averageJourneyTime}}</p>
-                      <p class="card-text">Good Schools :  {{areaSearchResults[0].goodSchools}}</p>
-                      <p class="card-text">Safety Score :  {{areaSearchResults[0].safetyScore}}</p>
-                      <p class="card-text">Total Stations :  {{areaSearchResults[0].stationsCount}}</p>
-                      <p class="card-text">Total Score: {{areaSearchResults[0].totalScore}}</p>
+                      <p class="card-text">Area Names :  {{areaSearchResults[0].area_name}}</p>
+                      <p class="card-text">Average Detached House Price :  {{areaSearchResults[0].average_detached_house_price}}</p>
+                      <p class="card-text">Average Journey Time :  {{areaSearchResults[0].average_journey_time}}</p>
+                      <p class="card-text">Good Schools :  {{areaSearchResults[0].good_schools}}</p>
+                      <p class="card-text">Safety Score :  {{areaSearchResults[0].safety_score}}</p>
+                      <p class="card-text">Total Stations :  {{areaSearchResults[0].stations_count}}</p>
+                      <p class="card-text">Total Score: {{areaSearchResults[0].total_score}}</p>
                     </div>
                     <div class="card-footer">
                       <p class="card-text">
@@ -157,22 +157,22 @@
                   </div>
                 </div>
               </div>
-              <div class="carousel-item col-md-4 " *ngFor="let searchDetail of areaSearchResults">
+              <div class="carousel-item col-md-4 " *ngFor="let searchDetail of areaSearchResults.splice(1)">
                 <!--<div class="card-deck">-->
                   <div class="card-plain bg-dark text-white text-center">
                     <img class="card-img" src="../../../assets/img/gradient-card.png">
                     <div class="card-img-overlay">
                       <div class="card-header">
-                        <h5 class="card-title text-white">{{searchDetail.areaCode}}</h5>
+                        <h5 class="card-title text-white">{{searchDetail.area_code}}</h5>
                       </div>
                       <div class="card-bod">
-                        <p class="card-text">Area Names :  {{searchDetail.areaName}}</p>
-                        <p class="card-text">Average Detached House Price :  {{searchDetail.averageDetachedHousePrice}}</p>
-                        <p class="card-text">Average Journey Time :  {{searchDetail.averageJourneyTime}}</p>
-                        <p class="card-text">Good Schools :  {{searchDetail.goodSchools}}</p>
-                        <p class="card-text">Safety Score :  {{searchDetail.safetyScore}}</p>
-                        <p class="card-text">Total Stations :  {{searchDetail.stationsCount}}</p>
-                        <p class="card-text">Total Score: {{searchDetail.totalScore}}</p>
+                        <p class="card-text">Area Names :  {{searchDetail.area_name}}</p>
+                        <p class="card-text">Average Detached House Price :  {{searchDetail.average_detached_house_price}}</p>
+                        <p class="card-text">Average Journey Time :  {{searchDetail.average_journey_time}}</p>
+                        <p class="card-text">Good Schools :  {{searchDetail.good_schools}}</p>
+                        <p class="card-text">Safety Score :  {{searchDetail.safety_score}}</p>
+                        <p class="card-text">Total Stations :  {{searchDetail.stations_count}}</p>
+                        <p class="card-text">Total Score: {{searchDetail.total_score}}</p>
                       </div>
                       <div class="card-footer">
                         <p class="card-text">
@@ -225,6 +225,47 @@
   </div>
 </div>
 <!-- End of search results -->
+<div class="section section-dark-blue sector-results-screen" id="sectorResults" >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="search col-md-12">
+          <div class="spinning" *ngIf="sectorLoading">
+            <i class="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>
+          </div>
+          <div class="" *ngIf="sectorLoaded">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-warning">
+                  <h4 class="card-title">Sector Search Results</h4>
+                  <p class="card-category">Search Results for {{sectorSearchResults[0].area_name}}</p>
+                </div>
+                <div class="card-body table-responsive">
+                  <table class="table table-hover">
+                    <thead class="text-warning">
+                    <th>Sector Name</th>
+                    <th>School Score</th>
+                    <th>Safety Score</th>
+                    <th>Total Score</th>
+                    </thead>
+                    <tbody *ngFor="let sector of sectorSearchResults">
+                    <tr>
+                      <td>{{sector.sector_code}}</td>
+                      <td>{{sector.school_score}}</td>
+                      <td>{{sector.safety_score}}</td>
+                      <td>{{sector.total_score}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Sector search results -->
 

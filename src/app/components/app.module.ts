@@ -19,6 +19,8 @@ import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import { LandingpageComponent } from './landingpage/landingpage.component';
+import {DataTableModule} from 'angular5-data-table';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    ScrollToModule.forRoot()
+    ScrollToModule.forRoot(),
+    DataTableModule.forRoot(),
+    MatTableModule
   ],
   providers: [SearchAreaService],
   bootstrap: [AppComponent]
