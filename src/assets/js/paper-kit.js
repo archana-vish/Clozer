@@ -114,6 +114,9 @@ $(document).ready(function(){
     }
   });
 
+  //card
+  $('[rel="tooltip"]').tooltip();
+
 });
 
 
@@ -326,6 +329,16 @@ var completedTasksChart = new Chartist.Line('#completedTasksChart', dataComplete
 
 // start animation for the Completed Tasks Chart - Line Chart
 md.startAnimationForLineChart(completedTasksChart);
+
+function rotateCard(btn){
+  var $card = $(btn).closest('.card-container');
+  console.log($card);
+  if($card.hasClass('hover')){
+    $card.removeClass('hover');
+  } else {
+    $card.addClass('hover');
+  }
+}
 
 
 
