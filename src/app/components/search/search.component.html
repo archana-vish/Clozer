@@ -140,7 +140,7 @@
           <!-- Adding rotating cards -->
           <div class="container">
             <div class="row">
-              <div class="row col-md-12" *ngFor="let searchDetail of areaSearchResults | slice:0:3">
+              <div class="row col-md-12" *ngFor="let searchDetail of areaSearchResults">
                 <div class="col-md-4">
                   <div class="card-container">
                     <div class="card">
@@ -170,7 +170,7 @@
                         <div class="content">
                           <div class="main">
                             <h4 class="text-center">Avg Journey Time: {{searchDetail.average_journey_time}}</h4>
-                            <p class="text-center">Detached House Price: {{searchDetail.average_detached_house_price}}</p>
+                            <p class="text-center">Detached House Price: {{searchDetail.average_detached_house_price | currency : 'GBP' : true : '1.2'}}</p>
 
                             <div class="stats-container">
                               <div class="stats">
