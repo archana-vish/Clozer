@@ -499,7 +499,7 @@ var SearchDetailsComponent = /** @class */ (function () {
         this.isLoading = true;
         this.searchComplete = false;
         setTimeout(function () {
-            _this.searchAreaService.getAreaDetails().subscribe(function (areaDetails) {
+            _this.searchAreaService.getAreaDetails(_this.searchModel).subscribe(function (areaDetails) {
                 _this.areaSearchResults = areaDetails;
                 _this.isLoading = false;
                 _this.searchComplete = true;
@@ -541,7 +541,7 @@ module.exports = ""
 /***/ "./src/app/components/search/search.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"section section-dark-blue search-screen\" id=\"search\" >\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"search col-md-12\">\n          <form (ngSubmit) = \"getAreaSearchResults()\">\n            <div class=\" form-group row col-md-12\">\n              <label for=\"housePriceFrom\" class=\"col-md-3 col-form-label\">My budget is from </label>\n              <div class=\"col-md-3 float-md-left\">\n                <!--<input type=\"text\" class=\"form-control\" id=\"housePrice\"  placeholder=\"Enter your work postcode\">-->\n                <select class=\"form-control\" id=\"housePriceFrom\" [(ngModel)] = \"searchModel.minPrice\" name=\"minPrice\">\n                  <option *ngFor=\"let price of priceRange\" value=\"{{price}}\">\n                    {{price}}\n                  </option>\n                </select>\n              </div>\n              <div class=\"col-md-3 float-md-left\">\n                <!--<input type=\"text\" class=\"form-control\" id=\"housePrice\"  placeholder=\"Enter your work postcode\">-->\n                <select class=\"form-control\" id=\"housePriceTo\" [(ngModel)] = \"searchModel.maxPrice\" name=\"maxPrice\">\n                  <option *ngFor=\"let price of priceRange\" value=\"{{price}}\">\n                    {{price}}\n                  </option>\n                </select>\n              </div>\n              <!--<div col=\"col-md-4\"></div>-->\n              <div class=\"col-md-3\"></div>\n            </div>\n            <div class=\"form-group row col-md-12\">\n              <label for=\"workzipcode\" class=\"col-md-3 col-form-label float-md-right\">Postcodes that matter to me </label>\n              <div class=\"col-md-3 float-md-left\">\n                <input type=\"text\" class=\"form-control\" id=\"workzipcode\"\n                       [(ngModel)] = \"searchModel.workPostcode\"\n                       placeholder=\"Where I work now\" name=\"workPostCode\">\n              </div>\n              <!--<div class=\"col-md-1\"></div>-->\n              <!--<label for=\"homezipcode\" class=\"col-md-2 col-form-label\">I currently live at..</label>-->\n              <div class=\"col-md-3 float-md-left\">\n                <input type=\"text\" class=\"form-control\" id=\"homezipcode\"\n                       [(ngModel)] = \"searchModel.homePostcode\"\n                       placeholder=\"Where I currently live\" name=\"homePostCode\">\n              </div>\n              <div class=\"col-md-3\"></div>\n            </div>\n            <div class=\"form-group row col-md-12\">\n              <label for=\"timeToTravel\" class=\"col-md-3 col-form-label\">Can travel up to</label>\n              <div class=\"col-md-3 float-md-left\">\n                <!--<input type=\"text\" class=\"form-control\" id=\"timeToTravel\"  placeholder=\"time\">-->\n                <select class=\"form-control\" id=\"timeToTravel\" [(ngModel)] = \"searchModel.timeToTravel\" name=\"timeToTravel\">\n                  <option *ngFor=\"let t of time\" value=\"{{t}}\">\n                    {{t}} mins\n                  </option>\n                </select>\n              </div>\n              <!--<div class=\"col-md-1\"></div>-->\n              <!--<label for=\"distanceToTravel\" class=\"col-md-2 col-form-label\">and not more than</label>-->\n              <div class=\"col-md-3 float-md-left\">\n                <!--<input type=\"text\" class=\"form-control\" id=\"distanceToTravel\" placeholder=\"distance\">-->\n                <select class=\"form-control\" id=\"distanceToTravel\" [(ngModel)] = \"searchModel.distanceToTravel\" name=\"distanceToTravel\">\n                  <option *ngFor=\"let dist of distance\" value=\"{{dist}}\">\n                    {{dist}} miles\n                  </option>\n                </select>\n              </div>\n              <div class=\"col-md-3\"></div>\n            </div>\n            <div class=\" form-group row col-md-12\">\n              <label class=\"col-md-3 col-form-label\">I love to travel by </label>\n                <div class=\"form-check  col-md-7\" id=\"travelmode1\" >\n                <label class=\"form-check-label\">\n                  <input type=\"radio\" class=\"form-check-input\"\n                         checked\n                         name=\"travelMode\" value=\"Train\"\n                         [(ngModel)] = \"searchModel.travelMode\" name=\"travelMode\" value=\"train\">\n                  <span class=\"fa fa-train\"></span> Train\n                </label>\n                <label class=\"form-check-label\">\n                  <input type=\"radio\" name=\"travelMode\" class=\"form-check-input\"\n                         [(ngModel)] = \"searchModel.travelMode\" name=\"travelMode\" value=\"bus\">\n                  <i class=\"fas fa-bus\"></i> Bus\n                </label>\n                <label class=\"form-check-label\">\n                  <input type=\"radio\" class=\"form-check-input\"\n                         [(ngModel)] = \"searchModel.travelMode\" name=\"travelMode\" value=\"car\">\n                  <i class=\"fas fa-car\"></i> Car\n                </label>\n                <label class=\"form-check-label\">\n                  <input type=\"radio\" class=\"form-check-input\"\n                         [(ngModel)] = \"searchModel.travelMode\" name=\"travelMode\" value=\"cycle\">\n                  <i class=\"fas fa-bicycle\"></i> Cycle\n                </label>\n                <label class=\"form-check-label\">\n                  <input type=\"radio\" class=\"form-check-input\"\n                         [(ngModel)] = \"searchModel.travelMode\" name=\"travelMode\" value=\"walk\">\n                  <i class=\"fas fa-walking\"></i> Walk\n                </label>\n              </div>\n              <div col=\"col-md-2\">\n                <!--<button type=\"submit\" class=\"btn btn-info btn-round\">Round</button>-->\n              </div>\n            </div>\n            <div class=\"form-group row col-md-12\">\n              <div class=\"col-md-3\"> </div>\n              <div class=\"col-md-9\">\n                <button type=\"submit\" class=\"btn btn-info btn-round\" routerLink=\"/areaDetails\">Reset</button>\n                <button type=\"submit\" class=\"btn btn-info btn-round\">Search</button>\n              </div>\n            </div>\n          </form>\n          <!--<span *ngIf=\"isLoading\" class=\"glyphicon glyphicon-repeat fast-right-spinner\"></span>-->\n          <!--<div class=\"searchresults\" *ngIf=\"submitted\">-->\n            <!--<app-search-details [searchModel]=\"outputSearchModel\"></app-search-details>-->\n          <!--</div>-->\n        <!--</div>-->\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- Search results -->\n<div class=\"section areasearch-results-summary\" id=\"searchresults\" align=\"center\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"spinning\" *ngIf=\"isLoading\">\n          <i class=\"fa fa-cog fa-spin fa-2x fa-fw\" aria-hidden=\"true\"></i>\n        </div>\n        <!-- REsults -->\n        <div class=\"search container-fluid col-md-12\" *ngIf=\"hasLoaded\">\n          <div class=\"row\">\n            <p> You have {{areaSearchResults.length}} area(s) matching your criteria </p>\n            <br>\n          </div>\n          <!-- Adding rotating cards -->\n          <div class=\"container\">\n            <div class=\"row\">\n\n              <div class=\"row col-md-12\" *ngFor=\"let searchDetail of areaSearchResults\">\n                <div class=\"col-md-4\">\n                  <div class=\"card-container\">\n                    <div class=\"card\">\n                      <div class=\"front\">\n                        <div class=\"cover\">\n                          <img src=\"assets/img/rotating_card_thumb2.png\"/>\n                        </div>\n                        <div class=\"user\">\n                          <img class=\"img-circle\" src=\"assets/img/skyline/blue_skyline.jpg\">\n                          <div class=\"img-text\">{{searchDetail.area_code}}</div>\n                        </div>\n                        <div class=\"content\">\n                          <div class=\"main\">\n                            <h3 class=\"code\">{{searchDetail.area_code}}</h3>\n                            <h5 class=\"score\">Clozure score: {{searchDetail.total_score}}</h5>\n                            <p class=\"text-center\">{{searchDetail.area_name}}</p>\n                          </div>\n                          <div class=\"footer\">\n                            <button type=\"button\" class=\"btn btn-info btn-round \">Know More</button>\n                          </div>\n                        </div>\n                      </div> <!-- end front panel -->\n                      <div class=\"back\">\n                        <div class=\"header\">\n                          <h5 class=\"motto\">School Score: {{searchDetail.school_score}}</h5>\n                        </div>\n                        <div class=\"content\">\n                          <div class=\"main\">\n                            <h4 class=\"text-center\">Avg Journey Time: {{searchDetail.average_journey_time}}</h4>\n                            <p class=\"text-center\">Detached House Price: {{searchDetail.average_detached_house_price}}</p>\n\n                            <div class=\"stats-container\">\n                              <div class=\"stats\">\n                                <h4>{{searchDetail.outstanding_schools + searchDetail.good_schools + searchDetail.poor_schools}}</h4>\n                                <p>\n                                  Schools\n                                </p>\n                              </div>\n                              <div class=\"stats\">\n                                <h4>{{searchDetail.stations_count}}</h4>\n                                <p>\n                                  Train Stations\n                                </p>\n                              </div>\n                              <div class=\"stats\">\n                                <h4>{{searchDetail.safety_score}}</h4>\n                                <p>\n                                  Score Rating\n                                </p>\n                              </div>\n                            </div>\n\n                          </div>\n                        </div>\n                        <div class=\"footer\">\n                          <div class=\"social-links text-center\">\n                            <a href=\"http://creative-tim.com\" class=\"facebook\"><i class=\"fas fas-facebook fas-fw\"></i></a>\n                            <a href=\"http://creative-tim.com\" class=\"google\"><i class=\"fas fas-google-plus fas-fw\"></i></a>\n                            <a href=\"http://creative-tim.com\" class=\"twitter\"><i class=\"fas fas-twitter fas-fw\"></i></a>\n                          </div>\n                        </div>\n                      </div> <!-- end back panel -->\n                    </div> <!-- end card -->\n                  </div> <!-- end card-container -->\n                </div> <!-- end col sm 3 -->\n                <!--         <div class=\"col-sm-1\"></div> -->\n                <!--<div class=\"col-md-4\">-->\n                  <!--<div class=\"card-container manual-flip\">-->\n                    <!--<div class=\"card\">-->\n                      <!--<div class=\"front\">-->\n                        <!--<div class=\"cover\">-->\n                          <!--<img src=\"assets/img/rotating_card_thumb.png\"/>-->\n                        <!--</div>-->\n                        <!--<div class=\"user\">-->\n                          <!--<img class=\"img-circle\" src=\"assets/img/rotating_card_profile2.png\"/>-->\n                        <!--</div>-->\n                        <!--<div class=\"content\">-->\n                          <!--<div class=\"main\">-->\n                            <!--<h3 class=\"name\">Andrew Mike</h3>-->\n                            <!--<p class=\"profession\">Web Developer</p>-->\n                            <!--<p class=\"text-center\">\"Lamborghini Mercy <br>Your chick she so thirsty <br>I'm in that two seat Lambo\"</p>-->\n                          <!--</div>-->\n                          <!--<div class=\"footer\">-->\n                            <!--<button class=\"btn btn-simple\" onclick=\"rotateCard(this)\">-->\n                              <!--<i class=\"fa fa-mail-forward\"></i> Manual Rotation-->\n                            <!--</button>-->\n                          <!--</div>-->\n                        <!--</div>-->\n                      <!--</div> &lt;!&ndash; end front panel &ndash;&gt;-->\n                      <!--<div class=\"back\">-->\n                        <!--<div class=\"header\">-->\n                          <!--<h5 class=\"motto\">\"To be or not to be, this is my awesome motto!\"</h5>-->\n                        <!--</div>-->\n                        <!--<div class=\"content\">-->\n                          <!--<div class=\"main\">-->\n                            <!--<h4 class=\"text-center\">Job Description</h4>-->\n                            <!--<p class=\"text-center\">Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...</p>-->\n\n                            <!--<div class=\"stats-container\">-->\n                              <!--<div class=\"stats\">-->\n                                <!--<h4>235</h4>-->\n                                <!--<p>-->\n                                  <!--Followers-->\n                                <!--</p>-->\n                              <!--</div>-->\n                              <!--<div class=\"stats\">-->\n                                <!--<h4>114</h4>-->\n                                <!--<p>-->\n                                  <!--Following-->\n                                <!--</p>-->\n                              <!--</div>-->\n                              <!--<div class=\"stats\">-->\n                                <!--<h4>35</h4>-->\n                                <!--<p>-->\n                                  <!--Projects-->\n                                <!--</p>-->\n                              <!--</div>-->\n                            <!--</div>-->\n\n                          <!--</div>-->\n                        <!--</div>-->\n                        <!--<div class=\"footer\">-->\n                          <!--<button class=\"btn btn-simple\" rel=\"tooltip\" title=\"Flip Card\" onclick=\"rotateCard(this)\">-->\n                            <!--<i class=\"fa fa-reply\"></i> Back-->\n                          <!--</button>-->\n                          <!--<div class=\"social-links text-center\">-->\n                            <!--<a href=\"http://creative-tim.com\" class=\"facebook\"><i class=\"fa fa-facebook fa-fw\"></i></a>-->\n                            <!--<a href=\"http://creative-tim.com\" class=\"google\"><i class=\"fa fa-google-plus fa-fw\"></i></a>-->\n                            <!--<a href=\"http://creative-tim.com\" class=\"twitter\"><i class=\"fa fa-twitter fa-fw\"></i></a>-->\n                          <!--</div>-->\n                        <!--</div>-->\n                      <!--</div> &lt;!&ndash; end back panel &ndash;&gt;-->\n                    <!--</div> &lt;!&ndash; end card &ndash;&gt;-->\n                  <!--</div> &lt;!&ndash; end card-container &ndash;&gt;-->\n                <!--</div> &lt;!&ndash; end col sm 3 &ndash;&gt;-->\n\n              </div>\n            </div>\n          </div>\n          <!-- End of rotating cards -->\n          <!--<div id=\"myCarousel\" class=\"carousel slide col-md-12\" data-ride=\"carousel\">-->\n            <!--<div class=\"carousel-inner row w-100 mx-auto\">-->\n              <!--<div class=\"carousel-item col-md-4 active\">-->\n                <!--<div class=\"card-plain bg-dark text-white text-center\">-->\n                  <!--<img class=\"card-img\" src=\"../../../assets/img/gradient-card.png\" alt=\"Card image\">-->\n                  <!--<div class=\"card-img-overlay\">-->\n                    <!--<div class=\"card-header\">-->\n                      <!--<h5 class=\"card-title text-white\">{{areaSearchResults[0].area_code}}</h5>-->\n                    <!--</div>-->\n                    <!--<div class=\"card-body\">-->\n                      <!--<p class=\"card-text\">Area Names :  {{areaSearchResults[0].area_name}}</p>-->\n                      <!--<p class=\"card-text\">Average Detached House Price :  {{areaSearchResults[0].average_detached_house_price}}</p>-->\n                      <!--<p class=\"card-text\">Average Journey Time :  {{areaSearchResults[0].average_journey_time}}</p>-->\n                      <!--<p class=\"card-text\">Good Schools :  {{areaSearchResults[0].good_schools}}</p>-->\n                      <!--<p class=\"card-text\">Safety Score :  {{areaSearchResults[0].safety_score}}</p>-->\n                      <!--<p class=\"card-text\">Total Stations :  {{areaSearchResults[0].stations_count}}</p>-->\n                      <!--<p class=\"card-text\">Total Score: {{areaSearchResults[0].total_score}}</p>-->\n                    <!--</div>-->\n                    <!--<div class=\"card-footer\">-->\n                      <!--<p class=\"card-text\">-->\n                        <!--&lt;!&ndash;<input type=\"button\" class=\"btn btn-info btn-round\" name=\"Explore\" value=\"Explore\" data-toggle=\"modal\" data-target=\"#exampleModal\">&ndash;&gt;-->\n                        <!--<input type=\"button\" class=\"btn btn-info btn-round\" name=\"Explore\" value=\"Explore\" (click) = \"getSectorSearchResults(areaSearchResults[0])\">-->\n                      <!--</p>-->\n                    <!--</div>-->\n                  <!--</div>-->\n                <!--</div>-->\n              <!--</div>-->\n              <!--<div class=\"carousel-item col-md-4 \" *ngFor=\"let searchDetail of areaSearchResults.splice(1)\">-->\n                <!--&lt;!&ndash;<div class=\"card-deck\">&ndash;&gt;-->\n                  <!--<div class=\"card-plain bg-dark text-white text-center\">-->\n                    <!--<img class=\"card-img\" src=\"../../../assets/img/gradient-card.png\">-->\n                    <!--<div class=\"card-img-overlay\">-->\n                      <!--<div class=\"card-header\">-->\n                        <!--<h5 class=\"card-title text-white\">{{searchDetail.area_code}}</h5>-->\n                      <!--</div>-->\n                      <!--<div class=\"card-bod\">-->\n                        <!--<p class=\"card-text\">Area Names :  {{searchDetail.area_name}}</p>-->\n                        <!--<p class=\"card-text\">Average Detached House Price :  {{searchDetail.average_detached_house_price}}</p>-->\n                        <!--<p class=\"card-text\">Average Journey Time :  {{searchDetail.average_journey_time}}</p>-->\n                        <!--<p class=\"card-text\">Good Schools :  {{searchDetail.good_schools}}</p>-->\n                        <!--<p class=\"card-text\">Safety Score :  {{searchDetail.safety_score}}</p>-->\n                        <!--<p class=\"card-text\">Total Stations :  {{searchDetail.stations_count}}</p>-->\n                        <!--<p class=\"card-text\">Total Score: {{searchDetail.total_score}}</p>-->\n                      <!--</div>-->\n                      <!--<div class=\"card-footer\">-->\n                        <!--<p class=\"card-text\">-->\n                          <!--<input type=\"button\" class=\"btn btn-info btn-round\" name=\"Explore\" value=\"Explore\" (click) = \"getSectorSearchResults(searchDetail)\">-->\n                        <!--</p>-->\n                      <!--</div>-->\n                    <!--</div>-->\n                  <!--</div>-->\n                <!--&lt;!&ndash;</div>&ndash;&gt;-->\n              <!--</div>-->\n              <!--<div></div>-->\n            <!--</div>-->\n            <!--<a class=\"carousel-control-prev\" href=\"#myCarousel\" role=\"button\" data-slide=\"prev\">-->\n              <!--<span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>-->\n              <!--<span class=\"sr-only\">Previous</span>-->\n            <!--</a>-->\n            <!--<a class=\"carousel-control-next\" href=\"#myCarousel\" role=\"button\" data-slide=\"next\">-->\n              <!--<span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>-->\n              <!--<span class=\"sr-only\">Next</span>-->\n            <!--</a>-->\n          <!--</div>-->\n        </div>\n        <!-- End Results -->\n        <!-- Modal -->\n        <!-- Modal -->\n        <div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n          <div class=\"modal-dialog\" role=\"document\">\n            <div class=\"modal-content\">\n              <div class=\"modal-body\">\n                <div class=\"card-plain card-chart\">\n                  <div class=\"card-header card-header-danger\">\n                    header\n                  </div>\n                  <div class=\"card-body\">\n                    <div class=\"ct-chart\" id=\"completedTasksChart\"></div>\n                  </div>\n                  <div class=\"card-footer\">\n                    <div class=\"stats\">\n                      <button type=\"button\" class=\"btn btn-round btn-info\" data-dismiss=\"modal\">Close</button>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n        <!-- End modal -->\n      </div>\n    </div>\n  </div>\n</div>\n<!-- End of search results -->\n<div class=\"section section-dark-blue sector-results-screen\" id=\"sectorResults\" >\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"search col-md-12\">\n          <div class=\"spinning\" *ngIf=\"sectorLoading\">\n            <i class=\"fa fa-cog fa-spin fa-2x fa-fw\" aria-hidden=\"true\"></i>\n          </div>\n          <div class=\"\" *ngIf=\"sectorLoaded\">\n            <div class=\"col-md-12\">\n              <div class=\"card\">\n                <div class=\"card-header card-header-warning\">\n                  <h4 class=\"card-title\">Sector Search Results</h4>\n                  <p class=\"card-category\">Search Results for {{sectorSearchResults[0].area_name}}</p>\n                </div>\n                <div class=\"card-body table-responsive\">\n                  <table class=\"table table-hover\">\n                    <thead class=\"text-warning\">\n                    <th>Sector Name</th>\n                    <th>School Score</th>\n                    <th>Safety Score</th>\n                    <th>Total Score</th>\n                    </thead>\n                    <tbody *ngFor=\"let sector of sectorSearchResults\">\n                    <tr>\n                      <td>{{sector.sector_code}}</td>\n                      <td>{{sector.school_score}}</td>\n                      <td>{{sector.safety_score}}</td>\n                      <td>{{sector.total_score}}</td>\n                    </tr>\n                    </tbody>\n                  </table>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- Sector search results -->\n\n<!-- End of sector search -->\n\n\n\n\n\n"
+module.exports = "<div class=\"section section-dark-blue search-screen\" id=\"search\" >\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"search col-md-12\">\n          <form (ngSubmit) = \"getAreaSearchResults()\" #searchForm = \"ngForm\">\n            <div class=\" form-group row col-md-12\">\n              <div class=\"col-md-3\">\n                <label for=\"housePriceTo\" class=\"col-form-label\">My budget is up to </label>\n              </div>\n              <!--<div class=\"col-md-3 float-md-left\">-->\n                <!--&lt;!&ndash;<input type=\"text\" class=\"form-control\" id=\"housePrice\"  placeholder=\"Enter your work postcode\">&ndash;&gt;-->\n                <!--<select class=\"form-control\" id=\"housePriceFrom\" [(ngModel)] = \"searchModel.minPrice\" name=\"minPrice\">-->\n                  <!--<option *ngFor=\"let price of priceRange\" value=\"{{price}}\">-->\n                    <!--{{price | currency : 'GBP' : true : '1.0'}}-->\n                  <!--</option>-->\n                <!--</select>-->\n              <!--</div>-->\n              <div class=\"col-md-3\">\n                <!--<input type=\"text\" class=\"form-control\" id=\"housePrice\"  placeholder=\"Enter your work postcode\">-->\n                <select class=\"form-control\" id=\"housePriceTo\" [(ngModel)] = \"searchModel.maxPrice\" name=\"maxPrice\">\n                  <option *ngFor=\"let price of priceRange\" value=\"{{price}}\">\n                    {{price | currency : 'GBP' : true : '1.0'}}\n                  </option>\n                </select>\n              </div>\n              <!--<div col=\"col-md-4\"></div>-->\n              <div class=\"col-md-6\"></div>\n            </div>\n            <div class=\"form-group row col-md-12\">\n              <div class=\"col-md-3\">\n                <label for=\"workzipcode\" class=\"col-form-label\">Postcodes that matter to me </label>\n              </div>\n              <div class=\"col-md-3\">\n                <input type=\"text\" class=\"form-control\" id=\"workzipcode\"\n                       [(ngModel)] = \"searchModel.workPostcode\"\n                       placeholder=\"First choice\" name=\"workPostCode\" required>\n              </div>\n              <div class=\"col-xs-1\">&nbsp;</div>\n              <!--<div class=\"col-md-1\"></div>-->\n              <!--<label for=\"homezipcode\" class=\"col-md-2 col-form-label\">I currently live at..</label>-->\n              <!--<div class=\"col-md-1\"></div>-->\n              <div class=\"col-md-3\">\n                <input type=\"text\" class=\"form-control\" id=\"homezipcode\"\n                       [(ngModel)] = \"searchModel.homePostcode\"\n                       placeholder=\"Second choice\" name=\"homePostCode\">\n              </div>\n              <div class=\"col-xs-2\"></div>\n            </div>\n            <div class=\"form-group row col-md-12\">\n              <div class=\"col-md-3\">\n                <label for=\"timeToTravel\" class=\"col-form-label\">Can travel up to</label>\n              </div>\n              <div class=\"col-md-3\">\n                <!--<input type=\"text\" class=\"form-control\" id=\"timeToTravel\"  placeholder=\"time\">-->\n                <select class=\"form-control\" id=\"timeToTravel\" [(ngModel)] = \"searchModel.timeToTravel\" name=\"timeToTravel\">\n                  <option *ngFor=\"let t of time\" value=\"{{t}}\">\n                    {{t}} mins\n                  </option>\n                </select>\n              </div>\n              <div class=\"col-xs-1\">&nbsp;</div>\n              <!--<label for=\"distanceToTravel\" class=\"col-md-2 col-form-label\">and not more than</label>-->\n              <div class=\"col-md-3\">\n                <!--<input type=\"text\" class=\"form-control\" id=\"distanceToTravel\" placeholder=\"distance\">-->\n                <select class=\"form-control\" id=\"distanceToTravel\" [(ngModel)] = \"searchModel.distanceToTravel\" name=\"distanceToTravel\">\n                  <option *ngFor=\"let dist of distance\" value=\"{{dist}}\">\n                    {{dist}} km\n                  </option>\n                </select>\n              </div>\n              <div class=\"col-xs-2\"></div>\n            </div>\n            <div class=\" form-group row col-md-12\">\n              <div class=\"col-md-3\">\n                <label class=\"col-form-label\">I love to travel by </label>\n              </div>\n                <div class=\"form-check col-md-7\" id=\"travelmode1\" >\n                <label class=\"form-check-label\">\n                  <input type=\"radio\" class=\"form-check-input\"\n                         checked\n                         name=\"travelMode\" value=\"Train\"\n                         [(ngModel)] = \"searchModel.travelMode\" name=\"travelMode\" value=\"train\">\n                  <span class=\"fa fa-train\"></span> Train\n                  </label>\n                <label class=\"form-check-label\">\n                    <input type=\"radio\" class=\"form-check-input\"\n                         [(ngModel)] = \"searchModel.travelMode\" name=\"travelMode\" value=\"car\">\n                  <i class=\"fas fa-car\"></i> Car\n                  </label>\n                  <label class=\"form-check-label\">\n                    <input type=\"radio\" name=\"travelMode\" class=\"form-check-input\"\n                           [(ngModel)] = \"searchModel.travelMode\" name=\"travelMode\" value=\"Any\">\n                    <i class=\"fas fa-bus\"></i> Any\n                  </label>\n                <label class=\"form-check-label\">\n                    <input type=\"radio\" class=\"form-check-input\"\n                          name=\"travelMode\" value=\"cycle\" disabled=\"true\">\n                  <i class=\"fas fa-bicycle\"></i> Cycle\n                  </label>\n                <label class=\"form-check-label\">\n                    <input type=\"radio\" class=\"form-check-input\"\n                          name=\"travelMode\" value=\"walk\" disabled=\"true\">\n                  <i class=\"fas fa-walking\"></i> Walk\n                  </label>\n                </div>\n              </div>\n            <div class=\"form-group row col-md-12\">\n              <div class=\"col-md-3\"> </div>\n              <div class=\"col-md-9\">\n                <button type=\"submit\" class=\"btn btn-info btn-round\" [disabled]=\"!searchForm.form.valid\" >Search</button> &nbsp;\n                <button type=\"button\" class=\"btn btn-info btn-round\" (click) = \"resetFields()\">Reset</button>\n              </div>\n            </div>\n          </form>\n          <!--<span *ngIf=\"isLoading\" class=\"glyphicon glyphicon-repeat fast-right-spinner\"></span>-->\n          <!--<div class=\"searchresults\" *ngIf=\"submitted\">-->\n            <!--<app-search-details [searchModel]=\"outputSearchModel\"></app-search-details>-->\n          <!--</div>-->\n        <!--</div>-->\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- Search results -->\n<div class=\"section section-dark-blue areasearch-results-summary\" id=\"searchresults\" align=\"center\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"spinning\" *ngIf=\"isLoading\">\n          <i class=\"fa fa-cog fa-spin fa-2x fa-fw\" aria-hidden=\"true\"></i>\n        </div>\n        <!-- REsults -->\n        <div class=\"search container-fluid col-md-12\" *ngIf=\"hasLoaded\">\n          <div class=\"row\">\n            <p> You have {{areaSearchResults.length}} area(s) matching your criteria </p>\n            <br>\n          </div>\n          <!-- Adding rotating cards -->\n          <div class=\"container\">\n            <div class=\"row\">\n              <div class=\"row col-md-12\" *ngFor=\"let searchDetail of areaSearchResults | slice:0:3\">\n                <div class=\"col-md-4\">\n                  <div class=\"card-container\">\n                    <div class=\"card\">\n                      <div class=\"front\">\n                        <div class=\"cover\">\n                          <img src=\"assets/img/rotating_card_thumb2.png\"/>\n                        </div>\n                        <div class=\"user\">\n                          <img class=\"img-circle\" src=\"assets/img/skyline/blue_skyline.jpg\">\n                          <div class=\"img-text\"><h4>{{searchDetail.area_code}}</h4></div>\n                        </div>\n                        <div class=\"content\">\n                          <div class=\"main\">\n                            <h3 class=\"code\">{{searchDetail.area_code}}</h3>\n                            <h5 class=\"score\">Clozure score: {{searchDetail.total_score}}</h5>\n                            <p class=\"text-center\">{{searchDetail.area_name}}</p>\n                          </div>\n                          <div class=\"card-footer\">\n                            <button type=\"button\" class=\"btn btn-info btn-round \">Know More</button>\n                          </div>\n                        </div>\n                      </div> <!-- end front panel -->\n                      <div class=\"back\">\n                        <div class=\"header\">\n                          <h5 class=\"motto\">School Score: {{searchDetail.school_score}}</h5>\n                        </div>\n                        <div class=\"content\">\n                          <div class=\"main\">\n                            <h4 class=\"text-center\">Avg Journey Time: {{searchDetail.average_journey_time}}</h4>\n                            <p class=\"text-center\">Detached House Price: {{searchDetail.average_detached_house_price}}</p>\n\n                            <div class=\"stats-container\">\n                              <div class=\"stats\">\n                                <h4>{{searchDetail.outstanding_schools + searchDetail.good_schools + searchDetail.poor_schools}}</h4>\n                                <p>\n                                  Schools\n                                </p>\n                              </div>\n                              <div class=\"stats\">\n                                <h4>{{searchDetail.stations_count}}</h4>\n                                <p>\n                                  Train Stations\n                                </p>\n                              </div>\n                              <div class=\"stats\">\n                                <h4>{{searchDetail.safety_score}}</h4>\n                                <p>\n                                  Score Rating\n                                </p>\n                              </div>\n                            </div>\n\n                          </div>\n                        </div>\n                        <div class=\"card-footer\">\n                          <div class=\"social-links text-center\">\n                            <button type=\"button\" class=\"btn btn-info btn-round \" (click) = \"getSectorSearchResults(searchDetail)\" data-toggle=\"modal\" data-target=\"#exampleModal\">Explore</button>\n                          </div>\n                        </div>\n                      </div> <!-- end back panel -->\n                    </div> <!-- end card -->\n                  </div> <!-- end card-container -->\n                </div> <!-- end col sm 3 -->\n              </div>\n            </div>\n          </div>\n        </div>\n        <!-- End Results -->\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- Modal -->\n<div class=\"modal fadeOutUp\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog modal-lg\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngIf=\"sectorLoaded\">\n        <h5 class=\"modal-title\" id=\"exampleModalTitle\">Search Results for {{sectorSearchResults[0].area_name}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <div class=\"container\">\n          <div class=\"row\">\n            <div class=\"col-md-12\">\n              <div class=\"search col-md-12\">\n                <div class=\"spinning\" *ngIf=\"sectorLoading\">\n                  <i class=\"fa fa-cog fa-spin fa-2x fa-fw\" aria-hidden=\"true\"></i>\n                </div>\n                <div class=\"\" *ngIf=\"sectorLoaded\">\n                  <div class=\"col-md-12\">\n                    <div class=\"card-plain\">\n                      <!--<div class=\"card-header card-header-warning\">-->\n                        <!--<p class=\"card-category\">Search Results for {{sectorSearchResults[0].area_name}}</p>-->\n                      <!--</div>-->\n                      <div class=\"card-body table-responsive\">\n                        <table class=\"table table-hover\">\n                          <thead class=\"text-warning\">\n                          <th>Sector Name</th>\n                          <th>School Score</th>\n                          <th>Safety Score</th>\n                          <th>Total Score</th>\n                          </thead>\n                          <tbody *ngFor=\"let sector of sectorSearchResults\">\n                          <tr>\n                            <td>{{sector.sector_code}}</td>\n                            <td>{{sector.school_score}}</td>\n                            <td>{{sector.safety_score}}</td>\n                            <td>{{sector.total_score}}</td>\n                          </tr>\n                          </tbody>\n                        </table>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- End modal -->\n\n<!-- End of search results -->\n<!--<div class=\"section section-dark-blue sector-results-screen\" id=\"sectorResults\" >-->\n  <!--<div class=\"container\">-->\n    <!--<div class=\"row\">-->\n      <!--<div class=\"col-md-12\">-->\n        <!--<div class=\"search col-md-12\">-->\n          <!--<div class=\"spinning\" *ngIf=\"sectorLoading\">-->\n            <!--<i class=\"fa fa-cog fa-spin fa-2x fa-fw\" aria-hidden=\"true\"></i>-->\n          <!--</div>-->\n          <!--<div class=\"\" *ngIf=\"sectorLoaded\">-->\n            <!--<div class=\"col-md-12\">-->\n              <!--<div class=\"card\">-->\n                <!--<div class=\"card-header card-header-warning\">-->\n                  <!--<h4 class=\"card-title\">Sector Search Results</h4>-->\n                  <!--<p class=\"card-category\">Search Results for {{sectorSearchResults[0].area_name}}</p>-->\n                <!--</div>-->\n                <!--<div class=\"card-body table-responsive\">-->\n                  <!--<table class=\"table table-hover\">-->\n                    <!--<thead class=\"text-warning\">-->\n                    <!--<th>Sector Name</th>-->\n                    <!--<th>School Score</th>-->\n                    <!--<th>Safety Score</th>-->\n                    <!--<th>Total Score</th>-->\n                    <!--</thead>-->\n                    <!--<tbody *ngFor=\"let sector of sectorSearchResults\">-->\n                    <!--<tr>-->\n                      <!--<td>{{sector.sector_code}}</td>-->\n                      <!--<td>{{sector.school_score}}</td>-->\n                      <!--<td>{{sector.safety_score}}</td>-->\n                      <!--<td>{{sector.total_score}}</td>-->\n                    <!--</tr>-->\n                    <!--</tbody>-->\n                  <!--</table>-->\n                <!--</div>-->\n              <!--</div>-->\n            <!--</div>-->\n          <!--</div>-->\n        <!--</div>-->\n      <!--</div>-->\n    <!--</div>-->\n  <!--</div>-->\n<!--</div>-->\n\n<!-- Sector search results -->\n\n<!-- End of sector search -->\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -584,15 +584,30 @@ var SearchComponent = /** @class */ (function () {
         this.isLoading = false;
         this.sectorLoaded = false;
         this.sectorLoading = false;
-        for (var i = 50000; i < 200000; i += 10000) {
-            this.priceRange.push(i);
+        for (var i = 50; i <= 900; i += 10) {
+            this.priceRange.push(i + '000');
         }
-        for (var tc = 10; tc < 200; tc += 10) {
+        for (var i = 1000; i <= 2000; i += 125) {
+            this.priceRange.push(i + '000');
+        }
+        for (var tc = 10; tc <= 90; tc += 10) {
             this.time.push(tc);
         }
-        for (var dist = 5; dist < 100; dist += 5) {
+        for (var dist = 1; dist <= 100; dist += 4) {
             this.distance.push(dist);
         }
+        this.searchModel.minPrice = this.priceRange[0];
+        this.searchModel.maxPrice = 650000;
+        this.searchModel.timeToTravel = this.time[0];
+        this.searchModel.distanceToTravel = this.distance[0];
+        this.searchModel.travelMode = 'train';
+        this.modes = [
+            { name: 'Train', value: 'train', checked: true },
+            { name: 'Bus', value: 'bus', checked: false },
+            { name: 'Cycle', value: 'cycle', checked: false },
+            { name: 'Car', value: 'car', checked: false },
+            { name: 'Walk', value: 'walk', checked: false }
+        ];
         /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
         var dataCompletedTasksChart = {
             labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
@@ -611,6 +626,15 @@ var SearchComponent = /** @class */ (function () {
         var completedTasksChart = new __WEBPACK_IMPORTED_MODULE_4_chartist__["Line"]('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
         // start animation for the Completed Tasks Chart - Line Chart
         this.startAnimationForLineChart(completedTasksChart);
+    };
+    SearchComponent.prototype.resetFields = function () {
+        this.searchModel.minPrice = this.priceRange[0];
+        this.searchModel.maxPrice = 650000;
+        this.searchModel.timeToTravel = this.time[0];
+        this.searchModel.distanceToTravel = this.distance[0];
+        this.searchModel.travelMode = 'train';
+        this.searchModel.workPostcode = '';
+        this.searchModel.homePostcode = '';
     };
     SearchComponent.prototype.startAnimationForLineChart = function (chart) {
         var seq, delays, durations;
@@ -661,7 +685,7 @@ var SearchComponent = /** @class */ (function () {
         console.log(this.searchModel.travelMode);
         console.log('##############################');
         setTimeout(function () {
-            _this.searchAreaService.getAreaDetails().subscribe(function (areaDetails) {
+            _this.searchAreaService.getAreaDetails(_this.searchModel).subscribe(function (areaDetails) {
                 console.log('returned :: ' + areaDetails[0].area_code);
                 console.log('returned ob :: ' + areaDetails);
                 _this.areaSearchResults = areaDetails;
@@ -873,108 +897,206 @@ var SearchAreaService = /** @class */ (function () {
     // =
     //   [{
     //     areaCode: 'BR7',
-    //     areaName: 'Chislehurst, Elmstead',
-    //     averageDetachedHousePrice: 1048624.0,
-    //     averageFlatPrice: 375343.5,
-    //     averageJourneyTime: 8.0,
-    //     averageSemiDetachedHousePrice: 559424.0,
-    //     distanceToWork: 2772.0,
-    //     facilitiesScore: 109.0,
-    //     goodSchools: 0,
-    //     highestHousePrice: 0,
-    //     lowestHousePrice: 0,
-    //     outstandingSchools: 0,
-    //     poorSchools: 0,
+    //     area_name: 'Chislehurst, Elmstead',
+    //     average_detached_house_price: 1048624.0,
+    //     average_flat_price: 375343.5,
+    //     average_journey_time: 8.0,
+    //     average_semi_detached_house_price: 559424.0,
+    //     distance_to_work: 2772.0,
+    //     facilities_score: 109.0,
+    //     good_schools: 0,
+    //     highest_house_price: 0,
+    //     lowest_house_price: 0,
+    //     outstanding_schools: 0,
+    //     poor_schools: 0,
     //     postcode: 'BR7 5NN',
-    //     primarySchools: 4,
-    //     privateSchools: 3,
-    //     safetyScore: 50,
-    //     schoolScore: 157.0,
-    //     secondarySchools: 3,
-    //     sectorCode: 'se9 2',
+    //     primary_schools: 4,
+    //     private_schools: 3,
+    //     safety_score: 50,
+    //     school_score: 157.0,
+    //     secondary_schools: 3,
+    //     sector_code: 'se9 2',
     //     stations: 'Chislehurst, Elmstead Woods',
-    //     stationsCount: 2,
-    //     totalSchools: 10,
-    //     travelScore: 86.0,
-    //     facilitiesScoreRating: 'GOLD',
-    //     safetyScoreRating: 'PLATINUM',
-    //     travelScoreRating: 'PLATINUM',
-    //     schoolScoreRating: 'GOLD',
-    //     totalScore: 350
+    //     stations_count: 2,
+    //     total_schools: 10,
+    //     travel_score: 86.0,
+    //     facilities_score_rating: 'GOLD',
+    //     safety_score_rating: 'PLATINUM',
+    //     travel_score_rating: 'PLATINUM',
+    //     school_score_rating: 'GOLD',
+    //     total_score: 350
     //   },{
     //     areaCode: 'SE9',
-    //     areaName: 'Eltham, Mottingham, New Eltham, Falconwood, Chinbrook, Longlands, Kidbrooke',
-    //     averageDetachedHousePrice: 719388.0,
-    //     averageFlatPrice: 269004.0,
-    //     averageJourneyTime: 10.3,
-    //     averageSemiDetachedHousePrice: 491503.0,
-    //     distanceToWork: 2701.0,
-    //     facilitiesScore: 215.0,
-    //     goodSchools: 0,
-    //     highestHousePrice: 0,
-    //     lowestHousePrice: 0,
-    //     outstandingSchools: 0,
-    //     poorSchools: 0,
+    //     area_name: 'Eltham, Mottingham, New Eltham, Falconwood, Chinbrook, Longlands, Kidbrooke',
+    //     average_detached_house_price: 719388.0,
+    //     average_flat_price: 269004.0,
+    //     average_journey_time: 10.3,
+    //     average_semi_detached_house_price: 491503.0,
+    //     distance_to_work: 2701.0,
+    //     facilities_score: 215.0,
+    //     good_schools: 0,
+    //     highest_house_price: 0,
+    //     lowest_house_price: 0,
+    //     outstanding_schools: 0,
+    //     poor_schools: 0,
     //     postcode: 'SE9 6SL',
-    //     primarySchools: 19,
-    //     privateSchools: 4,
-    //     safetyScore: 100,
-    //     schoolScore: 148.0,
-    //     secondarySchools: 4,
-    //     sectorCode: 'se9 6',
+    //     primary_schools: 19,
+    //     private_schools: 4,
+    //     safety_score: 100,
+    //     school_score: 148.0,
+    //     secondary_schools: 4,
+    //     sector_code: 'se9 6',
     //     stations: 'Eltham, Falconwood, Mottingham, New Eltham',
-    //     stationsCount: 4,
-    //     totalSchools: 27,
-    //     travelScore: 104.0,
-    //     facilitiesScoreRating: 'PLATINUM',
-    //     safetyScoreRating: 'PLATINUM',
-    //     travelScoreRating: 'PLATINUM',
-    //     schoolScoreRating: 'GOLD',
-    //     totalScore: 375
+    //     stations_count: 4,
+    //     total_schools: 27,
+    //     travel_score: 104.0,
+    //     facilities_score_rating: 'PLATINUM',
+    //     safety_score_rating: 'PLATINUM',
+    //     travel_score_rating: 'PLATINUM',
+    //     school_score_rating: 'GOLD',
+    //     total_score: 375
     //   },{
     //     areaCode: 'BR1',
-    //     areaName: 'Bromley, Bickley, Downham',
-    //     averageDetachedHousePrice: 950991.0,
-    //     averageFlatPrice: 343179.0,
-    //     averageJourneyTime: 8.6166666667,
-    //     averageSemiDetachedHousePrice: 547071.0,
-    //     distanceToWork: 4004.0,
-    //     facilitiesScore: 180.0,
-    //     goodSchools: 0,
-    //     highestHousePrice: 0,
-    //     lowestHousePrice: 0,
-    //     outstandingSchools: 0,
-    //     poorSchools: 0,
+    //     area_name: 'Bromley, Bickley, Downham',
+    //     average_detached_house_price: 950991.0,
+    //     average_flat_price: 343179.0,
+    //     average_journey_time: 8.6166666667,
+    //     average_semi_detached_house_price: 547071.0,
+    //     distance_to_work: 4004.0,
+    //     facilities_score: 180.0,
+    //     good_schools: 0,
+    //     highest_house_price: 0,
+    //     lowest_house_price: 0,
+    //     outstanding_schools: 0,
+    //     poor_schools: 0,
     //     postcode: 'BR1 2EB',
-    //     primarySchools: 12,
-    //     privateSchools: 5,
-    //     safetyScore: 100,
-    //     schoolScore: 245.0,
-    //     secondarySchools: 2,
-    //     sectorCode: 'br1 2',
+    //     primary_schools: 12,
+    //     private_schools: 5,
+    //     safety_score: 100,
+    //     school_score: 245.0,
+    //     secondary_schools: 2,
+    //     sector_code: 'br1 2',
     //     stations: 'Bickley, Bromley North, Bromley South, Sundridge Park',
-    //     stationsCount: 4,
-    //     totalSchools: 19,
-    //     travelScore: 93.0,
-    //     facilitiesScoreRating: 'PLATINUM',
-    //     safetyScoreRating: 'PLATINUM',
-    //     travelScoreRating: 'PLATINUM',
-    //     schoolScoreRating: 'PLATINUM',
-    //     totalScore: 400
+    //     stations_count: 4,
+    //     total_schools: 19,
+    //     travel_score: 93.0,
+    //     facilities_score_rating: 'PLATINUM',
+    //     safety_score_rating: 'PLATINUM',
+    //     travel_score_rating: 'PLATINUM',
+    //     school_score_rating: 'PLATINUM',
+    //     total_score: 400
     //   }];
     //
     function SearchAreaService(http) {
         this.http = http;
+        this.searchAreaModel = [{
+                area_code: 'BR7',
+                area_name: 'Chislehurst, Elmstead',
+                average_detached_house_price: 1048624.0,
+                average_flat_price: 375343.5,
+                average_journey_time: 8.0,
+                average_semi_detached_house_price: 559424.0,
+                distance_to_work: 2772.0,
+                facilities_score: 109.0,
+                good_schools: 0,
+                highest_house_price: 0,
+                lowest_house_price: 0,
+                outstanding_schools: 0,
+                poor_schools: 0,
+                postcode: 'BR7 5NN',
+                primary_schools: 4,
+                private_schools: 3,
+                safety_score: 50,
+                school_score: 157.0,
+                secondary_schools: 3,
+                sector_code: '',
+                stations: 'Chislehurst, Elmstead Woods',
+                stations_count: 2,
+                total_schools: 10,
+                travel_score: 86.0,
+                facilities_score_rating: 'GOLD',
+                safety_score_rating: 'PLATINUM',
+                travel_score_rating: 'PLATINUM',
+                school_score_rating: 'GOLD',
+                total_score: 350
+            }, {
+                area_code: 'SE9',
+                area_name: 'Eltham, Mottingham, New Eltham, Falconwood, Chinbrook, Longlands, Kidbrooke',
+                average_detached_house_price: 719388.0,
+                average_flat_price: 269004.0,
+                average_journey_time: 10.3,
+                average_semi_detached_house_price: 491503.0,
+                distance_to_work: 2701.0,
+                facilities_score: 215.0,
+                good_schools: 0,
+                highest_house_price: 0,
+                lowest_house_price: 0,
+                outstanding_schools: 0,
+                poor_schools: 0,
+                postcode: 'SE9 6SL',
+                primary_schools: 19,
+                private_schools: 4,
+                safety_score: 100,
+                school_score: 148.0,
+                secondary_schools: 4,
+                sector_code: '',
+                stations: 'Eltham, Falconwood, Mottingham, New Eltham',
+                stations_count: 4,
+                total_schools: 27,
+                travel_score: 104.0,
+                facilities_score_rating: 'PLATINUM',
+                safety_score_rating: 'PLATINUM',
+                travel_score_rating: 'PLATINUM',
+                school_score_rating: 'GOLD',
+                total_score: 375
+            }, {
+                area_code: 'BR1',
+                area_name: 'Bromley, Bickley, Downham',
+                average_detached_house_price: 950991.0,
+                average_flat_price: 343179.0,
+                average_journey_time: 8.6166666667,
+                average_semi_detached_house_price: 547071.0,
+                distance_to_work: 4004.0,
+                facilities_score: 180.0,
+                good_schools: 0,
+                highest_house_price: 0,
+                lowest_house_price: 0,
+                outstanding_schools: 0,
+                poor_schools: 0,
+                postcode: 'BR1 2EB',
+                primary_schools: 12,
+                private_schools: 5,
+                safety_score: 100,
+                school_score: 245.0,
+                secondary_schools: 2,
+                sector_code: '',
+                stations: 'Bickley, Bromley North, Bromley South, Sundridge Park',
+                stations_count: 4,
+                total_schools: 19,
+                travel_score: 93.0,
+                facilities_score_rating: 'PLATINUM',
+                safety_score_rating: 'PLATINUM',
+                travel_score_rating: 'PLATINUM',
+                school_score_rating: 'PLATINUM',
+                total_score: 400
+            }];
         this.serverStr = this.getAppServer();
     }
     SearchAreaService.prototype.getAppServer = function () {
         return __WEBPACK_IMPORTED_MODULE_1__environments_environment__["a" /* environment */].appServer;
     };
-    SearchAreaService.prototype.getAreaDetails = function () {
+    SearchAreaService.prototype.getAreaDetails = function (searchModel) {
         // console.log('app string :: ' + this.serverStr);
         // console.log(this.searchAreaModel);
+        console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode
+            + ':' + searchModel.timeToTravel + ':' + searchModel.distanceToTravel + ':' + searchModel.travelModeTrain);
         // return of(this.searchAreaModel);
-        return this.http.get(this.serverStr + '/getAreaDetails?work_post_code=BR7+6JN&additional_post_code=SE12+8AW&max_journey_time=60&max_journey_distance=15000&min_house_price=300000&max_house_price=1100000&pref_travel_mode=car');
+        return this.http.get(this.serverStr +
+            '/getAreaDetails?work_post_code=BR7+6JN&additional_post_code=SE12+8AW&max_journey_time=' + searchModel.timeToTravel +
+            '&max_journey_distance=' + '5000' +
+            '&min_house_price=' + '300000' +
+            '&max_house_price=' + '1100000' +
+            '&pref_travel_mode=' + searchModel.travelModeTrain);
     };
     SearchAreaService.prototype.getSectorDetails = function () {
         // console.log('app string :: ' + this.serverStr);

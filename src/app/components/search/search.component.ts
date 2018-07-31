@@ -17,6 +17,7 @@ export class SearchComponent implements OnInit {
   priceRange: Array<any> = [];
   time: Array<any> = [];
   distance: Array<any> = [] ;
+  modes: Array<any>;
   hasLoaded: boolean;
   isLoading: boolean;
   sectorLoaded: boolean;
@@ -37,17 +38,35 @@ export class SearchComponent implements OnInit {
     this.sectorLoaded = false;
     this.sectorLoading = false;
 
-    for (let i = 50000; i < 200000; i += 10000) {
-      this.priceRange.push(i);
+    for (let i = 50; i <= 900; i += 10) {
+      this.priceRange.push(i+'000');
     }
 
-    for ( let tc = 10; tc < 200 ; tc += 10) {
+    for (let i = 1000; i <= 2000; i += 125) {
+      this.priceRange.push(i+'000');
+    }
+
+    for ( let tc = 10; tc <= 90 ; tc += 10) {
       this.time.push(tc);
     }
 
-    for (let dist = 5; dist < 100; dist += 5) {
+    for (let dist = 1; dist <= 100; dist += 4) {
       this.distance.push(dist);
     }
+
+    this.searchModel.minPrice = this.priceRange[0];
+    this.searchModel.maxPrice = 650000;
+    this.searchModel.timeToTravel = this.time[0];
+    this.searchModel.distanceToTravel = this.distance[0];
+    this.searchModel.travelMode = 'train';
+
+    this.modes = [
+      {name: 'Train', value: 'train', checked: true},
+      {name: 'Bus', value: 'bus', checked: false},
+      {name: 'Cycle', value: 'cycle', checked: false},
+      {name: 'Car', value: 'car', checked: false},
+      {name: 'Walk', value: 'walk', checked: false}
+    ];
 
     /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
 
@@ -73,6 +92,16 @@ export class SearchComponent implements OnInit {
     this.startAnimationForLineChart(completedTasksChart);
 
 
+  }
+
+  resetFields() : void {
+    this.searchModel.minPrice = this.priceRange[0];
+    this.searchModel.maxPrice = 650000;
+    this.searchModel.timeToTravel = this.time[0];
+    this.searchModel.distanceToTravel = this.distance[0];
+    this.searchModel.travelMode = 'train';
+    this.searchModel.workPostcode = '';
+    this.searchModel.homePostcode = '';
   }
 
   startAnimationForLineChart(chart){
@@ -128,7 +157,7 @@ export class SearchComponent implements OnInit {
 
 
     setTimeout( () => {
-        this.searchAreaService.getAreaDetails().subscribe(
+        this.searchAreaService.getAreaDetails(this.searchModel).subscribe(
           areaDetails => {
             console.log('returned :: ' + areaDetails[0].area_code);
             console.log('returned ob :: '+ areaDetails);

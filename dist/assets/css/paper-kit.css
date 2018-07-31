@@ -6536,3 +6536,8 @@ pre.prettyprint{
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+
+.fontawesome-select, .multiselect-native-select {
+  font-family: 'FontAwesome', 'Helvetica';
+}

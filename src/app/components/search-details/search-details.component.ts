@@ -37,7 +37,7 @@ export class SearchDetailsComponent implements OnInit {
     this.isLoading = true;
     this.searchComplete = false;
     setTimeout( () => {
-      this.searchAreaService.getAreaDetails().subscribe(
+      this.searchAreaService.getAreaDetails(this.searchModel).subscribe(
         areaDetails => {
           this.areaSearchResults = areaDetails;
           this.isLoading = false;

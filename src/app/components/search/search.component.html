@@ -3,47 +3,55 @@
     <div class="row">
       <div class="col-md-12">
         <div class="search col-md-12">
-          <form (ngSubmit) = "getAreaSearchResults()">
+          <form (ngSubmit) = "getAreaSearchResults()" #searchForm = "ngForm">
             <div class=" form-group row col-md-12">
-              <label for="housePriceFrom" class="col-md-3 col-form-label">My budget is from </label>
-              <div class="col-md-3 float-md-left">
-                <!--<input type="text" class="form-control" id="housePrice"  placeholder="Enter your work postcode">-->
-                <select class="form-control" id="housePriceFrom" [(ngModel)] = "searchModel.minPrice" name="minPrice">
-                  <option *ngFor="let price of priceRange" value="{{price}}">
-                    {{price}}
-                  </option>
-                </select>
+              <div class="col-md-3">
+                <label for="housePriceTo" class="col-form-label">My budget is up to </label>
               </div>
-              <div class="col-md-3 float-md-left">
+              <!--<div class="col-md-3 float-md-left">-->
+                <!--&lt;!&ndash;<input type="text" class="form-control" id="housePrice"  placeholder="Enter your work postcode">&ndash;&gt;-->
+                <!--<select class="form-control" id="housePriceFrom" [(ngModel)] = "searchModel.minPrice" name="minPrice">-->
+                  <!--<option *ngFor="let price of priceRange" value="{{price}}">-->
+                    <!--{{price | currency : 'GBP' : true : '1.0'}}-->
+                  <!--</option>-->
+                <!--</select>-->
+              <!--</div>-->
+              <div class="col-md-3">
                 <!--<input type="text" class="form-control" id="housePrice"  placeholder="Enter your work postcode">-->
                 <select class="form-control" id="housePriceTo" [(ngModel)] = "searchModel.maxPrice" name="maxPrice">
                   <option *ngFor="let price of priceRange" value="{{price}}">
-                    {{price}}
+                    {{price | currency : 'GBP' : true : '1.0'}}
                   </option>
                 </select>
               </div>
               <!--<div col="col-md-4"></div>-->
-              <div class="col-md-3"></div>
+              <div class="col-md-6"></div>
             </div>
             <div class="form-group row col-md-12">
-              <label for="workzipcode" class="col-md-3 col-form-label float-md-right">Postcodes that matter to me </label>
-              <div class="col-md-3 float-md-left">
+              <div class="col-md-3">
+                <label for="workzipcode" class="col-form-label">Postcodes that matter to me </label>
+              </div>
+              <div class="col-md-3">
                 <input type="text" class="form-control" id="workzipcode"
                        [(ngModel)] = "searchModel.workPostcode"
-                       placeholder="Where I work now" name="workPostCode">
+                       placeholder="First choice" name="workPostCode" required>
               </div>
+              <div class="col-xs-1">&nbsp;</div>
               <!--<div class="col-md-1"></div>-->
               <!--<label for="homezipcode" class="col-md-2 col-form-label">I currently live at..</label>-->
-              <div class="col-md-3 float-md-left">
+              <!--<div class="col-md-1"></div>-->
+              <div class="col-md-3">
                 <input type="text" class="form-control" id="homezipcode"
                        [(ngModel)] = "searchModel.homePostcode"
-                       placeholder="Where I currently live" name="homePostCode">
+                       placeholder="Second choice" name="homePostCode">
               </div>
-              <div class="col-md-3"></div>
+              <div class="col-xs-2"></div>
             </div>
             <div class="form-group row col-md-12">
-              <label for="timeToTravel" class="col-md-3 col-form-label">Can travel up to</label>
-              <div class="col-md-3 float-md-left">
+              <div class="col-md-3">
+                <label for="timeToTravel" class="col-form-label">Can travel up to</label>
+              </div>
+              <div class="col-md-3">
                 <!--<input type="text" class="form-control" id="timeToTravel"  placeholder="time">-->
                 <select class="form-control" id="timeToTravel" [(ngModel)] = "searchModel.timeToTravel" name="timeToTravel">
                   <option *ngFor="let t of time" value="{{t}}">
@@ -51,58 +59,57 @@
                   </option>
                 </select>
               </div>
-              <!--<div class="col-md-1"></div>-->
+              <div class="col-xs-1">&nbsp;</div>
               <!--<label for="distanceToTravel" class="col-md-2 col-form-label">and not more than</label>-->
-              <div class="col-md-3 float-md-left">
+              <div class="col-md-3">
                 <!--<input type="text" class="form-control" id="distanceToTravel" placeholder="distance">-->
                 <select class="form-control" id="distanceToTravel" [(ngModel)] = "searchModel.distanceToTravel" name="distanceToTravel">
                   <option *ngFor="let dist of distance" value="{{dist}}">
-                    {{dist}} miles
+                    {{dist}} km
                   </option>
                 </select>
               </div>
-              <div class="col-md-3"></div>
+              <div class="col-xs-2"></div>
             </div>
             <div class=" form-group row col-md-12">
-              <label class="col-md-3 col-form-label">I love to travel by </label>
-                <div class="form-check  col-md-7" id="travelmode1" >
+              <div class="col-md-3">
+                <label class="col-form-label">I love to travel by </label>
+              </div>
+                <div class="form-check col-md-7" id="travelmode1" >
                 <label class="form-check-label">
                   <input type="radio" class="form-check-input"
                          checked
                          name="travelMode" value="Train"
                          [(ngModel)] = "searchModel.travelMode" name="travelMode" value="train">
                   <span class="fa fa-train"></span> Train
-                </label>
+                  </label>
                 <label class="form-check-label">
-                  <input type="radio" name="travelMode" class="form-check-input"
-                         [(ngModel)] = "searchModel.travelMode" name="travelMode" value="bus">
-                  <i class="fas fa-bus"></i> Bus
-                </label>
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input"
+                    <input type="radio" class="form-check-input"
                          [(ngModel)] = "searchModel.travelMode" name="travelMode" value="car">
                   <i class="fas fa-car"></i> Car
-                </label>
+                  </label>
+                  <label class="form-check-label">
+                    <input type="radio" name="travelMode" class="form-check-input"
+                           [(ngModel)] = "searchModel.travelMode" name="travelMode" value="Any">
+                    <i class="fas fa-bus"></i> Any
+                  </label>
                 <label class="form-check-label">
-                  <input type="radio" class="form-check-input"
-                         [(ngModel)] = "searchModel.travelMode" name="travelMode" value="cycle">
+                    <input type="radio" class="form-check-input"
+                          name="travelMode" value="cycle" disabled="true">
                   <i class="fas fa-bicycle"></i> Cycle
-                </label>
+                  </label>
                 <label class="form-check-label">
-                  <input type="radio" class="form-check-input"
-                         [(ngModel)] = "searchModel.travelMode" name="travelMode" value="walk">
+                    <input type="radio" class="form-check-input"
+                          name="travelMode" value="walk" disabled="true">
                   <i class="fas fa-walking"></i> Walk
-                </label>
+                  </label>
+                </div>
               </div>
-              <div col="col-md-2">
-                <!--<button type="submit" class="btn btn-info btn-round">Round</button>-->
-              </div>
-            </div>
             <div class="form-group row col-md-12">
               <div class="col-md-3"> </div>
               <div class="col-md-9">
-                <button type="submit" class="btn btn-info btn-round" routerLink="/areaDetails">Reset</button>
-                <button type="submit" class="btn btn-info btn-round">Search</button>
+                <button type="submit" class="btn btn-info btn-round" [disabled]="!searchForm.form.valid" >Search</button> &nbsp;
+                <button type="button" class="btn btn-info btn-round" (click) = "resetFields()">Reset</button>
               </div>
             </div>
           </form>
@@ -117,7 +124,7 @@
   </div>
 </div>
 <!-- Search results -->
-<div class="section areasearch-results-summary" id="searchresults" align="center">
+<div class="section section-dark-blue areasearch-results-summary" id="searchresults" align="center">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -133,8 +140,7 @@
           <!-- Adding rotating cards -->
           <div class="container">
             <div class="row">
-
-              <div class="row col-md-12" *ngFor="let searchDetail of areaSearchResults">
+              <div class="row col-md-12" *ngFor="let searchDetail of areaSearchResults | slice:0:3">
                 <div class="col-md-4">
                   <div class="card-container">
                     <div class="card">
@@ -144,7 +150,7 @@
                         </div>
                         <div class="user">
                           <img class="img-circle" src="assets/img/skyline/blue_skyline.jpg">
-                          <div class="img-text">{{searchDetail.area_code}}</div>
+                          <div class="img-text"><h4>{{searchDetail.area_code}}</h4></div>
                         </div>
                         <div class="content">
                           <div class="main">
@@ -152,7 +158,7 @@
                             <h5 class="score">Clozure score: {{searchDetail.total_score}}</h5>
                             <p class="text-center">{{searchDetail.area_name}}</p>
                           </div>
-                          <div class="footer">
+                          <div class="card-footer">
                             <button type="button" class="btn btn-info btn-round ">Know More</button>
                           </div>
                         </div>
@@ -189,174 +195,67 @@
 
                           </div>
                         </div>
-                        <div class="footer">
+                        <div class="card-footer">
                           <div class="social-links text-center">
-                            <a href="http://creative-tim.com" class="facebook"><i class="fas fas-facebook fas-fw"></i></a>
-                            <a href="http://creative-tim.com" class="google"><i class="fas fas-google-plus fas-fw"></i></a>
-                            <a href="http://creative-tim.com" class="twitter"><i class="fas fas-twitter fas-fw"></i></a>
+                            <button type="button" class="btn btn-info btn-round " (click) = "getSectorSearchResults(searchDetail)" data-toggle="modal" data-target="#exampleModal">Explore</button>
                           </div>
                         </div>
                       </div> <!-- end back panel -->
                     </div> <!-- end card -->
                   </div> <!-- end card-container -->
                 </div> <!-- end col sm 3 -->
-                <!--         <div class="col-sm-1"></div> -->
-                <!--<div class="col-md-4">-->
-                  <!--<div class="card-container manual-flip">-->
-                    <!--<div class="card">-->
-                      <!--<div class="front">-->
-                        <!--<div class="cover">-->
-                          <!--<img src="assets/img/rotating_card_thumb.png"/>-->
-                        <!--</div>-->
-                        <!--<div class="user">-->
-                          <!--<img class="img-circle" src="assets/img/rotating_card_profile2.png"/>-->
-                        <!--</div>-->
-                        <!--<div class="content">-->
-                          <!--<div class="main">-->
-                            <!--<h3 class="name">Andrew Mike</h3>-->
-                            <!--<p class="profession">Web Developer</p>-->
-                            <!--<p class="text-center">"Lamborghini Mercy <br>Your chick she so thirsty <br>I'm in that two seat Lambo"</p>-->
-                          <!--</div>-->
-                          <!--<div class="footer">-->
-                            <!--<button class="btn btn-simple" onclick="rotateCard(this)">-->
-                              <!--<i class="fa fa-mail-forward"></i> Manual Rotation-->
-                            <!--</button>-->
-                          <!--</div>-->
-                        <!--</div>-->
-                      <!--</div> &lt;!&ndash; end front panel &ndash;&gt;-->
-                      <!--<div class="back">-->
-                        <!--<div class="header">-->
-                          <!--<h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>-->
-                        <!--</div>-->
-                        <!--<div class="content">-->
-                          <!--<div class="main">-->
-                            <!--<h4 class="text-center">Job Description</h4>-->
-                            <!--<p class="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...</p>-->
-
-                            <!--<div class="stats-container">-->
-                              <!--<div class="stats">-->
-                                <!--<h4>235</h4>-->
-                                <!--<p>-->
-                                  <!--Followers-->
-                                <!--</p>-->
-                              <!--</div>-->
-                              <!--<div class="stats">-->
-                                <!--<h4>114</h4>-->
-                                <!--<p>-->
-                                  <!--Following-->
-                                <!--</p>-->
-                              <!--</div>-->
-                              <!--<div class="stats">-->
-                                <!--<h4>35</h4>-->
-                                <!--<p>-->
-                                  <!--Projects-->
-                                <!--</p>-->
-                              <!--</div>-->
-                            <!--</div>-->
-
-                          <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="footer">-->
-                          <!--<button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">-->
-                            <!--<i class="fa fa-reply"></i> Back-->
-                          <!--</button>-->
-                          <!--<div class="social-links text-center">-->
-                            <!--<a href="http://creative-tim.com" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>-->
-                            <!--<a href="http://creative-tim.com" class="google"><i class="fa fa-google-plus fa-fw"></i></a>-->
-                            <!--<a href="http://creative-tim.com" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>-->
-                          <!--</div>-->
-                        <!--</div>-->
-                      <!--</div> &lt;!&ndash; end back panel &ndash;&gt;-->
-                    <!--</div> &lt;!&ndash; end card &ndash;&gt;-->
-                  <!--</div> &lt;!&ndash; end card-container &ndash;&gt;-->
-                <!--</div> &lt;!&ndash; end col sm 3 &ndash;&gt;-->
-
               </div>
             </div>
           </div>
-          <!-- End of rotating cards -->
-          <!--<div id="myCarousel" class="carousel slide col-md-12" data-ride="carousel">-->
-            <!--<div class="carousel-inner row w-100 mx-auto">-->
-              <!--<div class="carousel-item col-md-4 active">-->
-                <!--<div class="card-plain bg-dark text-white text-center">-->
-                  <!--<img class="card-img" src="../../../assets/img/gradient-card.png" alt="Card image">-->
-                  <!--<div class="card-img-overlay">-->
-                    <!--<div class="card-header">-->
-                      <!--<h5 class="card-title text-white">{{areaSearchResults[0].area_code}}</h5>-->
-                    <!--</div>-->
-                    <!--<div class="card-body">-->
-                      <!--<p class="card-text">Area Names :  {{areaSearchResults[0].area_name}}</p>-->
-                      <!--<p class="card-text">Average Detached House Price :  {{areaSearchResults[0].average_detached_house_price}}</p>-->
-                      <!--<p class="card-text">Average Journey Time :  {{areaSearchResults[0].average_journey_time}}</p>-->
-                      <!--<p class="card-text">Good Schools :  {{areaSearchResults[0].good_schools}}</p>-->
-                      <!--<p class="card-text">Safety Score :  {{areaSearchResults[0].safety_score}}</p>-->
-                      <!--<p class="card-text">Total Stations :  {{areaSearchResults[0].stations_count}}</p>-->
-                      <!--<p class="card-text">Total Score: {{areaSearchResults[0].total_score}}</p>-->
-                    <!--</div>-->
-                    <!--<div class="card-footer">-->
-                      <!--<p class="card-text">-->
-                        <!--&lt;!&ndash;<input type="button" class="btn btn-info btn-round" name="Explore" value="Explore" data-toggle="modal" data-target="#exampleModal">&ndash;&gt;-->
-                        <!--<input type="button" class="btn btn-info btn-round" name="Explore" value="Explore" (click) = "getSectorSearchResults(areaSearchResults[0])">-->
-                      <!--</p>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<div class="carousel-item col-md-4 " *ngFor="let searchDetail of areaSearchResults.splice(1)">-->
-                <!--&lt;!&ndash;<div class="card-deck">&ndash;&gt;-->
-                  <!--<div class="card-plain bg-dark text-white text-center">-->
-                    <!--<img class="card-img" src="../../../assets/img/gradient-card.png">-->
-                    <!--<div class="card-img-overlay">-->
-                      <!--<div class="card-header">-->
-                        <!--<h5 class="card-title text-white">{{searchDetail.area_code}}</h5>-->
-                      <!--</div>-->
-                      <!--<div class="card-bod">-->
-                        <!--<p class="card-text">Area Names :  {{searchDetail.area_name}}</p>-->
-                        <!--<p class="card-text">Average Detached House Price :  {{searchDetail.average_detached_house_price}}</p>-->
-                        <!--<p class="card-text">Average Journey Time :  {{searchDetail.average_journey_time}}</p>-->
-                        <!--<p class="card-text">Good Schools :  {{searchDetail.good_schools}}</p>-->
-                        <!--<p class="card-text">Safety Score :  {{searchDetail.safety_score}}</p>-->
-                        <!--<p class="card-text">Total Stations :  {{searchDetail.stations_count}}</p>-->
-                        <!--<p class="card-text">Total Score: {{searchDetail.total_score}}</p>-->
-                      <!--</div>-->
-                      <!--<div class="card-footer">-->
-                        <!--<p class="card-text">-->
-                          <!--<input type="button" class="btn btn-info btn-round" name="Explore" value="Explore" (click) = "getSectorSearchResults(searchDetail)">-->
-                        <!--</p>-->
-                      <!--</div>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-              <!--</div>-->
-              <!--<div></div>-->
-            <!--</div>-->
-            <!--<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">-->
-              <!--<span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
-              <!--<span class="sr-only">Previous</span>-->
-            <!--</a>-->
-            <!--<a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">-->
-              <!--<span class="carousel-control-next-icon" aria-hidden="true"></span>-->
-              <!--<span class="sr-only">Next</span>-->
-            <!--</a>-->
-          <!--</div>-->
         </div>
         <!-- End Results -->
-        <!-- Modal -->
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                <div class="card-plain card-chart">
-                  <div class="card-header card-header-danger">
-                    header
-                  </div>
-                  <div class="card-body">
-                    <div class="ct-chart" id="completedTasksChart"></div>
-                  </div>
-                  <div class="card-footer">
-                    <div class="stats">
-                      <button type="button" class="btn btn-round btn-info" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fadeOutUp" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header" *ngIf="sectorLoaded">
+        <h5 class="modal-title" id="exampleModalTitle">Search Results for {{sectorSearchResults[0].area_name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="search col-md-12">
+                <div class="spinning" *ngIf="sectorLoading">
+                  <i class="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>
+                </div>
+                <div class="" *ngIf="sectorLoaded">
+                  <div class="col-md-12">
+                    <div class="card-plain">
+                      <!--<div class="card-header card-header-warning">-->
+                        <!--<p class="card-category">Search Results for {{sectorSearchResults[0].area_name}}</p>-->
+                      <!--</div>-->
+                      <div class="card-body table-responsive">
+                        <table class="table table-hover">
+                          <thead class="text-warning">
+                          <th>Sector Name</th>
+                          <th>School Score</th>
+                          <th>Safety Score</th>
+                          <th>Total Score</th>
+                          </thead>
+                          <tbody *ngFor="let sector of sectorSearchResults">
+                          <tr>
+                            <td>{{sector.sector_code}}</td>
+                            <td>{{sector.school_score}}</td>
+                            <td>{{sector.safety_score}}</td>
+                            <td>{{sector.total_score}}</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -364,53 +263,54 @@
             </div>
           </div>
         </div>
-        <!-- End modal -->
       </div>
     </div>
   </div>
 </div>
+<!-- End modal -->
+
 <!-- End of search results -->
-<div class="section section-dark-blue sector-results-screen" id="sectorResults" >
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="search col-md-12">
-          <div class="spinning" *ngIf="sectorLoading">
-            <i class="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>
-          </div>
-          <div class="" *ngIf="sectorLoaded">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header card-header-warning">
-                  <h4 class="card-title">Sector Search Results</h4>
-                  <p class="card-category">Search Results for {{sectorSearchResults[0].area_name}}</p>
-                </div>
-                <div class="card-body table-responsive">
-                  <table class="table table-hover">
-                    <thead class="text-warning">
-                    <th>Sector Name</th>
-                    <th>School Score</th>
-                    <th>Safety Score</th>
-                    <th>Total Score</th>
-                    </thead>
-                    <tbody *ngFor="let sector of sectorSearchResults">
-                    <tr>
-                      <td>{{sector.sector_code}}</td>
-                      <td>{{sector.school_score}}</td>
-                      <td>{{sector.safety_score}}</td>
-                      <td>{{sector.total_score}}</td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!--<div class="section section-dark-blue sector-results-screen" id="sectorResults" >-->
+  <!--<div class="container">-->
+    <!--<div class="row">-->
+      <!--<div class="col-md-12">-->
+        <!--<div class="search col-md-12">-->
+          <!--<div class="spinning" *ngIf="sectorLoading">-->
+            <!--<i class="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>-->
+          <!--</div>-->
+          <!--<div class="" *ngIf="sectorLoaded">-->
+            <!--<div class="col-md-12">-->
+              <!--<div class="card">-->
+                <!--<div class="card-header card-header-warning">-->
+                  <!--<h4 class="card-title">Sector Search Results</h4>-->
+                  <!--<p class="card-category">Search Results for {{sectorSearchResults[0].area_name}}</p>-->
+                <!--</div>-->
+                <!--<div class="card-body table-responsive">-->
+                  <!--<table class="table table-hover">-->
+                    <!--<thead class="text-warning">-->
+                    <!--<th>Sector Name</th>-->
+                    <!--<th>School Score</th>-->
+                    <!--<th>Safety Score</th>-->
+                    <!--<th>Total Score</th>-->
+                    <!--</thead>-->
+                    <!--<tbody *ngFor="let sector of sectorSearchResults">-->
+                    <!--<tr>-->
+                      <!--<td>{{sector.sector_code}}</td>-->
+                      <!--<td>{{sector.school_score}}</td>-->
+                      <!--<td>{{sector.safety_score}}</td>-->
+                      <!--<td>{{sector.total_score}}</td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                  <!--</table>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
 
 <!-- Sector search results -->
 
