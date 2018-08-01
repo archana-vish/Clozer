@@ -6,7 +6,7 @@
           <form (ngSubmit) = "getAreaSearchResults()" #searchForm = "ngForm">
             <div class=" form-group row col-md-12">
               <div class="col-md-3">
-                <label for="housePriceTo" class="col-form-label">My budget is up to </label>
+                <label for="housePriceTo" class="col-form-label">My maximum budget </label>
               </div>
               <!--<div class="col-md-3 float-md-left">-->
                 <!--&lt;!&ndash;<input type="text" class="form-control" id="housePrice"  placeholder="Enter your work postcode">&ndash;&gt;-->
@@ -55,17 +55,17 @@
                 <!--<input type="text" class="form-control" id="timeToTravel"  placeholder="time">-->
                 <select class="form-control" id="timeToTravel" [(ngModel)] = "searchModel.timeToTravel" name="timeToTravel">
                   <option *ngFor="let t of time" value="{{t}}">
-                    {{t}} mins
+                    {{t}} min
                   </option>
                 </select>
               </div>
-              <div class="col-xs-1">&nbsp;</div>
+              <div class="col-xs-1">-</div>
               <!--<label for="distanceToTravel" class="col-md-2 col-form-label">and not more than</label>-->
               <div class="col-md-3">
                 <!--<input type="text" class="form-control" id="distanceToTravel" placeholder="distance">-->
                 <select class="form-control" id="distanceToTravel" [(ngModel)] = "searchModel.distanceToTravel" name="distanceToTravel">
                   <option *ngFor="let dist of distance" value="{{dist}}">
-                    {{dist}} km
+                    {{dist}} mile
                   </option>
                 </select>
               </div>
@@ -73,36 +73,37 @@
             </div>
             <div class=" form-group row col-md-12">
               <div class="col-md-3">
-                <label class="col-form-label">I love to travel by </label>
+                <label class="col-form-label">I prefer to travel by </label>
               </div>
                 <div class="form-check col-md-7" id="travelmode1" >
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input"
+                  <label class="form-check-label">
+                    <input type="radio" name="travelMode" class="form-check-input"
+                           [(ngModel)] = "searchModel.travelMode" name="travelMode" value="any">
+                    <i class="fas fa-bus"></i> Any
+                  </label>
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input"
                          checked
                          name="travelMode" value="Train"
                          [(ngModel)] = "searchModel.travelMode" name="travelMode" value="train">
-                  <span class="fa fa-train"></span> Train
-                  </label>
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input"
-                         [(ngModel)] = "searchModel.travelMode" name="travelMode" value="car">
-                  <i class="fas fa-car"></i> Car
+                    <i class="fa fa-train"></i> Train
                   </label>
                   <label class="form-check-label">
-                    <input type="radio" name="travelMode" class="form-check-input"
-                           [(ngModel)] = "searchModel.travelMode" name="travelMode" value="Any">
-                    <i class="fas fa-bus"></i> Any
-                  </label>
-                <label class="form-check-label">
                     <input type="radio" class="form-check-input"
-                          name="travelMode" value="cycle" disabled="true">
-                  <i class="fas fa-bicycle"></i> Cycle
+                         [(ngModel)] = "searchModel.travelMode" name="travelMode" value="car">
+                    <i class="fas fa-car"></i> Car
                   </label>
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input"
-                          name="travelMode" value="walk" disabled="true">
-                  <i class="fas fa-walking"></i> Walk
-                  </label>
+
+                <!--<label class="form-check-label">-->
+                    <!--<input type="radio" class="form-check-input"-->
+                          <!--name="travelMode" value="cycle" disabled="true">-->
+                  <!--<i class="fas fa-bicycle"></i> Cycle-->
+                  <!--</label>-->
+                <!--<label class="form-check-label">-->
+                    <!--<input type="radio" class="form-check-input"-->
+                          <!--name="travelMode" value="walk" disabled="true">-->
+                  <!--<i class="fas fa-walking"></i> Walk-->
+                  <!--</label>-->
                 </div>
               </div>
             <div class="form-group row col-md-12">
@@ -155,7 +156,7 @@
                         <div class="content">
                           <div class="main">
                             <h3 class="code">{{searchDetail.area_code}}</h3>
-                            <h5 class="score">Clozure score: {{searchDetail.total_score}}</h5>
+                            <h5 class="score">Clozer score: {{searchDetail.total_score}}</h5>
                             <p class="text-center">{{searchDetail.area_name}}</p>
                           </div>
                           <div class="card-footer">

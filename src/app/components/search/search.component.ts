@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
     this.sectorLoaded = false;
     this.sectorLoading = false;
 
-    for (let i = 50; i <= 900; i += 10) {
+    for (let i = 50; i <= 975; i += 25) {
       this.priceRange.push(i+'000');
     }
 
@@ -50,7 +50,9 @@ export class SearchComponent implements OnInit {
       this.time.push(tc);
     }
 
-    for (let dist = 1; dist <= 100; dist += 4) {
+    this.distance.push(1);
+
+    for (let dist = 5; dist <= 100; dist += 5) {
       this.distance.push(dist);
     }
 
@@ -58,7 +60,7 @@ export class SearchComponent implements OnInit {
     this.searchModel.maxPrice = 650000;
     this.searchModel.timeToTravel = this.time[0];
     this.searchModel.distanceToTravel = this.distance[0];
-    this.searchModel.travelMode = 'train';
+    this.searchModel.travelMode = 'any';
 
     this.modes = [
       {name: 'Train', value: 'train', checked: true},
@@ -99,7 +101,7 @@ export class SearchComponent implements OnInit {
     this.searchModel.maxPrice = 650000;
     this.searchModel.timeToTravel = this.time[0];
     this.searchModel.distanceToTravel = this.distance[0];
-    this.searchModel.travelMode = 'train';
+    this.searchModel.travelMode = 'any';
     this.searchModel.workPostcode = '';
     this.searchModel.homePostcode = '';
   }
