@@ -6532,7 +6532,8 @@ pre.prettyprint{
   text-decoration-color: white;
   color: white;
   position: absolute;
-  top: 25%;
+  font-size: x-large;
+  top: 26%;
   left: 50%;
   transform: translate(-50%, -50%);
 }

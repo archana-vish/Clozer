@@ -143,24 +143,27 @@
             <div class="row">
               <div class="row col-md-12" *ngFor="let searchDetail of areaSearchResults">
                 <div class="col-md-4">
-                  <div class="card-container">
+                  <div class="card-container card-plain manual-flip">
                     <div class="card">
                       <div class="front">
                         <div class="cover">
                           <img src="assets/img/rotating_card_thumb2.png"/>
                         </div>
                         <div class="user">
-                          <img class="img-circle" src="assets/img/skyline/blue_skyline.jpg">
-                          <div class="img-text"><h4>{{searchDetail.area_code}}</h4></div>
+                          <img class="img-circle" src="assets/img/rotating_card_thumb.jpg">
+                          <div class="img-text"><strong>{{searchDetail.area_code}}</strong></div>
                         </div>
                         <div class="content">
                           <div class="main">
-                            <h3 class="code">{{searchDetail.area_code}}</h3>
-                            <h5 class="score">Clozer score: {{searchDetail.total_score}}</h5>
+                            <h3 class="score">Clozer score: {{searchDetail.total_score}}</h3>
+                            <!--<h5 class="code">{{searchDetail.area_code}}</h5>-->
                             <p class="text-center">{{searchDetail.area_name}}</p>
                           </div>
                           <div class="card-footer">
-                            <button type="button" class="btn btn-info btn-round ">Know More</button>
+                            <!--<button type="button" class="btn btn-info btn-round ">Know More</button>-->
+                            <button class="btn btn-info btn-round" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
+                              <i class="fas fa-share"></i> Know More
+                            </button>
                           </div>
                         </div>
                       </div> <!-- end front panel -->
@@ -198,6 +201,9 @@
                         </div>
                         <div class="card-footer">
                           <div class="social-links text-center">
+                            <button class="btn btn-info btn-round" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
+                              <i class="fas fa-reply"></i> Back
+                            </button>
                             <button type="button" class="btn btn-info btn-round " (click) = "getSectorSearchResults(searchDetail)" data-toggle="modal" data-target="#exampleModal">Explore</button>
                           </div>
                         </div>
