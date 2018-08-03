@@ -94,6 +94,9 @@ export class SearchComponent implements OnInit {
     this.startAnimationForLineChart(completedTasksChart);
 
 
+    //For testing
+    //this.getAreaSearchResults();
+
   }
 
   resetFields() : void {

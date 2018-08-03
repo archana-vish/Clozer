@@ -41,6 +41,10 @@
 	position: relative;
 }
 
+.h4-card{
+  font-size: 17px;
+}
+
 /* hide back of pane during swap */
 .front, .back {
 	-webkit-backface-visibility: hidden;
@@ -68,10 +72,10 @@
         z-index: 3;
 }
 
-.back .btn-simple{
-    position: absolute;
-    left: 0;
-    bottom: 4px;
+.back .btn-simple-card{
+    /*position: absolute;*/
+    /*!*left: 0;*!*/
+    /*!*bottom: 4px;*!*/
 }
 /*        Style       */
 
@@ -83,7 +87,7 @@
 }
 .card-container, .front, .back {
 	width: 100%;
-	height: 420px;
+	height: 500px;
 	border-radius: 4px;
 }
 .card .cover{
@@ -139,9 +143,9 @@
     margin-bottom: 20px;
 }
 .card .footer {
-    border-top: 1px solid #EEEEEE;
+    /*border-top: 1px solid #EEEEEE;*/
     color: #999999;
-    margin: 30px 0 0;
+    /*margin: 85px 0 0;*/
     padding: 10px 0 0;
     text-align: center;
 }
@@ -152,19 +156,46 @@
     margin: 0 7px;
 }
 .card .footer .btn-simple{
-    margin-top: -6px;
+    margin-top: 15%;
+    /*position:absolute;*/
+    /*bottom: 4px;*/
 }
 .card .header {
-    padding: 15px 20px;
-    height: 90px;
+    padding: 5px 20px;
+    /*height: 90px;*/
 }
+
+.back-card-footer {
+  padding: 2.75rem 1.25rem;
+  /* background-color: rgba(0,0,0,.03); */
+  /* border-top: 1px solid rgba(0,0,0,.125); */
+}
+
+
 .card .motto{
-    border-bottom: 1px solid #EEEEEE;
+  border-bottom: 1px solid #EEEEEE;
+  color: #999999;
+  font-size: 14px;
+  font-weight: 400;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.card .topheader{
     color: #999999;
     font-size: 14px;
     font-weight: 400;
     padding-bottom: 10px;
     text-align: center;
+}
+
+.card .motto-end{
+  border-bottom: 1px solid #EEEEEE;
+  color: #999999;
+  font-size: 14px;
+  font-weight: 400;
+  padding-bottom: 10px;
+  text-align: center;
 }
 
 .card .stats-container{
@@ -312,4 +343,26 @@
         z-index: 5;
         visibility: visible;
     }
+}
+
+
+.card-p {
+  font-size:13px;
+}
+
+
+.img-text {
+  text-align: center;
+  text-decoration-color: white;
+  color: white;
+  position: absolute;
+  font-size: x-large;
+  top: 22%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.fontawesome-select, .multiselect-native-select {
+  font-family: 'FontAwesome', 'Helvetica';
 }
