@@ -22,6 +22,8 @@ export class SearchComponent implements OnInit {
   isLoading: boolean;
   sectorLoaded: boolean;
   sectorLoading: boolean;
+  showDetails: boolean;
+  cnt : number;
   @Input() searchModel: SearchModel = new SearchModel();
   @Output() areaSearchResults;
   @Output() sectorSearchResults;
@@ -37,6 +39,8 @@ export class SearchComponent implements OnInit {
 
     this.sectorLoaded = false;
     this.sectorLoading = false;
+
+    this.showDetails = false;
 
     for (let i = 50; i <= 975; i += 25) {
       this.priceRange.push(i+'000');
@@ -161,6 +165,7 @@ export class SearchComponent implements OnInit {
       console.log('##############################');
 
 
+
     setTimeout( () => {
         this.searchAreaService.getAreaDetails(this.searchModel).subscribe(
           areaDetails => {
@@ -173,9 +178,31 @@ export class SearchComponent implements OnInit {
             console.log(this.areaSearchResults[0].area_name);
             console.log(this.areaSearchResults[1].area_name);
             console.log(this.areaSearchResults[2].area_name);
+            console.log(this.areaSearchResults[0].distance_to_work);
           }
         );
       });
+
+
+    setTimeout( () => {
+      this.searchAreaService.getSectorDetails().subscribe(
+        sectorDetails => {
+          sectorDetails.forEach(
+            sector => {
+              sector.facilities_stars = new Array(sector.facilities_score_stars);
+              sector.school_stars = new Array(sector.school_score_stars);
+              sector.travel_stars = new Array(sector.travel_score_stars);
+              sector.safety_stars = new Array(sector.safety_score_stars);
+            }
+          )
+          this.sectorSearchResults = sectorDetails;
+          this.sectorLoading = false;
+          this.sectorLoaded = true;
+          this.showDetails = true;
+          console.log('returned... ' + this.sectorSearchResults.length);
+        }
+      );
+    });
     }
 
 
@@ -212,6 +239,7 @@ export class SearchComponent implements OnInit {
             this.sectorSearchResults = sectorDetails;
             this.sectorLoading = false;
             this.sectorLoaded = true;
+            this.showDetails = true;
             console.log('returned... ' + this.sectorSearchResults.length);
           }
         );
@@ -220,5 +248,14 @@ export class SearchComponent implements OnInit {
     }
 
 
+  toggle(index: number): void {
+      alert(index);
+      //this.cnt = index;
+      if (this.showDetails) {
+        this.showDetails = false;
+      } else {
+        this.showDetails = true;
+      }
+  }
 
 }

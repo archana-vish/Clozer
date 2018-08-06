@@ -340,6 +340,27 @@ function rotateCard(btn){
   }
 }
 
+function hideDetails(btn){
+  alert('called' + $(btn).id);
+  var $div = $(btn).closest('.search-results');
+  alert($div.style.display);
+  if($div.style.display === 'none'){
+    $div.style.display = 'block';
+  } else {
+    $div.style.display = 'none';
+  }
+
+
+  // var $card = $(btn).closest('.card-container');
+  // console.log($card);
+  // if($card.hasClass('hover')){
+  //   $card.removeClass('hover');
+  // } else {
+  //   $card.addClass('hover');
+  // }
+}
+
+
 
 
 
