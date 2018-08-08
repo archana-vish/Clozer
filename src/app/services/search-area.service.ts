@@ -138,15 +138,19 @@ export class SearchAreaService {
       facilities_score_rating: 'GOLD',
       facilities_score_stars: 3,
       facilities_stars: [],
+      facilities_grey_stars: [],
       safety_score_rating: 'PLATINUM',
       safety_score_stars: 4,
       safety_stars: [],
+      safety_grey_stars: [],
       travel_score_rating: 'PLATINUM',
       travel_score_stars: 4,
       travel_stars: [],
+      travel_grey_stars: [],
       school_score_rating: 'GOLD',
       school_score_stars: 3,
       school_stars: [],
+      school_grey_stars: [],
       total_score: 350
     },{
       area_code: 'SE9',
@@ -177,15 +181,19 @@ export class SearchAreaService {
       facilities_score_rating: 'GOLD',
       facilities_score_stars: 3,
       facilities_stars: [],
+      facilities_grey_stars: [],
       safety_score_rating: 'PLATINUM',
       safety_score_stars: 4,
       safety_stars: [],
+      safety_grey_stars: [],
       travel_score_rating: 'PLATINUM',
       travel_score_stars: 4,
       travel_stars: [],
+      travel_grey_stars: [],
       school_score_rating: 'GOLD',
       school_score_stars: 3,
       school_stars: [],
+      school_grey_stars: [],
       total_score: 375
     },{
       area_code: 'BR1',
@@ -216,15 +224,19 @@ export class SearchAreaService {
       facilities_score_rating: 'GOLD',
       facilities_score_stars: 3,
       facilities_stars: [],
+      facilities_grey_stars: [],
       safety_score_rating: 'PLATINUM',
       safety_score_stars: 4,
       safety_stars: [],
+      safety_grey_stars: [],
       travel_score_rating: 'PLATINUM',
       travel_score_stars: 4,
       travel_stars: [],
+      travel_grey_stars: [],
       school_score_rating: 'GOLD',
       school_score_stars: 3,
       school_stars: [],
+      school_grey_stars: [],
       total_score: 400
     }];
 
@@ -245,15 +257,15 @@ export class SearchAreaService {
     // console.log(this.searchAreaModel);
     console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode
     + ':' + searchModel.timeToTravel + ':' + searchModel.distanceToTravel + ':' + searchModel.travelMode);
-     return of(this.searchAreaModel);
-     // return this.http.get<SearchAreaModel[]>(this.serverStr +
-     //   '/getAreaDetails?work_post_code=BR7+6JN'+
-     //    '&additional_post_code=SE12+8AW'+
-     //    '&max_journey_time=' + searchModel.timeToTravel +
-     //    '&max_journey_distance=' + searchModel.distanceToTravel +
-     //    '&min_house_price=' + searchModel.minPrice +
-     //    '&max_house_price=' + searchModel.maxPrice +
-     //    '&pref_travel_mode=' + searchModel.travelMode);
+    return of(this.searchAreaModel);
+    //  return this.http.get<SearchAreaModel[]>(this.serverStr +
+    //    '/getAreaDetails?work_post_code=BR7+6JN'+
+    //     '&additional_post_code=SE12+8AW'+
+    //     '&max_journey_time=' + searchModel.timeToTravel +
+    //     '&max_journey_distance=' + searchModel.distanceToTravel +
+    //     '&min_house_price=' + searchModel.minPrice +
+    //     '&max_house_price=' + searchModel.maxPrice +
+    //     '&pref_travel_mode=' + searchModel.travelMode);
   }
 
   getSectorDetails(): Observable<SearchSectorModel[]> {

@@ -190,9 +190,13 @@ export class SearchComponent implements OnInit {
           sectorDetails.forEach(
             sector => {
               sector.facilities_stars = new Array(sector.facilities_score_stars);
+              sector.facilities_grey_stars = new Array( 5 - sector.facilities_score_stars);
               sector.school_stars = new Array(sector.school_score_stars);
+              sector.school_grey_stars = new Array( 5 - sector.school_score_stars);
               sector.travel_stars = new Array(sector.travel_score_stars);
+              sector.travel_grey_stars = new Array(5-sector.travel_score_stars);
               sector.safety_stars = new Array(sector.safety_score_stars);
+              sector.safety_grey_stars = new Array(5 - sector.safety_score_stars);
             }
           )
           this.sectorSearchResults = sectorDetails;
@@ -248,14 +252,9 @@ export class SearchComponent implements OnInit {
     }
 
 
-  toggle(index: number): void {
-      alert(index);
+  toggle(): void {
+      alert('called');
       //this.cnt = index;
-      if (this.showDetails) {
-        this.showDetails = false;
-      } else {
-        this.showDetails = true;
-      }
   }
 
 }

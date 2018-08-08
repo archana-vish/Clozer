@@ -27,14 +27,18 @@ export class SearchSectorModel {
   facilities_score_rating: string;
   facilities_score_stars: number;
   facilities_stars: Array<number>;
+  facilities_grey_stars: Array<number>;
   safety_score_rating: string;
   safety_score_stars: number;
   safety_stars: Array<number>;
+  safety_grey_stars: Array<number>;
   travel_score_rating: string;
   travel_score_stars: number;
   travel_stars: Array<number>;
+  travel_grey_stars: Array<number>;
   school_score_rating: string;
   school_score_stars: number;
   school_stars: Array<number>;
+  school_grey_stars: Array<number>;
   total_score: number;
 }
