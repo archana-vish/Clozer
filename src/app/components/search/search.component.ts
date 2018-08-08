@@ -23,6 +23,8 @@ export class SearchComponent implements OnInit {
   sectorLoaded: boolean;
   sectorLoading: boolean;
   showDetails: boolean;
+  compareByArea: boolean;
+  checked: string;
   cnt : number;
   @Input() searchModel: SearchModel = new SearchModel();
   @Output() areaSearchResults;
@@ -202,6 +204,8 @@ export class SearchComponent implements OnInit {
           this.sectorSearchResults = sectorDetails;
           this.sectorLoading = false;
           this.sectorLoaded = true;
+          this.compareByArea = true;
+          this.checked = '';
           this.showDetails = true;
           console.log('returned... ' + this.sectorSearchResults.length);
         }
@@ -240,9 +244,22 @@ export class SearchComponent implements OnInit {
       setTimeout( () => {
         this.searchAreaService.getSectorDetails().subscribe(
           sectorDetails => {
+            sectorDetails.forEach(
+              sector => {
+                sector.facilities_stars = new Array(sector.facilities_score_stars);
+                sector.facilities_grey_stars = new Array( 5 - sector.facilities_score_stars);
+                sector.school_stars = new Array(sector.school_score_stars);
+                sector.school_grey_stars = new Array( 5 - sector.school_score_stars);
+                sector.travel_stars = new Array(sector.travel_score_stars);
+                sector.travel_grey_stars = new Array(5-sector.travel_score_stars);
+                sector.safety_stars = new Array(sector.safety_score_stars);
+                sector.safety_grey_stars = new Array(5 - sector.safety_score_stars);
+              }
+            )
             this.sectorSearchResults = sectorDetails;
             this.sectorLoading = false;
             this.sectorLoaded = true;
+            this.compareByArea = true;
             this.showDetails = true;
             console.log('returned... ' + this.sectorSearchResults.length);
           }
@@ -253,8 +270,12 @@ export class SearchComponent implements OnInit {
 
 
   toggle(): void {
-      alert('called');
-      //this.cnt = index;
+      this.compareByArea = !this.compareByArea;
+      if (this.checked.trim().length === 0) {
+        this.checked = 'checked';
+      } else {
+        this.checked = '';
+      }
   }
 
 }

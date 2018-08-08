@@ -172,83 +172,81 @@
   <!--</div>-->
 <!--</div>-->
 
-<div class="section">
-  <div class="container">
-    <div class="togglebutton">
-      <label>
-        <input type="checkbox" id="sortOrder" checked="" (click)="toggle()">
-        <span class="toggle"></span>
-         Compare by area
-      </label>
-    </div>
-    <span class="heading">SE9 6 (Eltham South)</span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    <p>Rated on Safety, School, Facility, Travel</p>
-    <hr style="border:3px solid #f1f1f1">
+<!--<div class="section">-->
+  <!--<div class="container">-->
 
-    <div class="row">
-      <div class="side">
-        <div>Safety</div>
-      </div>
-      <div class="middle">
-        <div class="bar-container">
-          <div class="bar-5"></div>
-        </div>
-      </div>
-      <div class="side right">
-        <div>150</div>
-      </div>
-      <div class="side">
-        <div>Schools</div>
-      </div>
-      <div class="middle">
-        <div class="bar-container">
-          <div class="bar-4"></div>
-        </div>
-      </div>
-      <div class="side right">
-        <div>63</div>
-      </div>
-      <div class="side">
-        <div>Travel</div>
-      </div>
-      <div class="middle">
-        <div class="bar-container">
-          <div class="bar-3"></div>
-        </div>
-      </div>
-      <div class="side right">
-        <div>15</div>
-      </div>
-      <div class="side">
-        <div>Facilities</div>
-      </div>
-      <div class="middle">
-        <div class="bar-container">
-          <div class="bar-2"></div>
-        </div>
-      </div>
-      <div class="side right">
-        <div>6</div>
-      </div>
-      <div class="side">
-        <div>Total</div>
-      </div>
-      <div class="middle">
-        <div class="bar-container">
-          <div class="bar-4"></div>
-        </div>
-      </div>
-      <div class="side right">
-        <div>250</div>
-      </div>
-    </div>
-  </div>
-</div>
+    <!--<div *ngIf="compareByArea">-->
+    <!--<span class="heading">SE9 6 (Eltham South)</span>-->
+    <!--<span class="fa fa-star checked"></span>-->
+    <!--<span class="fa fa-star checked"></span>-->
+    <!--<span class="fa fa-star checked"></span>-->
+    <!--<span class="fa fa-star checked"></span>-->
+    <!--<span class="fa fa-star"></span>-->
+    <!--<p>Rated on Safety, School, Facility, Travel</p>-->
+    <!--<hr style="border:3px solid #f1f1f1">-->
+
+    <!--<div class="row">-->
+      <!--<div class="side">-->
+        <!--<div>Safety</div>-->
+      <!--</div>-->
+      <!--<div class="middle">-->
+        <!--<div class="bar-container">-->
+          <!--<div class="bar-5"></div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="side right">-->
+        <!--<div>150</div>-->
+      <!--</div>-->
+      <!--<div class="side">-->
+        <!--<div>Schools</div>-->
+      <!--</div>-->
+      <!--<div class="middle">-->
+        <!--<div class="bar-container">-->
+          <!--<div class="bar-4"></div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="side right">-->
+        <!--<div>63</div>-->
+      <!--</div>-->
+      <!--<div class="side">-->
+        <!--<div>Travel</div>-->
+      <!--</div>-->
+      <!--<div class="middle">-->
+        <!--<div class="bar-container">-->
+          <!--<div class="bar-3"></div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="side right">-->
+        <!--<div>15</div>-->
+      <!--</div>-->
+      <!--<div class="side">-->
+        <!--<div>Facilities</div>-->
+      <!--</div>-->
+      <!--<div class="middle">-->
+        <!--<div class="bar-container">-->
+          <!--<div class="bar-2"></div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="side right">-->
+        <!--<div>6</div>-->
+      <!--</div>-->
+      <!--<div class="side">-->
+        <!--<div>Total</div>-->
+      <!--</div>-->
+      <!--<div class="middle">-->
+        <!--<div class="bar-container">-->
+          <!--<div class="bar-4"></div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="side right">-->
+        <!--<div>250</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+
+  <!--</div>-->
+<!--</div>-->
 
 
 <div class="section">
@@ -512,10 +510,15 @@
                   <i class="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>
                 </div>
                 <div class="" *ngIf="sectorLoaded">
-                    <div class="bootstrap-switch-container" style="width: 123px; margin-left: -41px;">
-                      <span class="bootstrap-switch-handle-on bootstrap-switch-primary" style="width: 41px;">ON</span><span class="bootstrap-switch-label" style="width: 41px;">&nbsp;</span><span class="bootstrap-switch-handle-off bootstrap-switch-default" style="width: 41px;">OFF</span><input type="checkbox" class="ng-untouched ng-pristine ng-valid">
-                    </div>
-                  <div class="col-md-12" *ngFor="let sector of sectorSearchResults">
+                  <div class="togglebutton">
+                    <label>
+                      <input type="checkbox" id="sortOrder" checked="{{checked}}" (click)="toggle()">
+                      <span class="toggle"></span>
+                      Compare by facilities
+                    </label>
+                  </div>
+                  <div *ngIf="compareByArea">
+                  <div class="col-md-12"  *ngFor="let sector of sectorSearchResults">
 
                     <!-- New table -->
                     <!--<table class="table table-hover col-md-12" *ngFor="let sector of sectorSearchResults">-->
@@ -744,6 +747,10 @@
                       <!--</div>-->
                       <!-- end table -->
                     <!--</div>-->
+                  </div>
+                  </div>
+                  <div *ngIf="!compareByArea">
+                    sorting by facilities...
                   </div>
                 </div>
               </div>
