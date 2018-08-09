@@ -8,19 +8,11 @@
               <div class="col-md-3">
                 <label for="housePriceTo" class="col-form-label">My maximum budget </label>
               </div>
-              <!--<div class="col-md-3 float-md-left">-->
-                <!--&lt;!&ndash;<input type="text" class="form-control" id="housePrice"  placeholder="Enter your work postcode">&ndash;&gt;-->
-                <!--<select class="form-control" id="housePriceFrom" [(ngModel)] = "searchModel.minPrice" name="minPrice">-->
-                  <!--<option *ngFor="let price of priceRange" value="{{price}}">-->
-                    <!--{{price | currency : 'GBP' : true : '1.0'}}-->
-                  <!--</option>-->
-                <!--</select>-->
-              <!--</div>-->
               <div class="col-md-3">
                 <!--<input type="text" class="form-control" id="housePrice"  placeholder="Enter your work postcode">-->
                 <select class="form-control" id="housePriceTo" [(ngModel)] = "searchModel.maxPrice" name="maxPrice">
                   <option *ngFor="let price of priceRange" value="{{price}}">
-                    {{price | currency : 'GBP' : true : '1.0'}}
+                    {{price | currency : 'GBP' : '£' : '1.0'}}
                   </option>
                 </select>
               </div>
@@ -126,222 +118,6 @@
 </div>
 <!-- End search form -->
 
-
-<!-- Test sector search -->
-<!--<div class="section">-->
-  <!--<div class="container">-->
-    <!--<div class="search container-fluid ">-->
-      <!--<table class="table table-hover col-md-12" *ngFor="let sector of sectorSearchResults">-->
-       <!--<thead class="text-warning">-->
-         <!--<tr>-->
-           <!--<th> {{sector.sector_code}} </th>-->
-           <!--<th colspan="6" class="align-middle"> {{sector.sector_name}} </th>-->
-         <!--</tr>-->
-       <!--</thead>-->
-        <!--<tbody>-->
-          <!--<tr>-->
-            <!--<td rowspan="5" class="align-middle"> {{sector.total_score}} </td>-->
-          <!--</tr>-->
-          <!--<tr>-->
-            <!--<td> Safety </td>-->
-            <!--<td *ngFor="let star of sector.safety_stars">-->
-                <!--<i class="fas fa-star"></i>-->
-            <!--</td>-->
-          <!--</tr>-->
-          <!--<tr>-->
-            <!--<td> Schools </td>-->
-            <!--<td *ngFor="let star of sector.school_stars">-->
-               <!--<i class="fas fa-star"></i>-->
-            <!--</td>-->
-          <!--</tr>-->
-          <!--<tr>-->
-            <!--<td> Facilities </td>-->
-            <!--<td *ngFor="let star of sector.facilities_stars">-->
-                <!--<i class="fas fa-star"></i>-->
-            <!--</td>-->
-          <!--</tr>-->
-          <!--<tr>-->
-            <!--<td> Travel </td>-->
-            <!--<td *ngFor="let star of sector.travel_stars">-->
-                <!--<i class="fas fa-star"></i>-->
-            <!--</td>-->
-          <!--</tr>-->
-        <!--</tbody>-->
-      <!--</table>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-
-<!--<div class="section">-->
-  <!--<div class="container">-->
-
-    <!--<div *ngIf="compareByArea">-->
-    <!--<span class="heading">SE9 6 (Eltham South)</span>-->
-    <!--<span class="fa fa-star checked"></span>-->
-    <!--<span class="fa fa-star checked"></span>-->
-    <!--<span class="fa fa-star checked"></span>-->
-    <!--<span class="fa fa-star checked"></span>-->
-    <!--<span class="fa fa-star"></span>-->
-    <!--<p>Rated on Safety, School, Facility, Travel</p>-->
-    <!--<hr style="border:3px solid #f1f1f1">-->
-
-    <!--<div class="row">-->
-      <!--<div class="side">-->
-        <!--<div>Safety</div>-->
-      <!--</div>-->
-      <!--<div class="middle">-->
-        <!--<div class="bar-container">-->
-          <!--<div class="bar-5"></div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="side right">-->
-        <!--<div>150</div>-->
-      <!--</div>-->
-      <!--<div class="side">-->
-        <!--<div>Schools</div>-->
-      <!--</div>-->
-      <!--<div class="middle">-->
-        <!--<div class="bar-container">-->
-          <!--<div class="bar-4"></div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="side right">-->
-        <!--<div>63</div>-->
-      <!--</div>-->
-      <!--<div class="side">-->
-        <!--<div>Travel</div>-->
-      <!--</div>-->
-      <!--<div class="middle">-->
-        <!--<div class="bar-container">-->
-          <!--<div class="bar-3"></div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="side right">-->
-        <!--<div>15</div>-->
-      <!--</div>-->
-      <!--<div class="side">-->
-        <!--<div>Facilities</div>-->
-      <!--</div>-->
-      <!--<div class="middle">-->
-        <!--<div class="bar-container">-->
-          <!--<div class="bar-2"></div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="side right">-->
-        <!--<div>6</div>-->
-      <!--</div>-->
-      <!--<div class="side">-->
-        <!--<div>Total</div>-->
-      <!--</div>-->
-      <!--<div class="middle">-->
-        <!--<div class="bar-container">-->
-          <!--<div class="bar-4"></div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="side right">-->
-        <!--<div>250</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-
-  <!--</div>-->
-<!--</div>-->
-
-
-<div class="section">
-  <div class="container">
-    <div class="search container-fluid col-md-12">
-        <!--<div class="col-md-10 sector-table" *ngFor="let sector of sectorSearchResults">-->
-          <!--<div class="row sector-row col-md-12">-->
-            <!--<div class="col-md-3">{{sector.sector_code}}</div>-->
-            <!--<div class="col-md-9">{{sector.sector_name}}</div>-->
-          <!--</div>-->
-          <!--<div class="row">-->
-            <!--<div class="col-md-2"> {{sector.total_score}} </div>-->
-            <!--<div class="col-md-6">-->
-              <!--<div class="row">-->
-                <!--<div> Safety &nbsp; </div>-->
-                <!--<div  *ngFor="let star of sector.safety_stars">-->
-                  <!--<i class="fas fa-star"></i>-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<div class="row sector-row1">-->
-                <!--<div> School Rating &nbsp; </div>-->
-                <!--<div  *ngFor="let star of sector.school_stars">-->
-                  <!--<i class="fas fa-star"></i>-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<div class="row sector-row1">-->
-                <!--<div> Travel &nbsp; </div>-->
-                <!--<div  *ngFor="let star of sector.travel_stars">-->
-                  <!--<i class="fas fa-star"></i>-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<div class="row sector-row1">-->
-                <!--<div> Facilities &nbsp; </div>-->
-                <!--<div  *ngFor="let star of sector.facilities_stars">-->
-                  <!--<i class="fas fa-star"></i>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-
-        <!--<table class="table table-hover col-md-12" *ngFor="let sector of sectorSearchResults">-->
-          <!--<thead class="text-warning">-->
-          <!--<th>-->
-            <!--({{sector.sector_code}})-->
-          <!--</th>-->
-          <!--<th>-->
-            <!--{{sector.sector_name}}-->
-          <!--</th>-->
-          <!--<th>-->
-            <!--Total Score: {{sector.total_score}}-->
-          <!--</th>-->
-          <!--</thead>-->
-          <!--<tbody >-->
-          <!--<tr>-->
-            <!--<td> School Rating </td>-->
-            <!--<td>-->
-              <!--{{sector.school_score_rating}}-->
-            <!--</td>-->
-            <!--<td>-->
-              <!--<span class="fa fa-star checked"></span>-->
-              <!--<span class="fa fa-star checked"></span>-->
-              <!--<span class="fa fa-star checked"></span>-->
-              <!--<span class="fa fa-star"></span>-->
-              <!--<span class="fa fa-star"></span>-->
-            <!--</td>-->
-          <!--</tr>-->
-          <!--<tr>-->
-            <!--<td> Safety </td>-->
-            <!--<td>{{sector.safety_score_rating}}</td>-->
-              <!--<td *ngFor="let star of sector.safety_stars">-->
-                <!--<i class="fas fa-star"></i>-->
-              <!--</td>-->
-          <!--</tr>-->
-          <!--<tr>-->
-            <!--<td>Travel</td>-->
-            <!--<td>{{sector.travel_score_rating}}</td>-->
-            <!--<td *ngFor="let star of sector.travel_stars">-->
-              <!--<i class="fas fa-star"></i>-->
-            <!--</td>-->
-          <!--</tr>-->
-          <!--<tr>-->
-            <!--<td>Facility</td>-->
-            <!--<td>{{sector.facilities_score_rating}}</td>-->
-            <!--<td *ngFor="let star of sector.facilities_stars">-->
-              <!--<i class="fas fa-star"></i>-->
-            <!--</td>-->
-          <!--</tr>-->
-          <!--</tbody>-->
-        <!--</table>-->
-      </div>
-    </div>
-  </div>
-
-
 <!-- Search results -->
 <div class="section section-dark-blue areasearch-results-summary" id="searchresults" align="center">
   <div class="container">
@@ -426,19 +202,19 @@
                                 <p align="center" class="make-it-bold"> House Price  </p>
                               </div>
                               <div class="stats">
-                                <h4 class="h4-card">{{searchDetail.average_detached_house_price | currency : 'GBP' : true : '1.0'}}</h4>
+                                <h4 class="h4-card">{{searchDetail.average_detached_house_price | currency : 'GBP' : '£' : '1.0'}}</h4>
                                 <p class="card-p">
                                   Detached
                                 </p>
                               </div>
                               <div class="stats">
-                                <h4 class="h4-card">{{searchDetail.average_semi_detached_house_price | currency : 'GBP' : true : '1.0'}}</h4>
+                                <h4 class="h4-card">{{searchDetail.average_semi_detached_house_price | currency : 'GBP' : '£' : '1.0'}}</h4>
                                 <p class="card-p">
                                   Semi-detached
                                 </p>
                               </div>
                               <div class="stats">
-                                <h4 class="h4-card">{{searchDetail.average_flat_price | currency : 'GBP' : true : '0.0'}}</h4>
+                                <h4 class="h4-card">{{searchDetail.average_flat_price | currency : 'GBP' : '£' : '0.0'}}</h4>
                                 <p class="card-p">
                                    Flats
                                 </p>
@@ -510,63 +286,15 @@
                   <i class="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>
                 </div>
                 <div class="" *ngIf="sectorLoaded">
-                  <div class="togglebutton">
+                  <div class="togglebutton align-right">
                     <label>
                       <input type="checkbox" id="sortOrder" checked="{{checked}}" (click)="toggle()">
                       <span class="toggle"></span>
-                      Compare by facilities
+                      {{seachCriteria}}
                     </label>
                   </div>
                   <div *ngIf="compareByArea">
                   <div class="col-md-12"  *ngFor="let sector of sectorSearchResults">
-
-                    <!-- New table -->
-                    <!--<table class="table table-hover col-md-12" *ngFor="let sector of sectorSearchResults">-->
-                      <!--<thead class="text-warning">-->
-                      <!--<tr>-->
-                        <!--<th> {{sector.sector_code}} </th>-->
-                        <!--<th colspan="6"> {{sector.sector_name}} </th>-->
-                      <!--</tr>-->
-                      <!--</thead>-->
-                      <!--<tbody>-->
-                      <!--<tr>-->
-                        <!--<td rowspan="5" class="align-middle clozure-score"> {{sector.total_score}} </td>-->
-                      <!--</tr>-->
-                      <!--<tr>-->
-                        <!--<td> Safety </td>-->
-                        <!--&lt;!&ndash;<td *ngFor="let star of sector.safety_stars">&ndash;&gt;-->
-                          <!--&lt;!&ndash;<i class="fas fa-star"></i>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                        <!--<td>-->
-                          <!--<span class="fa fa-star checked" *ngFor="let star of sector.safety_stars"></span>-->
-                          <!--<span class="fa fa-star" *ngFor="let star of sector.safety_grey_stars"></span>-->
-                        <!--</td>-->
-                      <!--</tr>-->
-                      <!--<tr>-->
-                        <!--<td> Schools </td>-->
-                        <!--<td>-->
-                          <!--<span class="fa fa-star checked" *ngFor="let star of sector.school_stars"></span>-->
-                          <!--<span class="fa fa-star" *ngFor="let star of sector.school_grey_stars"></span>-->
-                        <!--</td>-->
-                      <!--</tr>-->
-                      <!--<tr>-->
-                        <!--<td> Facilities </td>-->
-                        <!--<td>-->
-                          <!--<span class="fa fa-star checked" *ngFor="let star of sector.facilities_stars"></span>-->
-                          <!--<span class="fa fa-star" *ngFor="let star of sector.facilities_grey_stars"></span>-->
-                        <!--</td>-->
-                      <!--</tr>-->
-                      <!--<tr>-->
-                        <!--<td> Travel </td>-->
-                        <!--<td>-->
-                          <!--<span class="fa fa-star checked" *ngFor="let star of sector.travel_stars"></span>-->
-                          <!--<span class="fa fa-star" *ngFor="let star of sector.travel_grey_stars"></span>-->
-                        <!--</td>-->
-                      <!--</tr>-->
-                      <!--</tbody>-->
-                    <!--</table>-->
-                    <!-- End new table -->
-
                     <!-- Progress bars -->
                     <hr style="border:3px solid #f1f1f1">
                     <span class="heading">{{sector.sector_code}} ({{sector.sector_name}})</span>
@@ -575,7 +303,6 @@
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star"></span>
-                    <p>Rated on Safety, School, Facility, Travel</p>
                     <hr style="border:3px solid #f1f1f1">
 
                     <div class="row">
@@ -592,7 +319,7 @@
                         </div>
                       </div>
                       <div class="side right">
-                        <div>{{sector.safety_stars}}</div>
+                        <div>{{sector.safety_score}}</div>
                       </div>
                       <div class="side">
                         <div>Schools</div>
@@ -653,104 +380,97 @@
                     </div>
 
                     <!-- End progress bars -->
-                    <!--<div class="card-plain">-->
-                      <!--<div class="card-header card-header-warning">-->
-                        <!--<p class="card-category">Search Results for {{sectorSearchResults[0].area_name}}</p>-->
-                      <!--</div>-->
-                      <!--<div class="card-body table-responsive">-->
-                        <!--<table class="table table-hover">-->
-                          <!--<thead class="text-warning">-->
-                          <!--<th>Sector</th>-->
-                          <!--<th>School</th>-->
-                          <!--<th>Safety</th>-->
-                          <!--<th>Facility</th>-->
-                          <!--<th>Travel</th>-->
-                          <!--</thead>-->
-                          <!--<tbody *ngFor="let sector of sectorSearchResults">-->
-                          <!--<tr>-->
-                            <!--<td>{{sector.sector_name}}({{sector.sector_code}})</td>-->
-                            <!--<td>{{sector.school_score_rating}}</td>-->
-                            <!--<td>{{sector.safety_score_rating}}</td>-->
-                            <!--<td>{{sector.safety_score_rating}}</td>-->
-                            <!--<td>{{sector.travel_score_rating}}</td>-->
-                          <!--</tr>-->
-                          <!--</tbody>-->
-                        <!--</table>-->
-                      <!--</div>-->
-                      <!-- New table -->
-
-
-                      <!--<div class="card-body table-responsive">-->
-                        <!--<table class="table table-hover" *ngFor="let sector of sectorSearchResults">-->
-                          <!--<thead class="text-warning" align="center">-->
-                            <!--<th colspan="2" align="center">-->
-                              <!--{{sector.sector_name}}({{sector.sector_code}})-->
-                            <!--</th>-->
-                          <!--</thead>-->
-                          <!--<tbody >-->
-                            <!--<tr>-->
-                              <!--<td> School Rating </td>-->
-                              <!--<td>-->
-                                  <!--{{sector.school_score_rating}}-->
-                              <!--</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                              <!--<td> Safety </td>-->
-                              <!--<td>{{sector.safety_score_rating}}</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                              <!--<td>Travel</td>-->
-                              <!--<td>{{sector.travel_score_rating}}</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                              <!--<td>Facility</td>-->
-                              <!--<td>{{sector.facilities_score_rating}}</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                              <!--<td>Total</td>-->
-                              <!--<td>{{sector.total_score}}</td>-->
-                            <!--</tr>-->
-                          <!--</tbody>-->
-                        <!--</table>-->
-                      <!--</div>-->
-
-
-
-                      <!--<div class="card-body table-responsive">-->
-                        <!--<div class="table table-hover" *ngFor="let sector of sectorSearchResults">-->
-                          <!--<div class="row col-md-12">-->
-                            <!--<div class="row col-md-12" align="text-center"> {{sector.sector_code}} </div>-->
-                            <!--<div class="row col-md-12"> {{sector.sector_name}} </div>-->
-                          <!--</div>-->
-                          <!--<div class="row col-md-12">-->
-                            <!--<div class="col-md-6"> Safety </div>-->
-                            <!--<div class="col-md-6"> {{sector.safety_score_rating}} </div>-->
-                          <!--</div>-->
-                          <!--<div class="row col-md-12">-->
-                            <!--<div class="col-md-6"> Schools </div>-->
-                            <!--<div class="col-md-6"> {{sector.school_score_rating}} </div>-->
-                          <!--</div>-->
-                          <!--<div class="row col-md-12">-->
-                            <!--<div class="col-md-6"> Travel </div>-->
-                            <!--<div class="col-md-6"> {{sector.travel_score_rating}} </div>-->
-                          <!--</div> <div class="row col-md-12">-->
-                          <!--<div class="col-md-6"> Facility </div>-->
-                          <!--<div class="col-md-6"> {{sector.facilities_score_rating}} </div>-->
-                        <!--</div>-->
-                          <!--<div class="row col-md-12">-->
-                            <!--<div class="col-md-6"> Total </div>-->
-                            <!--<div class="col-md-6"> {{sector.total_score}} </div>-->
-                          <!--</div>-->
-                        <!--</div>-->
-                      <!--</div>-->
-                      <!-- end table -->
-                      <!--</div>-->
-                      <!-- end table -->
-                    <!--</div>-->
                   </div>
                   </div>
                   <div *ngIf="!compareByArea">
-                    sorting by facilities...
+                    <div class="col-md-12" >
+                      <!-- Progress bars -->
+                      <hr style="border:3px solid #f1f1f1">
+                      <span class="heading">Safety</span>
+                      <hr style="border:3px solid #f1f1f1">
+                      <div class="row"  *ngFor="let sector of sectorSearchResults">
+                        <div class="side">
+                          <div data-toggle="tooltip" data-placement="top" title="{{sector.sector_name}}">
+                            {{sector.sector_code | uppercase}}</div>
+                        </div>
+                        <div class="middle">
+                          <div class="bar-container">
+                            <div class="bar-5" *ngIf="sector.safety_score_stars === 5"></div>
+                            <div class="bar-4" *ngIf="sector.safety_score_stars === 4"></div>
+                            <div class="bar-3" *ngIf="sector.safety_score_stars === 3"></div>
+                            <div class="bar-2" *ngIf="sector.safety_score_stars === 2"></div>
+                            <div class="bar-1" *ngIf="sector.safety_score_stars === 1"></div>
+                          </div>
+                        </div>
+                        <div class="side right">
+                          <div>{{sector.safety_score}}</div>
+                        </div>
+                      </div>
+                      <hr style="border:3px solid #f1f1f1">
+                      <span class="heading">Schools</span>
+                      <hr style="border:3px solid #f1f1f1">
+                      <div class="row"  *ngFor="let sector of sectorSearchResults">
+                        <div class="side">
+                          <div data-toggle="tooltip" data-placement="top" title="{{sector.sector_name}}">
+                            {{sector.sector_code | uppercase}}</div>
+                        </div>
+                        <div class="middle">
+                          <div class="bar-container">
+                            <div class="bar-5" *ngIf="sector.school_score_stars === 5"></div>
+                            <div class="bar-4" *ngIf="sector.school_score_stars === 4"></div>
+                            <div class="bar-3" *ngIf="sector.school_score_stars === 3"></div>
+                            <div class="bar-2" *ngIf="sector.school_score_stars === 2"></div>
+                            <div class="bar-1" *ngIf="sector.school_score_stars === 1"></div>
+                          </div>
+                        </div>
+                        <div class="side right">
+                          <div>{{sector.school_score}}</div>
+                        </div>
+                      </div>
+                      <hr style="border:3px solid #f1f1f1">
+                      <span class="heading">Travel</span>
+                      <hr style="border:3px solid #f1f1f1">
+                      <div class="row"  *ngFor="let sector of sectorSearchResults">
+                        <div class="side">
+                          <div data-toggle="tooltip" data-placement="top" title="{{sector.sector_name}}">
+                            {{sector.sector_code | uppercase}}</div>
+                        </div>
+                        <div class="middle">
+                          <div class="bar-container">
+                            <div class="bar-5" *ngIf="sector.travel_score_stars === 5"></div>
+                            <div class="bar-4" *ngIf="sector.travel_score_stars === 4"></div>
+                            <div class="bar-3" *ngIf="sector.travel_score_stars === 3"></div>
+                            <div class="bar-2" *ngIf="sector.travel_score_stars === 2"></div>
+                            <div class="bar-1" *ngIf="sector.travel_score_stars === 1"></div>
+                          </div>
+                        </div>
+                        <div class="side right">
+                          <div>{{sector.travel_score}}</div>
+                        </div>
+                      </div>
+                      <hr style="border:3px solid #f1f1f1">
+                      <span class="heading">Facilities</span>
+                      <hr style="border:3px solid #f1f1f1">
+                      <div class="row"  *ngFor="let sector of sectorSearchResults">
+                        <div class="side">
+                          <div data-toggle="tooltip" data-placement="top" title="{{sector.sector_name}}">
+                            {{sector.sector_code | uppercase}}</div>
+                        </div>
+                        <div class="middle">
+                          <div class="bar-container">
+                            <div class="bar-5" *ngIf="sector.facilities_score_stars === 5"></div>
+                            <div class="bar-4" *ngIf="sector.facilities_score_stars === 4"></div>
+                            <div class="bar-3" *ngIf="sector.facilities_score_stars === 3"></div>
+                            <div class="bar-2" *ngIf="sector.facilities_score_stars === 2"></div>
+                            <div class="bar-1" *ngIf="sector.facilities_score_stars === 1"></div>
+                          </div>
+                        </div>
+                        <div class="side right">
+                          <div>{{sector.facilities_score}}</div>
+                        </div>
+                      </div>
+                      <!-- End progress bars -->
+                    </div>
                   </div>
                 </div>
               </div>
@@ -763,52 +483,6 @@
 </div>
 <!-- End modal -->
 
-<!-- End of search results -->
-<!--<div class="section section-dark-blue sector-results-screen" id="sectorResults" >-->
-  <!--<div class="container">-->
-    <!--<div class="row">-->
-      <!--<div class="col-md-12">-->
-        <!--<div class="search col-md-12">-->
-          <!--<div class="spinning" *ngIf="sectorLoading">-->
-            <!--<i class="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>-->
-          <!--</div>-->
-          <!--<div class="" *ngIf="sectorLoaded">-->
-            <!--<div class="col-md-12">-->
-              <!--<div class="card">-->
-                <!--<div class="card-header card-header-warning">-->
-                  <!--<h4 class="card-title">Sector Search Results</h4>-->
-                  <!--<p class="card-category">Search Results for {{sectorSearchResults[0].area_name}}</p>-->
-                <!--</div>-->
-                <!--<div class="card-body table-responsive">-->
-                  <!--<table class="table table-hover">-->
-                    <!--<thead class="text-warning">-->
-                    <!--<th>Sector Name</th>-->
-                    <!--<th>School Score</th>-->
-                    <!--<th>Safety Score</th>-->
-                    <!--<th>Total Score</th>-->
-                    <!--</thead>-->
-                    <!--<tbody *ngFor="let sector of sectorSearchResults">-->
-                    <!--<tr>-->
-                      <!--<td>{{sector.sector_code}}</td>-->
-                      <!--<td>{{sector.school_score}}</td>-->
-                      <!--<td>{{sector.safety_score}}</td>-->
-                      <!--<td>{{sector.total_score}}</td>-->
-                    <!--</tr>-->
-                    <!--</tbody>-->
-                  <!--</table>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-
-<!-- Sector search results -->
-
-<!-- End of sector search -->
 
 
 

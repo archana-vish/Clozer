@@ -26,6 +26,7 @@ export class SearchComponent implements OnInit {
   compareByArea: boolean;
   checked: string;
   cnt : number;
+  seachCriteria: string;
   @Input() searchModel: SearchModel = new SearchModel();
   @Output() areaSearchResults;
   @Output() sectorSearchResults;
@@ -207,6 +208,7 @@ export class SearchComponent implements OnInit {
           this.compareByArea = true;
           this.checked = '';
           this.showDetails = true;
+          this.seachCriteria = 'Search by Facilities';
           console.log('returned... ' + this.sectorSearchResults.length);
         }
       );
@@ -261,6 +263,7 @@ export class SearchComponent implements OnInit {
             this.sectorLoaded = true;
             this.compareByArea = true;
             this.showDetails = true;
+            this.seachCriteria = 'Search by Facilities';
             console.log('returned... ' + this.sectorSearchResults.length);
           }
         );
@@ -273,8 +276,10 @@ export class SearchComponent implements OnInit {
       this.compareByArea = !this.compareByArea;
       if (this.checked.trim().length === 0) {
         this.checked = 'checked';
+        this.seachCriteria = 'Search by Area Code'
       } else {
         this.checked = '';
+        this.seachCriteria = 'Search by Facilities'
       }
   }
 

@@ -489,11 +489,11 @@
   user-select: none; }
 .togglebutton label {
   cursor: pointer;
-  color: rgba(0,0,0, 0.26); }
+  color: black; }
 .form-group.is-focused .togglebutton label {
-  color: rgba(0,0,0, 0.26); }
+  color: black; }
 .form-group.is-focused .togglebutton label:hover, .form-group.is-focused .togglebutton label:focus {
-  color: rgba(0,0,0, .54); }
+  color: black; }
 fieldset[disabled] .form-group.is-focused .togglebutton label {
   color: rgba(0,0,0, 0.26); }
 .togglebutton label input[type=checkbox] {
@@ -534,7 +534,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   transition: left 0.3s ease, background 0.3s ease, box-shadow 0.1s ease, -webkit-box-shadow 0.1s ease; }
 .togglebutton label input[type=checkbox][disabled] + .toggle:after,
 .togglebutton label input[type=checkbox][disabled]:checked + .toggle:after {
-  background-color: #BDBDBD; }
+  background-color: black; }
 .togglebutton label input[type=checkbox] + .toggle:active:after,
 .togglebutton label input[type=checkbox][disabled] + .toggle:active:after {
   -webkit-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(0, 0, 0, 0.1);
@@ -548,3 +548,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .togglebutton label input[type=checkbox]:checked + .toggle:active:after {
   -webkit-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(156, 39, 176, 0.1);
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(156, 39, 176, 0.1); }
+
+.align-right {
+  text-align: right;
+}
