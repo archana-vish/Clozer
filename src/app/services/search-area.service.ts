@@ -257,15 +257,15 @@ export class SearchAreaService {
     // console.log(this.searchAreaModel);
     console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode
     + ':' + searchModel.timeToTravel + ':' + searchModel.distanceToTravel + ':' + searchModel.travelMode);
-    return of(this.searchAreaModel);
-    //  return this.http.get<SearchAreaModel[]>(this.serverStr +
-    //    '/getAreaDetails?work_post_code=BR7+6JN'+
-    //     '&additional_post_code=SE12+8AW'+
-    //     '&max_journey_time=' + searchModel.timeToTravel +
-    //     '&max_journey_distance=' + searchModel.distanceToTravel +
-    //     '&min_house_price=' + searchModel.minPrice +
-    //     '&max_house_price=' + searchModel.maxPrice +
-    //     '&pref_travel_mode=' + searchModel.travelMode);
+    //return of(this.searchAreaModel);
+     return this.http.get<SearchAreaModel[]>(this.serverStr +
+       '/getAreaDetails?work_post_code=BR7+6JN'+
+        '&additional_post_code=SE12+8AW'+
+        '&max_journey_time=' + searchModel.timeToTravel +
+        '&max_journey_distance=' + searchModel.distanceToTravel +
+        '&min_house_price=' + searchModel.minPrice +
+        '&max_house_price=' + searchModel.maxPrice +
+        '&pref_travel_mode=' + searchModel.travelMode);
   }
 
   getSectorDetails(): Observable<SearchSectorModel[]> {

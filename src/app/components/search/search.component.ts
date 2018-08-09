@@ -25,7 +25,7 @@ export class SearchComponent implements OnInit {
   showDetails: boolean;
   compareByArea: boolean;
   checked: string;
-  cnt : number;
+  counts : Array<any>;
   seachCriteria: string;
   @Input() searchModel: SearchModel = new SearchModel();
   @Output() areaSearchResults;
@@ -44,6 +44,8 @@ export class SearchComponent implements OnInit {
     this.sectorLoading = false;
 
     this.showDetails = false;
+
+    this.counts = new Array(3);
 
     for (let i = 50; i <= 975; i += 25) {
       this.priceRange.push(i+'000');

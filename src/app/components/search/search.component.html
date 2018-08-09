@@ -117,7 +117,6 @@
   </div>
 </div>
 <!-- End search form -->
-
 <!-- Search results -->
 <div class="section section-dark-blue areasearch-results-summary" id="searchresults" align="center">
   <div class="container">
@@ -134,9 +133,8 @@
           </div>
           <!-- Adding rotating cards -->
           <div class="container">
-            <div class="row">
-              <div class="row col-md-12" *ngFor="let searchDetail of areaSearchResults">
-                <div class="col-md-4">
+              <div class="row col-md-12">
+                <div class="col-md-4" *ngFor="let searchDetail of areaSearchResults">
                   <div class="card-container card-plain manual-flip">
                     <div class="card">
                       <div class="front">
@@ -259,7 +257,6 @@
                 </div> <!-- end col sm 3 -->
               </div>
             </div>
-          </div>
         </div>
         <!-- End Results -->
       </div>
