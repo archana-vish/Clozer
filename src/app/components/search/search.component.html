@@ -134,7 +134,7 @@
           <!-- Adding rotating cards -->
           <div class="container">
               <div class="row col-md-12">
-                <div class="col-md-4" *ngFor="let searchDetail of areaSearchResults">
+                <div class="col-md-4 col-sm-6" *ngFor="let searchDetail of areaSearchResults">
                   <div class="card-container card-plain manual-flip">
                     <div class="card">
                       <div class="front">
@@ -269,7 +269,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header" *ngIf="sectorLoaded">
-        <h5 class="modal-title" id="exampleModalTitle">Search Results for {{sectorSearchResults[0].area_name}}</h5>
+        <h5 class="modal-title" id="exampleModalTitle">Search Results for {{searchModel.areaCode}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -295,11 +295,11 @@
                     <!-- Progress bars -->
                     <hr style="border:3px solid #f1f1f1">
                     <span class="heading">{{sector.sector_code}} ({{sector.sector_name}})</span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
+                    <!--<span class="fa fa-star checked"></span>-->
+                    <!--<span class="fa fa-star checked"></span>-->
+                    <!--<span class="fa fa-star checked"></span>-->
+                    <!--<span class="fa fa-star checked"></span>-->
+                    <!--<span class="fa fa-star"></span>-->
                     <hr style="border:3px solid #f1f1f1">
 
                     <div class="row">

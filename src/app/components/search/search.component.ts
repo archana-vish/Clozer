@@ -180,41 +180,10 @@ export class SearchComponent implements OnInit {
             this.isLoading = false;
             this.hasLoaded = true;
             console.log('returned... ' + this.areaSearchResults.length);
-            console.log(this.areaSearchResults[0].area_name);
-            console.log(this.areaSearchResults[1].area_name);
-            console.log(this.areaSearchResults[2].area_name);
             console.log(this.areaSearchResults[0].distance_to_work);
           }
         );
       });
-
-
-    setTimeout( () => {
-      this.searchAreaService.getSectorDetails().subscribe(
-        sectorDetails => {
-          sectorDetails.forEach(
-            sector => {
-              sector.facilities_stars = new Array(sector.facilities_score_stars);
-              sector.facilities_grey_stars = new Array( 5 - sector.facilities_score_stars);
-              sector.school_stars = new Array(sector.school_score_stars);
-              sector.school_grey_stars = new Array( 5 - sector.school_score_stars);
-              sector.travel_stars = new Array(sector.travel_score_stars);
-              sector.travel_grey_stars = new Array(5-sector.travel_score_stars);
-              sector.safety_stars = new Array(sector.safety_score_stars);
-              sector.safety_grey_stars = new Array(5 - sector.safety_score_stars);
-            }
-          )
-          this.sectorSearchResults = sectorDetails;
-          this.sectorLoading = false;
-          this.sectorLoaded = true;
-          this.compareByArea = true;
-          this.checked = '';
-          this.showDetails = true;
-          this.seachCriteria = 'Search by Facilities';
-          console.log('returned... ' + this.sectorSearchResults.length);
-        }
-      );
-    });
     }
 
 
@@ -246,7 +215,7 @@ export class SearchComponent implements OnInit {
       this.displayedColumns = ['areaName', 'totalScore'];
 
       setTimeout( () => {
-        this.searchAreaService.getSectorDetails().subscribe(
+        this.searchAreaService.getSectorDetails(this.searchModel).subscribe(
           sectorDetails => {
             sectorDetails.forEach(
               sector => {
@@ -275,11 +244,12 @@ export class SearchComponent implements OnInit {
 
 
   toggle(): void {
-      this.compareByArea = !this.compareByArea;
-      if (this.checked.trim().length === 0) {
+      if (this.compareByArea) {
+        this.compareByArea = false;
         this.checked = 'checked';
         this.seachCriteria = 'Search by Area Code'
       } else {
+        this.compareByArea = true;
         this.checked = '';
         this.seachCriteria = 'Search by Facilities'
       }

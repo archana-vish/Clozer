@@ -253,14 +253,11 @@ export class SearchAreaService {
 
 
   getAreaDetails(searchModel: SearchModel): Observable<SearchAreaModel[]> {
-    // console.log('app string :: ' + this.serverStr);
-    // console.log(this.searchAreaModel);
     console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode
     + ':' + searchModel.timeToTravel + ':' + searchModel.distanceToTravel + ':' + searchModel.travelMode);
-    //return of(this.searchAreaModel);
      return this.http.get<SearchAreaModel[]>(this.serverStr +
-       '/getAreaDetails?work_post_code=BR7+6JN'+
-        '&additional_post_code=SE12+8AW'+
+       '/getAreaDetails?work_post_code=' + searchModel.homePostcode.replace(' ','+')+
+        '&additional_post_code='+ searchModel.workPostcode.replace(' ','+') +
         '&max_journey_time=' + searchModel.timeToTravel +
         '&max_journey_distance=' + searchModel.distanceToTravel +
         '&min_house_price=' + searchModel.minPrice +
@@ -268,10 +265,17 @@ export class SearchAreaService {
         '&pref_travel_mode=' + searchModel.travelMode);
   }
 
-  getSectorDetails(): Observable<SearchSectorModel[]> {
-    // console.log('app string :: ' + this.serverStr);
-    // console.log(this.searchAreaModel);
-    return of(this.searchSectorModel);
-    //return this.http.get<SearchSectorModel[]>(this.serverStr + '/getSectorDetails?work_post_code=BR7+6JN&additional_post_code=SE12+8AW&max_journey_time=60&max_journey_distance=5000&min_house_price=300000&max_house_price=1100000&pref_travel_mode=car&area_code=SE9');
+  getSectorDetails(searchModel: SearchModel): Observable<SearchSectorModel[]> {
+    console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode);
+
+    return this.http.get<SearchSectorModel[]>(this.serverStr +
+      '/getSectorDetails?work_post_code='+ searchModel.homePostcode.replace(' ','+')+
+      '&additional_post_code='+ searchModel.homePostcode.replace(' ','+')+
+      '&max_journey_time=' + searchModel.timeToTravel +
+      '&max_journey_distance=' + searchModel.distanceToTravel +
+      '&min_house_price=' + searchModel.minPrice +
+      '&max_house_price=' + searchModel.maxPrice +
+      '&pref_travel_mode=' + searchModel.travelMode +
+      '&area_code='+ searchModel.areaCode);
   }
 }
