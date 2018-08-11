@@ -133,7 +133,7 @@
           </div>
           <!-- Adding rotating cards -->
           <div class="container">
-              <div class="row col-md-12">
+              <div class="card-group col-md-12">
                 <div class="col-md-4 col-sm-6" *ngFor="let searchDetail of areaSearchResults">
                   <div class="card-container card-plain manual-flip">
                     <div class="card">
@@ -145,7 +145,7 @@
                           <img class="img-circle" src="assets/img/rotating_card_thumb.jpg">
                           <div class="img-text"><strong>{{searchDetail.area_code}}</strong></div>
                         </div>
-                        <div class="content">
+                        <div class="card-body">
                           <div class="main">
                             <h3 class="score">Clozer score: {{searchDetail.total_score}}</h3>
                             <!--<h5 class="code">{{searchDetail.area_code}}</h5>-->
@@ -160,12 +160,13 @@
                             <!--<button class="btn btn-round btn-info btn-simple-card" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">-->
                               <!--<i class="fas fa-share"></i> Know More-->
                             <!--</button>-->
-                            <div class="front-card-footer">
-                              <button class="btn btn-neutral btn-simple-card" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
-                                <i class="fas fa-share"></i> Know More
-                              </button>
-                            </div>
+
                           <!--</div>-->
+                        </div>
+                        <div class="front-card-footer">
+                          <button class="btn btn-neutral" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
+                            <i class="fas fa-share"></i> Know More
+                          </button>
                         </div>
                       </div> <!-- end front panel -->
                       <div class="back">
@@ -200,19 +201,19 @@
                                 <p align="center" class="make-it-bold"> House Price  </p>
                               </div>
                               <div class="stats">
-                                <h4 class="h4-card">{{searchDetail.average_detached_house_price | currency : 'GBP' : '£' : '1.0'}}</h4>
+                                <h4 class="h4-card">{{searchDetail.average_detached_house_price | housePricePipe}}</h4>
                                 <p class="card-p">
                                   Detached
                                 </p>
                               </div>
                               <div class="stats">
-                                <h4 class="h4-card">{{searchDetail.average_semi_detached_house_price | currency : 'GBP' : '£' : '1.0'}}</h4>
+                                <h4 class="h4-card">{{searchDetail.average_semi_detached_house_price | housePricePipe}}</h4>
                                 <p class="card-p">
                                   Semi-detached
                                 </p>
                               </div>
                               <div class="stats">
-                                <h4 class="h4-card">{{searchDetail.average_flat_price | currency : 'GBP' : '£' : '0.0'}}</h4>
+                                <h4 class="h4-card">{{searchDetail.average_flat_price | housePricePipe}}</h4>
                                 <p class="card-p">
                                    Flats
                                 </p>

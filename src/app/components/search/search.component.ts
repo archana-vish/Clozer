@@ -1,16 +1,14 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit, Output} from '@angular/core';
+import { Component, Input, OnInit, Output} from '@angular/core';
 import { SearchModel } from '../../model/SearchModel';
 import {SearchAreaService} from '../../services/search-area.service';
 import {SearchAreaModel} from '../../model/SearchAreaModel';
 import {Router} from '@angular/router';
-import {AreaDetailsComponent} from '../area-details/area-details.component';
-import * as Chartist from 'chartist';
+
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
-  //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchComponent implements OnInit {
 
@@ -61,7 +59,7 @@ export class SearchComponent implements OnInit {
 
     this.distance.push(1);
 
-    for (let dist = 5; dist <= 100; dist += 5) {
+    for (let dist = 5; dist <= 25; dist += 5) {
       this.distance.push(dist);
     }
 
@@ -79,32 +77,7 @@ export class SearchComponent implements OnInit {
       {name: 'Walk', value: 'walk', checked: false}
     ];
 
-    /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
 
-    const dataCompletedTasksChart: any = {
-      labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
-      series: [
-        [230, 750, 450, 300, 280, 240, 200, 190]
-      ]
-    };
-
-    const optionsCompletedTasksChart: any = {
-      lineSmooth: Chartist.Interpolation.cardinal({
-        tension: 0
-      }),
-      low: 0,
-      high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-      chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
-    }
-
-    const completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
-
-    // start animation for the Completed Tasks Chart - Line Chart
-    this.startAnimationForLineChart(completedTasksChart);
-
-
-    //For testing
-    //this.getAreaSearchResults();
 
   }
 
@@ -118,39 +91,6 @@ export class SearchComponent implements OnInit {
     this.searchModel.homePostcode = '';
   }
 
-  startAnimationForLineChart(chart){
-    let seq: any, delays: any, durations: any;
-    seq = 0;
-    delays = 80;
-    durations = 500;
-
-    chart.on('draw', function(data) {
-      if(data.type === 'line' || data.type === 'area') {
-        data.element.animate({
-          d: {
-            begin: 600,
-            dur: 700,
-            from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
-            to: data.path.clone().stringify(),
-            easing: Chartist.Svg.Easing.easeOutQuint
-          }
-        });
-      } else if(data.type === 'point') {
-        seq++;
-        data.element.animate({
-          opacity: {
-            begin: seq * delays,
-            dur: durations,
-            from: 0,
-            to: 1,
-            easing: 'ease'
-          }
-        });
-      }
-    });
-
-    seq = 0;
-  };
 
   getAreaSearchResults(): void {
 

@@ -21,6 +21,7 @@ import {AppRoutingModule} from './app-routing.module';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import {DataTableModule} from 'angular5-data-table';
 import {MatTableModule} from '@angular/material/table';
+import {HousePricePipe} from '../pipes/HousePricePipe';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {MatTableModule} from '@angular/material/table';
     FeedbackComponent,
     FaqComponent,
     SearchDetailsComponent,
-    LandingpageComponent
+    LandingpageComponent,
+    HousePricePipe
   ],
   imports: [
     BrowserModule,
