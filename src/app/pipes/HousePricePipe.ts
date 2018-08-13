@@ -7,13 +7,12 @@ export class HousePricePipe implements PipeTransform {
     if (value < 9000) {
       return value + '';
     } else if ( value >= 100000 && value < 1000000) {
-      console.log(value/10000);
-      console.log(Math.floor(value/10000));
-      return '£' + (value/100000).toFixed(2) + 'K';
+      console.log(Math.floor(value/1000));
+      return '£' + (value/1000).toFixed(0) + 'k';
     } else {
       console.log(value/1000000);
       console.log(Math.floor(value/1000000));
-      return '£' + (value /1000000).toFixed(2) + 'M';
+      return '£' + (value /1000000).toFixed(2) + 'm';
     }
 
   }

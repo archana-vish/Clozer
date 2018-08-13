@@ -11,5 +11,6 @@ export class SearchModel {
   travelModeCycle: string;
   travelModeWalk: string;
   travelMode: string;
+  houseType:string;
   areaCode: string;
 }

@@ -68,6 +68,7 @@ export class SearchComponent implements OnInit {
     this.searchModel.timeToTravel = this.time[0];
     this.searchModel.distanceToTravel = this.distance[0];
     this.searchModel.travelMode = 'any';
+    this.searchModel.houseType = 'H';
 
     this.modes = [
       {name: 'Train', value: 'train', checked: true},
@@ -89,6 +90,7 @@ export class SearchComponent implements OnInit {
     this.searchModel.travelMode = 'any';
     this.searchModel.workPostcode = '';
     this.searchModel.homePostcode = '';
+    this.searchModel.houseType = 'H';
   }
 
 
@@ -147,6 +149,7 @@ export class SearchComponent implements OnInit {
       console.log(this.searchModel.homePostcode);
       console.log(this.searchModel.workPostcode);
       console.log(this.searchModel.travelMode);
+      console.log(this.searchModel.houseType);
 
       console.log(this.searchModel.areaCode);
       console.log('********************************');

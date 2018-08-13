@@ -255,15 +255,17 @@ export class SearchAreaService {
   getAreaDetails(searchModel: SearchModel): Observable<SearchAreaModel[]> {
     console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode
     + ':' + searchModel.timeToTravel + ':' + searchModel.distanceToTravel + ':' + searchModel.travelMode);
-    return of(this.searchAreaModel);
-    //  return this.http.get<SearchAreaModel[]>(this.serverStr +
-    //    '/getAreaDetails?work_post_code=' + searchModel.homePostcode.replace(' ','+')+
-    //     '&additional_post_code='+ searchModel.workPostcode.replace(' ','+') +
-    //     '&max_journey_time=' + searchModel.timeToTravel +
-    //     '&max_journey_distance=' + searchModel.distanceToTravel +
-    //     '&min_house_price=' + searchModel.minPrice +
-    //     '&max_house_price=' + searchModel.maxPrice +
-    //     '&pref_travel_mode=' + searchModel.travelMode);
+    // return of(this.searchAreaModel);
+     return this.http.get<SearchAreaModel[]>(this.serverStr +
+       '/getAreaDetails?work_post_code=' + searchModel.homePostcode.replace(' ','+')+
+        '&additional_post_code='+ searchModel.workPostcode.replace(' ','+') +
+        '&max_journey_time=' + searchModel.timeToTravel +
+        '&max_journey_distance=' + searchModel.distanceToTravel +
+        '&min_house_price=' + searchModel.minPrice +
+        '&max_house_price=' + searchModel.maxPrice +
+        '&pref_travel_mode=' + searchModel.travelMode +
+        '&house_type=' + searchModel.houseType +
+        '&nresults=6');
 
 
   }
@@ -279,6 +281,7 @@ export class SearchAreaService {
       '&min_house_price=' + searchModel.minPrice +
       '&max_house_price=' + searchModel.maxPrice +
       '&pref_travel_mode=' + searchModel.travelMode +
+      "&house_type=" + searchModel.houseType +
       '&area_code='+ searchModel.areaCode);
   }
 }
