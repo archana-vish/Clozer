@@ -554,3 +554,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .align-right {
   text-align: right;
 }
+
+.no-padding {
+  padding-right: 0px;
+  padding-left: 0px;
+}

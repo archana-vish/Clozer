@@ -137,21 +137,21 @@
 <!-- End search form -->
 <!-- Search results -->
 <div class="section section-dark-blue areasearch-results-summary" id="searchresults" align="center">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
         <div class="spinning" *ngIf="isLoading">
           <i class="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>
         </div>
         <!-- REsults -->
-        <div class="search container-fluid col-md-12" *ngIf="hasLoaded">
+        <div class="search" *ngIf="hasLoaded">
           <div class="row">
             <p> You have {{areaSearchResults.length}} area(s) matching your criteria </p>
             <br>
           </div>
           <!-- Adding rotating cards -->
-          <div class="container">
-              <div class="card-group col-md-12">
+          <div class="container-fluid">
+              <div class="card-group col-sm-10 col-sm-offset-1 col-md-12 col=md-offset-1">
                 <div class="col-md-4 col-sm-6" *ngFor="let searchDetail of areaSearchResults">
                   <div class="card-container card-plain manual-flip">
                     <div class="card">
@@ -173,13 +173,6 @@
                               <h5 class="topheader">Train Stations: {{searchDetail.stations_count}} </h5>
                             </div>
                           </div>
-                          <!--<div class="card-footer">-->
-                            <!--<button type="button" class="btn btn-info btn-round ">Know More</button>-->
-                            <!--<button class="btn btn-round btn-info btn-simple-card" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">-->
-                              <!--<i class="fas fa-share"></i> Know More-->
-                            <!--</button>-->
-
-                          <!--</div>-->
                         </div>
                         <div class="front-card-footer">
                           <button class="btn btn-neutral" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
@@ -191,29 +184,6 @@
                           <h5 class="motto-end"><strong>{{searchDetail.area_code}}</strong></h5>
                         <div class="content">
                           <div class="main">
-                            <!--<div class="row stats-container">-->
-                              <!--<div class="col-md-12 ">-->
-                                <!--<p align="center" class="make-it-bold"> Scores </p>-->
-                              <!--</div>-->
-                              <!--<div class="stats">-->
-                                <!--<h4 class="h4-card">{{searchDetail.safety_score | number : '1.0'}}</h4>-->
-                                <!--<p class="card-p">-->
-                                  <!--Detached-->
-                                <!--</p>-->
-                              <!--</div>-->
-                              <!--<div class="stats">-->
-                                <!--<h4 class="h4-card">{{searchDetail.school_score | number : '1.0'}}</h4>-->
-                                <!--<p class="card-p">-->
-                                  <!--Semi-detached-->
-                                <!--</p>-->
-                              <!--</div>-->
-                              <!--<div class="stats">-->
-                                <!--<h4 class="h4-card">{{searchDetail.travel_score | number : '1.0'}}</h4>-->
-                                <!--<p class="card-p">-->
-                                  <!--Flats-->
-                                <!--</p>-->
-                              <!--</div>-->
-                            <!--</div>-->
                             <div class="row stats-container">
                               <div class="col-md-12 ">
                                 <p align="center" class="make-it-bold"> House Price  </p>
@@ -263,7 +233,7 @@
                           </div>
                         </div>
                         <div class="back-card-footer">
-                          <div class="social-links text-center">
+                          <div class="social-links text-center ">
                             <button class="btn  btn-simple-card btn-round btn-info" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
                               <i class="fas fa-reply"></i> Back
                             </button>
@@ -276,7 +246,7 @@
                 </div> <!-- end col sm 3 -->
               </div>
             </div>
-        </div>
+          </div>
         <!-- End Results -->
       </div>
     </div>
