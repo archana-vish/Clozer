@@ -258,7 +258,7 @@ export class SearchAreaService {
     // return of(this.searchAreaModel);
      return this.http.get<SearchAreaModel[]>(this.serverStr +
        '/getAreaDetails?work_post_code=' + searchModel.homePostcode.replace(' ','+')+
-        '&additional_post_code='+ searchModel.workPostcode.replace(' ','+') +
+        '&additional_post_code='+
         '&max_journey_time=' + searchModel.timeToTravel +
         '&max_journey_distance=' + searchModel.distanceToTravel +
         '&min_house_price=' + searchModel.minPrice +
@@ -275,7 +275,7 @@ export class SearchAreaService {
 
     return this.http.get<SearchSectorModel[]>(this.serverStr +
       '/getSectorDetails?work_post_code='+ searchModel.homePostcode.replace(' ','+')+
-      '&additional_post_code='+ searchModel.homePostcode.replace(' ','+')+
+      '&additional_post_code='+
       '&max_journey_time=' + searchModel.timeToTravel +
       '&max_journey_distance=' + searchModel.distanceToTravel +
       '&min_house_price=' + searchModel.minPrice +
