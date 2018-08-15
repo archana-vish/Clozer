@@ -897,9 +897,8 @@ var HousePricePipe = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchAreaService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_of__ = __webpack_require__("./node_modules/rxjs/_esm5/observable/of.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("./src/environments/environment.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__environments_environment__ = __webpack_require__("./src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -909,7 +908,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -1140,22 +1138,22 @@ var SearchAreaService = /** @class */ (function () {
         this.serverStr = this.getAppServer();
     }
     SearchAreaService.prototype.getAppServer = function () {
-        return __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].appServer;
+        return __WEBPACK_IMPORTED_MODULE_1__environments_environment__["a" /* environment */].appServer;
     };
     SearchAreaService.prototype.getAreaDetails = function (searchModel) {
         console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode
             + ':' + searchModel.timeToTravel + ':' + searchModel.distanceToTravel + ':' + searchModel.travelMode);
-        return Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_observable_of__["a" /* of */])(this.searchAreaModel);
-        //  return this.http.get<SearchAreaModel[]>(this.serverStr +
-        //    '/getAreaDetails?work_post_code=' + searchModel.homePostcode.replace(' ','+')+
-        //     '&additional_post_code='+
-        //     '&max_journey_time=' + searchModel.timeToTravel +
-        //     '&max_journey_distance=' + searchModel.distanceToTravel +
-        //     '&min_house_price=' + searchModel.minPrice +
-        //     '&max_house_price=' + searchModel.maxPrice +
-        //     '&pref_travel_mode=' + searchModel.travelMode +
-        //     '&house_type=' + searchModel.houseType +
-        //     '&nresults=6');
+        // return of(this.searchAreaModel);
+        return this.http.get(this.serverStr +
+            '/getAreaDetails?work_post_code=' + searchModel.homePostcode.replace(' ', '+') +
+            '&additional_post_code=' +
+            '&max_journey_time=' + searchModel.timeToTravel +
+            '&max_journey_distance=' + searchModel.distanceToTravel +
+            '&min_house_price=' + searchModel.minPrice +
+            '&max_house_price=' + searchModel.maxPrice +
+            '&pref_travel_mode=' + searchModel.travelMode +
+            '&house_type=' + searchModel.houseType +
+            '&nresults=6');
     };
     SearchAreaService.prototype.getSectorDetails = function (searchModel) {
         console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode);
@@ -1172,7 +1170,7 @@ var SearchAreaService = /** @class */ (function () {
     };
     SearchAreaService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]])
     ], SearchAreaService);
     return SearchAreaService;
 }());
