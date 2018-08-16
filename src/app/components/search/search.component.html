@@ -26,7 +26,7 @@
               <div class="col-md-3">
                 <input type="text" class="form-control" id="homezipcode"
                 [(ngModel)] = "searchModel.homePostcode"
-                placeholder="Second choice" name="homePostCode">
+                placeholder="First choice" name="homePostCode" required>
               </div>
               <div class="col-xs-1">&nbsp;</div>
               <!--<div class="col-md-1"></div>-->
@@ -267,8 +267,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="container">
-          <div class="row">
+        <div class="no-gutters">
+          <div class="row no-gutters">
             <div class="col-md-12">
               <div class="search col-md-12">
                 <div class="spinning" *ngIf="sectorLoading">
@@ -282,19 +282,15 @@
                       {{seachCriteria}}
                     </label>
                   </div>
-                  <div *ngIf="compareByArea">
+                  <div class="" *ngIf="compareByArea">
                   <div class="col-md-12"  *ngFor="let sector of sectorSearchResults">
                     <!-- Progress bars -->
+                    <div>
                     <hr style="border:3px solid #f1f1f1">
-                    <span class="heading">{{sector.sector_code}} ({{sector.sector_name}})</span>
-                    <!--<span class="fa fa-star checked"></span>-->
-                    <!--<span class="fa fa-star checked"></span>-->
-                    <!--<span class="fa fa-star checked"></span>-->
-                    <!--<span class="fa fa-star checked"></span>-->
-                    <!--<span class="fa fa-star"></span>-->
+                    <span class="heading">{{sector.sector_code | uppercase }} ({{sector.sector_name | uppercase}})</span>
                     <hr style="border:3px solid #f1f1f1">
-
-                    <div class="row">
+                    </div>
+                    <div class="row col-md-12">
                       <div class="side">
                         <div>Safety</div>
                       </div>
@@ -355,17 +351,6 @@
                       <div class="side right">
                         <div>{{sector.facilities_score}}</div>
                       </div>
-                      <div class="side">
-                        <div>Total</div>
-                      </div>
-                      <div class="middle">
-                        <div class="bar-container">
-                          <div class="bar-4"></div>
-                        </div>
-                      </div>
-                      <div class="side right">
-                        <div>250</div>
-                      </div>
                     </div>
 
                     <!-- End progress bars -->
@@ -374,10 +359,12 @@
                   <div *ngIf="!compareByArea">
                     <div class="col-md-12" >
                       <!-- Progress bars -->
+                      <div>
                       <hr style="border:3px solid #f1f1f1">
                       <span class="heading">Safety</span>
                       <hr style="border:3px solid #f1f1f1">
-                      <div class="row"  *ngFor="let sector of sectorSearchResults">
+                      </div>
+                      <div class="row col-md-12"  *ngFor="let sector of sectorSearchResults">
                         <div class="side">
                           <div data-toggle="tooltip" data-placement="top" title="{{sector.sector_name}}">
                             {{sector.sector_code | uppercase}}</div>
@@ -395,10 +382,12 @@
                           <div>{{sector.safety_score}}</div>
                         </div>
                       </div>
+                      <div>
                       <hr style="border:3px solid #f1f1f1">
                       <span class="heading">Schools</span>
                       <hr style="border:3px solid #f1f1f1">
-                      <div class="row"  *ngFor="let sector of sectorSearchResults">
+                      </div>
+                      <div class="row col-md-12"  *ngFor="let sector of sectorSearchResults">
                         <div class="side">
                           <div data-toggle="tooltip" data-placement="top" title="{{sector.sector_name}}">
                             {{sector.sector_code | uppercase}}</div>
@@ -416,10 +405,12 @@
                           <div>{{sector.school_score}}</div>
                         </div>
                       </div>
+                      <div>
                       <hr style="border:3px solid #f1f1f1">
                       <span class="heading">Travel</span>
                       <hr style="border:3px solid #f1f1f1">
-                      <div class="row"  *ngFor="let sector of sectorSearchResults">
+                      </div>
+                      <div class="row col-md-12"  *ngFor="let sector of sectorSearchResults">
                         <div class="side">
                           <div data-toggle="tooltip" data-placement="top" title="{{sector.sector_name}}">
                             {{sector.sector_code | uppercase}}</div>
@@ -437,10 +428,12 @@
                           <div>{{sector.travel_score}}</div>
                         </div>
                       </div>
+                      <div>
                       <hr style="border:3px solid #f1f1f1">
                       <span class="heading">Facilities</span>
                       <hr style="border:3px solid #f1f1f1">
-                      <div class="row"  *ngFor="let sector of sectorSearchResults">
+                      </div>
+                      <div class="row col-md-12"  *ngFor="let sector of sectorSearchResults">
                         <div class="side">
                           <div data-toggle="tooltip" data-placement="top" title="{{sector.sector_name}}">
                             {{sector.sector_code | uppercase}}</div>

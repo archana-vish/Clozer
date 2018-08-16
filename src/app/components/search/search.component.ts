@@ -177,7 +177,7 @@ export class SearchComponent implements OnInit {
             this.sectorLoaded = true;
             this.compareByArea = true;
             this.showDetails = true;
-            this.seachCriteria = 'Search by Facilities';
+            this.seachCriteria = 'View by Facilities';
             console.log('returned... ' + this.sectorSearchResults.length);
           }
         );
@@ -190,11 +190,11 @@ export class SearchComponent implements OnInit {
       if (this.compareByArea) {
         this.compareByArea = false;
         this.checked = 'checked';
-        this.seachCriteria = 'Search by Area Code'
+        this.seachCriteria = 'View by Area Code'
       } else {
         this.compareByArea = true;
         this.checked = '';
-        this.seachCriteria = 'Search by Facilities'
+        this.seachCriteria = 'View by Facilities'
       }
   }
 

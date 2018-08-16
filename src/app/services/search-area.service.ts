@@ -272,6 +272,7 @@ export class SearchAreaService {
 
   getSectorDetails(searchModel: SearchModel): Observable<SearchSectorModel[]> {
     console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode);
+    // return of(this.searchSectorModel);
 
     return this.http.get<SearchSectorModel[]>(this.serverStr +
       '/getSectorDetails?work_post_code='+ searchModel.homePostcode.replace(' ','+')+
