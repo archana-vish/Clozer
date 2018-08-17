@@ -269,13 +269,13 @@
       <div class="modal-body">
         <div class="no-gutters">
           <div class="row no-gutters">
-            <div class="col-md-12">
-              <div class="search col-md-12">
+            <div class="col-md-12 no-gutters">
+              <div class="search col-md-12 no-gutters">
                 <div class="spinning" *ngIf="sectorLoading">
                   <i class="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>
                 </div>
-                <div class="" *ngIf="sectorLoaded">
-                  <div class="togglebutton align-right">
+                <div *ngIf="sectorLoaded">
+                  <div class="togglebutton">
                     <label>
                       <input type="checkbox" id="sortOrder" checked="{{checked}}" (click)="toggle()">
                       <span class="toggle"></span>
@@ -283,14 +283,14 @@
                     </label>
                   </div>
                   <div class="" *ngIf="compareByArea">
-                  <div class="col-md-12"  *ngFor="let sector of sectorSearchResults">
+                  <div class=""  *ngFor="let sector of sectorSearchResults">
                     <!-- Progress bars -->
-                    <div>
+                    <!--<div class="col-md-12 no-gutters">-->
                     <hr style="border:3px solid #f1f1f1">
-                    <span class="heading">{{sector.sector_code | uppercase }} ({{sector.sector_name | uppercase}})</span>
+                      <span class="heading">{{sector.sector_code | uppercase }} ({{sector.sector_name | uppercase}})</span>
                     <hr style="border:3px solid #f1f1f1">
-                    </div>
-                    <div class="row col-md-12">
+                    <!--</div>-->
+                    <div class="row no-gutters">
                       <div class="side">
                         <div>Safety</div>
                       </div>
@@ -357,14 +357,14 @@
                   </div>
                   </div>
                   <div *ngIf="!compareByArea">
-                    <div class="col-md-12" >
+                    <div class="" >
                       <!-- Progress bars -->
                       <div>
                       <hr style="border:3px solid #f1f1f1">
                       <span class="heading">SAFETY</span>
                       <hr style="border:3px solid #f1f1f1">
                       </div>
-                      <div class="row col-md-12"  *ngFor="let sector of sectorSearchResults">
+                      <div class="row no-gutters"  *ngFor="let sector of sectorSearchResults">
                         <div class="side">
                           <div data-toggle="tooltip" data-placement="top" title="{{sector.sector_name}}">
                             {{sector.sector_code | uppercase}}</div>
@@ -387,7 +387,7 @@
                       <span class="heading">SCHOOLS</span>
                       <hr style="border:3px solid #f1f1f1">
                       </div>
-                      <div class="row col-md-12"  *ngFor="let sector of sectorSearchResults">
+                      <div class="row no-gutters"  *ngFor="let sector of sectorSearchResults">
                         <div class="side">
                           <div data-toggle="tooltip" data-placement="top" title="{{sector.sector_name}}">
                             {{sector.sector_code | uppercase}}</div>
@@ -410,7 +410,7 @@
                       <span class="heading">TRAVEL</span>
                       <hr style="border:3px solid #f1f1f1">
                       </div>
-                      <div class="row col-md-12"  *ngFor="let sector of sectorSearchResults">
+                      <div class="row no-gutters"  *ngFor="let sector of sectorSearchResults">
                         <div class="side">
                           <div data-toggle="tooltip" data-placement="top" title="{{sector.sector_name}}">
                             {{sector.sector_code | uppercase}}</div>
@@ -433,7 +433,7 @@
                       <span class="heading">FACILITIES</span>
                       <hr style="border:3px solid #f1f1f1">
                       </div>
-                      <div class="row col-md-12"  *ngFor="let sector of sectorSearchResults">
+                      <div class="row no-gutters"  *ngFor="let sector of sectorSearchResults">
                         <div class="side">
                           <div data-toggle="tooltip" data-placement="top" title="{{sector.sector_name}}">
                             {{sector.sector_code | uppercase}}</div>
