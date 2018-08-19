@@ -59,7 +59,7 @@ export class SearchComponent implements OnInit {
 
     this.distance.push(1);
 
-    for (let dist = 5; dist <= 25; dist += 5) {
+    for (let dist = 5; dist <= 30; dist += 5) {
       this.distance.push(dist);
     }
 
@@ -100,29 +100,26 @@ export class SearchComponent implements OnInit {
       this.hasLoaded = false;
       this.areaSearchResults = [];
 
-    console.log('##############################');
-    console.log('Printing search Model for Area');
-      console.log(this.searchModel.minPrice);
-      console.log(this.searchModel.maxPrice);
-      console.log(this.searchModel.distanceToTravel);
-      console.log(this.searchModel.timeToTravel);
-      console.log(this.searchModel.homePostcode);
-      console.log(this.searchModel.workPostcode);
-      console.log(this.searchModel.travelMode);
-      console.log('##############################');
+    // console.log('##############################');
+    // console.log('Printing search Model for Area');
+    //   console.log(this.searchModel.minPrice);
+    //   console.log(this.searchModel.maxPrice);
+    //   console.log(this.searchModel.distanceToTravel);
+    //   console.log(this.searchModel.timeToTravel);
+    //   console.log(this.searchModel.homePostcode);
+    //   console.log(this.searchModel.workPostcode);
+    //   console.log(this.searchModel.travelMode);
+    //   console.log('##############################');
 
 
 
     setTimeout( () => {
         this.searchAreaService.getAreaDetails(this.searchModel).subscribe(
           areaDetails => {
-            console.log('returned :: ' + areaDetails[0].area_code);
-            console.log('returned ob :: '+ areaDetails);
             this.areaSearchResults = areaDetails;
             this.isLoading = false;
             this.hasLoaded = true;
-            console.log('returned... ' + this.areaSearchResults.length);
-            console.log(this.areaSearchResults[0].distance_to_work);
+            // console.log('returned... ' + this.areaSearchResults.length);
           }
         );
       });
@@ -131,7 +128,7 @@ export class SearchComponent implements OnInit {
 
     getSectorSearchResults(areaDetail: SearchAreaModel): void {
 
-      console.log(areaDetail.area_code);
+      // console.log(areaDetail.area_code);
       this.searchModel.areaCode = areaDetail.area_code;
       this.sectorSearchResults = [];
       this.sectorLoading = true;
@@ -140,19 +137,19 @@ export class SearchComponent implements OnInit {
        // this.searchModel.areaCode = this.areaCode;
 
 
-      console.log('********************************');
-      console.log('Printing search Model for Sector');
-      console.log(this.searchModel.minPrice);
-      console.log(this.searchModel.maxPrice);
-      console.log(this.searchModel.distanceToTravel);
-      console.log(this.searchModel.timeToTravel);
-      console.log(this.searchModel.homePostcode);
-      console.log(this.searchModel.workPostcode);
-      console.log(this.searchModel.travelMode);
-      console.log(this.searchModel.houseType);
-
-      console.log(this.searchModel.areaCode);
-      console.log('********************************');
+      // console.log('********************************');
+      // console.log('Printing search Model for Sector');
+      // console.log(this.searchModel.minPrice);
+      // console.log(this.searchModel.maxPrice);
+      // console.log(this.searchModel.distanceToTravel);
+      // console.log(this.searchModel.timeToTravel);
+      // console.log(this.searchModel.homePostcode);
+      // console.log(this.searchModel.workPostcode);
+      // console.log(this.searchModel.travelMode);
+      // console.log(this.searchModel.houseType);
+      //
+      // console.log(this.searchModel.areaCode);
+      // console.log('********************************');
 
 
       this.displayedColumns = ['areaName', 'totalScore'];
@@ -160,6 +157,15 @@ export class SearchComponent implements OnInit {
       setTimeout( () => {
         this.searchAreaService.getSectorDetails(this.searchModel).subscribe(
           sectorDetails => {
+
+            this.sectorLoading = false;
+            this.sectorLoaded = true;
+            this.compareByArea = true;
+            this.showDetails = true;
+            this.seachCriteria = 'View by Features';
+            this.sectorSearchResults = sectorDetails;
+
+
             sectorDetails.forEach(
               sector => {
                 sector.facilities_stars = new Array(sector.facilities_score_stars);
@@ -172,13 +178,10 @@ export class SearchComponent implements OnInit {
                 sector.safety_grey_stars = new Array(5 - sector.safety_score_stars);
               }
             )
+
             this.sectorSearchResults = sectorDetails;
-            this.sectorLoading = false;
-            this.sectorLoaded = true;
-            this.compareByArea = true;
-            this.showDetails = true;
-            this.seachCriteria = 'View by Facilities';
             console.log('returned... ' + this.sectorSearchResults.length);
+
           }
         );
       });
@@ -190,11 +193,11 @@ export class SearchComponent implements OnInit {
       if (this.compareByArea) {
         this.compareByArea = false;
         this.checked = 'checked';
-        this.seachCriteria = 'View by Area Code'
+        this.seachCriteria = 'View by Sectors'
       } else {
         this.compareByArea = true;
         this.checked = '';
-        this.seachCriteria = 'View by Facilities'
+        this.seachCriteria = 'View by Features'
       }
   }
 

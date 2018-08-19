@@ -12,8 +12,7 @@ export class SearchAreaService {
 
   serverStr: string;
 
-  searchAreaModel: SearchAreaModel[]
-    =
+  searchAreaModel: SearchAreaModel[] =
    [{
      area_code: 'BR7',
     area_name: 'Chislehurst, Elmstead',
@@ -266,13 +265,12 @@ export class SearchAreaService {
         '&pref_travel_mode=' + searchModel.travelMode +
         '&house_type=' + searchModel.houseType +
         '&nresults=6');
-
-
   }
 
   getSectorDetails(searchModel: SearchModel): Observable<SearchSectorModel[]> {
     console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode);
     // return of(this.searchSectorModel);
+    // return of (null);
 
     return this.http.get<SearchSectorModel[]>(this.serverStr +
       '/getSectorDetails?work_post_code='+ searchModel.homePostcode.replace(' ','+')+

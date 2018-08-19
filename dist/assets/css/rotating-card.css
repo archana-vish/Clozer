@@ -443,6 +443,24 @@
   margin-top: 10px;
 }
 
+.side-facility {
+  float: left;
+  width: 45%;
+  margin-top: 10px;
+}
+
+.middle-facility {
+  float: left;
+  width: 50%;
+  margin-top: 10px;
+}
+
+.side-score-facility {
+  float: left;
+  width: 5%;
+  margin-top: 10px;
+}
+
 /* Place text to the right */
 .right {
   text-align: right;
@@ -472,7 +490,7 @@
 
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
 @media (max-width: 412px) {
-  .side, .middle {
+  .side, .middle, .side-facility, .middle-facility {
     width: 100%;
   }
   /* Hide the right column on small screens */

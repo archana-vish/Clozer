@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 
@@ -15,13 +15,13 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { FaqComponent } from './faq/faq.component';
 import { SearchDetailsComponent } from './search-details/search-details.component';
 import {SearchAreaService} from '../services/search-area.service';
-import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import {DataTableModule} from 'angular5-data-table';
 import {MatTableModule} from '@angular/material/table';
 import {HousePricePipe} from '../pipes/HousePricePipe';
+import {ClozerErrorHandler} from '../services/ClozerErrorHandler';
 
 
 @NgModule({
@@ -47,7 +47,7 @@ import {HousePricePipe} from '../pipes/HousePricePipe';
     DataTableModule.forRoot(),
     MatTableModule
   ],
-  providers: [SearchAreaService],
+  providers: [SearchAreaService, {provide: ErrorHandler, useClass: ClozerErrorHandler}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
