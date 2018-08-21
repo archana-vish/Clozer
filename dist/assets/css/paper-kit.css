@@ -5701,7 +5701,7 @@ textarea.form-control {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #B2AFAB url('/assets/img/skyline/i.jpg') center center;
+  background: #B2AFAB url('/assets/img/skyline/banner.jpg') center center;
   -webkit-animation: fade-slide-down 3s ease-in forwards;
   animation: fade-slide-down 3s ease-in forwards;
 
@@ -5896,8 +5896,8 @@ textarea.form-control {
 }
 
 .presentation-title {
-  font-size: 8em;
-  font-weight: 700;
+  font-size: 4em;
+  font-weight: 200;
   margin: 0;
   color: #FFFFFF;
   background: #fbf8ec;

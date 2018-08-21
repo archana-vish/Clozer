@@ -6,6 +6,16 @@
           <form (ngSubmit) = "getAreaSearchResults()" #searchForm = "ngForm">
             <div class=" form-group row col-md-12">
               <div class="col-md-3">
+                <h6> Get Clozer to your home..</h6>
+              </div>
+              <div class="col-md-3">
+              </div>
+              <!--<div col="col-md-4"></div>-->
+              <div class="col-md-6"></div>
+            </div>
+            <br>
+            <div class=" form-group row col-md-12">
+              <div class="col-md-3">
                 <label for="housePriceTo" class="col-form-label">My maximum budget </label>
               </div>
               <div class="col-md-3">
@@ -243,7 +253,7 @@
                             <button class="btn  btn-simple-card btn-round btn-info" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
                               <i class="fas fa-reply"></i> Back
                             </button>
-                            <button type="button" class="btn  btn-simple-card btn-round btn-info" (click) = "getSectorSearchResults(searchDetail)" data-toggle="modal" data-target="#exampleModal">Explore</button>
+                            <button type="button" class="btn  btn-simple-card btn-round btn-info" (click) = "getSectorSearchResults(searchDetail)" data-toggle="modal" data-target="#sectorModal">Explore</button>
                           </div>
                         </div>
                       </div> <!-- end back panel -->
@@ -260,11 +270,11 @@
 </div>
 <!-- End search results -->
 <!-- Modal -->
-<div class="modal fadeOutUp" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fadeOutUp" id="sectorModal" tabindex="-1" role="dialog" aria-labelledby="sectorModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header" *ngIf="sectorLoaded">
-        <h5 class="modal-title" id="exampleModalTitle">Search Results for {{searchModel.areaCode}}</h5>
+        <h5 class="modal-title" id="sectorModalTitle">Search Results for {{searchModel.areaCode}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -476,7 +486,86 @@
 <!-- End modal -->
 
 
+<!-- FAQ Modal -->
+<div class="modal fadeOutUp" id="faqModal" tabindex="-1" role="dialog" aria-labelledby="faqModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="faqModalTitle">FAQ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="no-gutters">
+          <div class="row no-gutters">
+            <div class="col-md-12 no-gutters">
+              <div class="search col-md-12 no-gutters">
+                <div class="" >
+                  <span class="heading-faq"><strong>What is Clozer?</strong></span>
+                  <div class="row no-gutters">
+                    <div class="col-md-12">
+                      Clozer is a platform to help home buyers find a suitable area to settle down based on personal preferences
+                    </div>
+                  </div>
+                  <hr style="border:3px solid #f1f1f1">
+                  <span class="heading-faq">How is this different from Rightmove or Zoopla then?</span>
+                  <div class="row no-gutters">
+                    <div class="col-md-12">
+                      Rightmove and Zoopla are platforms where you go search for properties once you know where you want to live. Clozer is few stages prior to that.
 
+
+
+                      Clozer helps answer questions such as
+
+                      "I work in Reading and my partner works in London Canary Wharf. We have a 2 year old. Our maximum budget is $650,000 and we would like to buy a house. What areas should we consider assuming both of us dont want to spend more than 45 mins traveling to work?"
+                    </div>
+                  </div>
+                  <hr style="border:3px solid #f1f1f1">
+                  <span class="heading-faq">But I could ask my friends or colleagues and shortlist areas?</span>
+                  <div class="row no-gutters">
+                    <div class="col-md-12">
+                      Yes, that is an option. But if you get 15 recommendations, how will you rank them based on your individual preferences? How do you know you are not missing areas that could be better suited for you and your family?
+
+
+                    </div>
+                  </div>
+                  <hr style="border:3px solid #f1f1f1">
+                  <span class="heading-faq">How should I use Clozer?</span>
+                  <div class="row no-gutters">
+                    <div class="col-md-12">
+                      Tell Clozer where you work (or some reference postcode), your budget and your maximum commute time/distance.
+
+                      Clozer will shortlist areas & sectors and rank them based on a score calculated using several attributes.
+
+                      The score and the shortlisted areas can change if you modify your search parameters. This is because Clozer evaluates and scores individual areas by comparing against all shortlisted areas.
+                    </div>
+                  </div>
+                  <hr style="border:3px solid #f1f1f1">
+                  <span class="heading-faq">How is this Clozer Score calculated?</span>
+                  <div class="row no-gutters">
+                    <div class="col-md-12">
+                      Assume for your search criteria, Clozer has shortlisted 20 areas. An independent score for these 20 areas is calculated using factors such as House Prices, Crime, Travel, Schools and Facilities (high street shops, gas stations, grocery stores, etc.). The scoring is relative (i.e) the scoring is specific to these 20 areas and is used to rank the suitability of the 20 areas based on your search criteria.
+                    </div>
+                  </div>
+                  <hr style="border:3px solid #f1f1f1">
+                  <span class="heading-faq">What do you mean by relative ranking/scoring?</span>
+                  <div class="row no-gutters">
+                    <div class="col-md-12">
+                      Assume you change your search criteria and now we have 25 areas. These 25 areas are compared and a relative score is assigned. This helps Clozer rank and provide suggestions most suited to you.
+                    </div>
+                  </div>
+                  <hr style="border:3px solid #f1f1f1">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End modal -->
 
 
 

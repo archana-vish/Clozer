@@ -15,12 +15,14 @@
           <a [ngx-scroll-to]="'#search'" class="nav-link"><i class="nc-icon nc-zoom-split"></i> Search</a>
         </li>
         <li class="nav-item">
-          <a [ngx-scroll-to]="'#video'" class="nav-link"><i class="nc-icon nc-settings-gear-65"></i> Personalise</a>
+          <a  class="nav-link"><i class="nc-icon nc-settings-gear-65" placement="top" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on top"></i> Personalise</a>
+        </li>
+        <li class="nav-item" data-toggle="modal" data-target="#faqModal">
+          <a class="nav-link"><i class="nc-icon nc-paper"></i> FAQ</a>
         </li>
         <li class="nav-item">
-          <a [ngx-scroll-to]="'#video'" class="nav-link"><i class="nc-icon nc-paper"></i> FAQ</a>
+          <a href="mailto:info@clozer.co.uk" class="nav-link"><i class="nc-icon nc-send"></i> Contact Us </a>
         </li>
-
       </ul>
     </div>
   </div>
@@ -31,7 +33,7 @@
     <div class="content-center">
       <div class="container">
         <div class="title-brand">
-          <h1 class="presentation-title">PR</h1> <!-- class="presentation-title" -->
+          <h1 class="presentation-title">CLOZER</h1> <!-- class="presentation-title" -->
         </div>
         <h2 class="presentation-subtitle">
           <div class="row">
@@ -51,15 +53,15 @@
     </div>
   </div>
 </div>
-<!--<div class="section video-summary" id="video" align="center">-->
-  <!--<div class="container">-->
-    <!--<div class="row">-->
-      <!--<div class="col-md-12">-->
-        <!--<app-video></app-video>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
+<div class="section video-summary" id="video" align="center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <app-video></app-video>
+      </div>
+    </div>
+  </div>
+</div>
 <router-outlet></router-outlet>
 <!--<div class="section section-dark-blue search-screen" id="search" >-->
   <!--<div class="container">-->
