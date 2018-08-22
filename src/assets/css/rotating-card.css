@@ -248,6 +248,16 @@
     text-transform: uppercase;
     margin: 0;
 }
+
+.title-about {
+  color: #506A85;
+  text-align: center;
+  font-weight: 300;
+  font-size: 30px;
+  margin-bottom: 60px;
+  line-height: 90%;
+}
+
 .space-30{
 	height: 30px;
 	display: block;
@@ -581,4 +591,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .no-padding {
   padding-right: 0px;
   padding-left: 0px;
+}
+
+no-top-margin {
+  margin: 0px;
 }

@@ -5,20 +5,18 @@
         <div class="search col-md-12">
           <form (ngSubmit) = "getAreaSearchResults()" #searchForm = "ngForm">
             <div class=" form-group row col-md-12">
-              <div class="col-md-3">
+              <div class="col-md-6">
                 <h6> Get Clozer to your home..</h6>
-              </div>
-              <div class="col-md-3">
               </div>
               <!--<div col="col-md-4"></div>-->
               <div class="col-md-6"></div>
             </div>
             <br>
             <div class=" form-group row col-md-12">
-              <div class="col-md-3">
+              <div class="col-lg-3 col-md-4">
                 <label for="housePriceTo" class="col-form-label">My maximum budget </label>
               </div>
-              <div class="col-md-3">
+              <div class="col-lg-3 col-md-4">
                 <!--<input type="text" class="form-control" id="housePrice"  placeholder="Enter your work postcode">-->
                 <select class="form-control" id="housePriceTo" [(ngModel)] = "searchModel.maxPrice" name="maxPrice">
                   <option *ngFor="let price of priceRange" value="{{price}}">
@@ -27,22 +25,22 @@
                 </select>
               </div>
               <!--<div col="col-md-4"></div>-->
-              <div class="col-md-6"></div>
+              <div class="col-lg-3 col-md-4"></div>
             </div>
             <div class="form-group row col-md-12">
-              <div class="col-md-3">
+              <div class="col-lg-3 col-md-4">
                 <label for="homezipcode" class="col-form-label">Postcodes that matter to me </label>
               </div>
-              <div class="col-md-3">
+              <div class="col-lg-3 col-md-4">
                 <input type="text" class="form-control" id="homezipcode"
                 [(ngModel)] = "searchModel.homePostcode"
                 placeholder="First choice" name="homePostCode" required>
               </div>
-              <div class="col-xs-1">&nbsp;</div>
+              <!--<div class="col-xs-1">&nbsp;</div>-->
               <!--<div class="col-md-1"></div>-->
               <!--<label for="homezipcode" class="col-md-2 col-form-label">I currently live at..</label>-->
               <!--<div class="col-md-1"></div>-->
-              <div class="col-md-3">
+              <div class="col-lg-3 col-md-4">
                 <!--<input type="text" class="form-control" id="homezipcode"-->
                        <!--[(ngModel)] = "searchModel.homePostcode"-->
                        <!--placeholder="Second choice" name="homePostCode">-->
@@ -50,13 +48,13 @@
                        <!--[(ngModel)] = "searchModel.workPostcode"-->
                        <!--placeholder="First choice" name="workPostCode" required>-->
               </div>
-              <div class="col-xs-2"></div>
+              <div class="col-lg-3"></div>
             </div>
-            <div class="form-group row col-md-12">
-              <div class="col-md-3">
+            <div class="form-group row col-lg-12">
+              <div class="col-lg-3 col-md-4">
                 <label for="timeToTravel" class="col-form-label">Can travel up to</label>
               </div>
-              <div class="col-md-3">
+              <div class="col-lg-3 col-md-4">
                 <!--<input type="text" class="form-control" id="timeToTravel"  placeholder="time">-->
                 <select class="form-control" id="timeToTravel" [(ngModel)] = "searchModel.timeToTravel" name="timeToTravel">
                   <option *ngFor="let t of time" value="{{t}}">
@@ -64,9 +62,9 @@
                   </option>
                 </select>
               </div>
-              <div class="col-xs-1">-</div>
+              <div class="col-xs-1"> </div>
               <!--<label for="distanceToTravel" class="col-md-2 col-form-label">and not more than</label>-->
-              <div class="col-md-3">
+              <div class="col-lg-3 col-md-4">
                 <!--<input type="text" class="form-control" id="distanceToTravel" placeholder="distance">-->
                 <select class="form-control" id="distanceToTravel" [(ngModel)] = "searchModel.distanceToTravel" name="distanceToTravel">
                   <option *ngFor="let dist of distance" value="{{dist}}">
@@ -74,10 +72,9 @@
                   </option>
                 </select>
               </div>
-              <div class="col-xs-2"></div>
             </div>
             <div class=" form-group row col-md-12">
-              <div class="col-md-3">
+              <div class="col-lg-3 col-md-4">
                 <label class="col-form-label">I prefer to travel by </label>
               </div>
                 <div class="form-check col-md-7" id="travelmode1" >
@@ -112,10 +109,10 @@
                 </div>
               </div>
             <div class=" form-group row col-md-12">
-              <div class="col-md-3">
+              <div class="col-lg-3 col-md-4">
                 <label class="col-form-label">I prefer to live in </label>
               </div>
-              <div class="form-check col-md-7" id="houseType" >
+              <div class="form-check col-lg-7 col-md-6" id="houseType" >
                 <label class="form-check-label">
                   <input type="radio" name="houseType" class="form-check-input"
                          [(ngModel)] = "searchModel.houseType" name="houseType" value="H">
@@ -130,8 +127,8 @@
               </div>
             </div>
             <div class="form-group row col-md-12">
-              <div class="col-md-3"> </div>
-              <div class="col-md-9">
+              <div class="col-lg-3 col-md-4"> </div>
+              <div class="col-lg-9 col-md-8">
                 <button type="submit" class="btn btn-info btn-round" [disabled]="!searchForm.form.valid" >Search</button> &nbsp;
                 <button type="button" class="btn btn-info btn-round" (click) = "resetFields()">Reset</button>
               </div>
