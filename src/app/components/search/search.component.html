@@ -4,13 +4,13 @@
       <div class="col-md-12">
         <div class="search col-md-12">
           <form (ngSubmit) = "getAreaSearchResults()" #searchForm = "ngForm">
-            <div class=" form-group row col-md-12">
-              <div class="col-md-6">
-                <h6> Get Clozer to your home..</h6>
-              </div>
-              <!--<div col="col-md-4"></div>-->
-              <div class="col-md-6"></div>
-            </div>
+            <!--<div class=" form-group row col-md-12">-->
+              <!--<div class="col-md-6">-->
+                <!--<h6> Get Clozer to your home..</h6>-->
+              <!--</div>-->
+              <!--&lt;!&ndash;<div col="col-md-4"></div>&ndash;&gt;-->
+              <!--<div class="col-md-6"></div>-->
+            <!--</div>-->
             <br>
             <div class=" form-group row col-md-12">
               <div class="col-lg-3 col-md-4">
@@ -110,19 +110,19 @@
               </div>
             <div class=" form-group row col-md-12">
               <div class="col-lg-3 col-md-4">
-                <label class="col-form-label">I prefer to live in </label>
+                <label class="col-form-label">I prefer to live in a</label>
               </div>
               <div class="form-check col-lg-7 col-md-6" id="houseType" >
                 <label class="form-check-label">
                   <input type="radio" name="houseType" class="form-check-input"
                          [(ngModel)] = "searchModel.houseType" name="houseType" value="H">
-                  <i class="fas fa-home"></i> A House
+                  <i class="fas fa-home"></i> House
                 </label>
                 <label class="form-check-label">
                   <input type="radio" class="form-check-input"
                          checked
                          [(ngModel)] = "searchModel.houseType" name="houseType" value="A">
-                  <i class="fas fa-building"></i> An Apartment
+                  <i class="fas fa-building"></i> Flat
                 </label>
               </div>
             </div>
@@ -170,19 +170,23 @@
                     <div class="card">
                       <div class="front">
                         <div class="cover">
-                          <img src="assets/img/rotating_card_thumb2.png"/>
+                          <!--<img src="assets/img/rotating_card_thumb2.png"/>-->
+                          <img src="assets/img/cardbgtop.jpg"/>
                         </div>
                         <div class="user">
-                          <img class="img-circle" src="assets/img/rotating_card_thumb.jpg">
+                          <!--<img class="img-circle" src="assets/img/rotating_card_thumb.jpg">-->
+                          <img class="img-circle" src="assets/img/cardbginner.jpg">
                           <div class="img-text"><strong>{{searchDetail.area_code}}</strong></div>
                         </div>
                         <div class="card-body">
                           <div class="main">
-                            <h3 class="score">Clozer score: {{searchDetail.total_score}}</h3>
+                            <h3 class="line-height">Clozer score: {{searchDetail.total_score}}</h3>
                             <!--<h5 class="code">{{searchDetail.area_code}}</h5>-->
+                            <br>
                             <p class="text-center">{{searchDetail.area_name}}</p>
                             <div class="header">
-                              <h5 class="topheader">Avg Journey Time: {{searchDetail.average_journey_time | number: '1.0-0'}} min </h5>
+                              <h5 class="topheader">Travel Time: {{searchDetail.average_journey_time | number: '1.0-0'}} min </h5>
+                              <h5 class="topheader">Travel Distance: {{searchDetail.distance_to_work | number: '1.0-0'}} mi </h5>
                               <h5 class="topheader">Train Stations: {{searchDetail.stations_count}} </h5>
                             </div>
                           </div>
@@ -502,27 +506,29 @@
                   <span class="heading-faq"><strong>What is Clozer?</strong></span>
                   <div class="row no-gutters">
                     <div class="col-md-12">
-                      Clozer is a platform to help home buyers find a suitable area to settle down based on personal preferences
+                      Clozer is a platform to help home buyers find a suitable area to settle down based on personal preferences.
                     </div>
                   </div>
                   <hr style="border:3px solid #f1f1f1">
                   <span class="heading-faq">How is this different from Rightmove or Zoopla then?</span>
                   <div class="row no-gutters">
                     <div class="col-md-12">
-                      Rightmove and Zoopla are platforms where you go search for properties once you know where you want to live. Clozer is few stages prior to that.
+                      Rightmove and Zoopla are platforms where you go search for properties once you know where you want to live.
+                      Clozer is few stages prior to that. We help you identify areas that might be suitable and then use this to find properties using Rightmove or Zoopla.
+                      <br>
 
-
-
-                      Clozer helps answer questions such as
-
-                      "I work in Reading and my partner works in London Canary Wharf. We have a 2 year old. Our maximum budget is $650,000 and we would like to buy a house. What areas should we consider assuming both of us dont want to spend more than 45 mins traveling to work?"
+                      Clozer helps answer questions such as-
+                      <i>
+                      "I work in Reading and my partner works in London Canary Wharf. We have a 2 year old. Our maximum budget is $600,000.
+                        What areas should we consider assuming both of us dont want to spend more than 45 mins traveling to work?"</i>
                     </div>
                   </div>
                   <hr style="border:3px solid #f1f1f1">
                   <span class="heading-faq">But I could ask my friends or colleagues and shortlist areas?</span>
                   <div class="row no-gutters">
                     <div class="col-md-12">
-                      Yes, that is an option. But if you get 15 recommendations, how will you rank them based on your individual preferences? How do you know you are not missing areas that could be better suited for you and your family?
+                      Yes, that is an option. But if you get 15 recommendations, how do you isloate personal bias and look at these areas objectively?
+                      How do you know you are not missing areas that could be better suited for you and your family?
 
 
                     </div>
@@ -542,14 +548,20 @@
                   <span class="heading-faq">How is this Clozer Score calculated?</span>
                   <div class="row no-gutters">
                     <div class="col-md-12">
-                      Assume for your search criteria, Clozer has shortlisted 20 areas. An independent score for these 20 areas is calculated using factors such as House Prices, Crime, Travel, Schools and Facilities (high street shops, gas stations, grocery stores, etc.). The scoring is relative (i.e) the scoring is specific to these 20 areas and is used to rank the suitability of the 20 areas based on your search criteria.
+                      Assume for your search criteria, Clozer has shortlisted 10 areas.
+                      An independent score for these 10 areas is calculated using factors such as House Prices, Crime, Travel, Schools and
+                      Facilities (high street shops, gas stations, grocery stores, etc.).
+                      The scoring is relative (i.e) the scoring is specific to these 10 areas and is used to rank the suitability
+                      of the 20 areas based on your search criteria.
                     </div>
                   </div>
                   <hr style="border:3px solid #f1f1f1">
                   <span class="heading-faq">What do you mean by relative ranking/scoring?</span>
                   <div class="row no-gutters">
                     <div class="col-md-12">
-                      Assume you change your search criteria and now we have 25 areas. These 25 areas are compared and a relative score is assigned. This helps Clozer rank and provide suggestions most suited to you.
+                      Assume you change your search criteria (eg: increase travel time) and now we have 15 areas. These 15 areas are compared and a relative score is assigned.
+                      If an area previously had a score of 200, it could drop because another newly found area is better.
+                      This helps Clozer rank and provide suggestions most suited to you.
                     </div>
                   </div>
                   <hr style="border:3px solid #f1f1f1">
