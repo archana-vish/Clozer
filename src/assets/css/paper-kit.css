@@ -514,29 +514,29 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 
 .btn-warning {
-  background-color: #fbc658;
-  border-color: #fbc658;
+  background-color: #ffebcd;
+  border-color: #ffebcd;
   color: #FFFFFF;
   opacity: 1;
   filter: alpha(opacity=100);
 }
 .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .show > .btn-warning.dropdown-toggle {
-  background-color: #fab526;
+  background-color: #ffd699;
   color: #FFFFFF;
-  border-color: #fab526;
+  border-color: #ffd699;
 }
 .btn-warning .caret {
   border-top-color: #FFFFFF;
 }
 .btn-warning.btn-link {
-  color: #fbc658;
+  color: #ffebcd;
 }
 .btn-warning.btn-link:hover, .btn-warning.btn-link:focus, .btn-warning.btn-link:active, .btn-warning.btn-link.active, .open > .btn-warning.btn-link.dropdown-toggle {
   background-color: transparent;
-  color: #fab526;
+  color: #ffebcd;
 }
 .btn-warning.btn-link .caret {
-  border-top-color: #fbc658;
+  border-top-color: #ffd699;
 }
 .btn-warning .caret {
   border-top-color: #FFFFFF;
@@ -2098,7 +2098,8 @@ textarea.form-control {
   color: #FFFFFF;
 }
 .navbar-transparent .navbar-nav .nav-item .nav-link:not(.btn), [class*="bg"] .navbar-nav .nav-item .nav-link:not(.btn) {
-  color: #FFFFFF;
+  color: #66615B;
+  font-weight:900;
   border-color: #FFFFFF;
 }
 .navbar-transparent .navbar-nav .active .nav-link
