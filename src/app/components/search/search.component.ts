@@ -65,8 +65,8 @@ export class SearchComponent implements OnInit {
 
     this.searchModel.minPrice = this.priceRange[0];
     this.searchModel.maxPrice = 650000;
-    this.searchModel.timeToTravel = this.time[0];
-    this.searchModel.distanceToTravel = this.distance[0];
+    this.searchModel.timeToTravel = this.time[1];
+    this.searchModel.distanceToTravel = this.distance[1];
     this.searchModel.travelMode = 'any';
     this.searchModel.houseType = 'H';
 
@@ -85,8 +85,8 @@ export class SearchComponent implements OnInit {
   resetFields() : void {
     this.searchModel.minPrice = this.priceRange[0];
     this.searchModel.maxPrice = 650000;
-    this.searchModel.timeToTravel = this.time[0];
-    this.searchModel.distanceToTravel = this.distance[0];
+    this.searchModel.timeToTravel = this.time[1];
+    this.searchModel.distanceToTravel = this.distance[1];
     this.searchModel.travelMode = 'any';
     this.searchModel.workPostcode = '';
     this.searchModel.homePostcode = '';
