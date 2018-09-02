@@ -24,8 +24,6 @@ export class SearchDetailsComponent implements OnInit {
 
 
   ngOnInit() {
-
-    console.log('oninit called');
     this.getAreaDetails();
   }
 
@@ -42,7 +40,7 @@ export class SearchDetailsComponent implements OnInit {
           this.areaSearchResults = areaDetails;
           this.isLoading = false;
           this.searchComplete = true;
-          console.log('returned... ' + this.areaSearchResults.length);
+          //console.log('returned... ' + this.areaSearchResults.length);
         }
       );
     });

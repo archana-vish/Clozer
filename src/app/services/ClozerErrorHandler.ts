@@ -4,6 +4,6 @@ import {ErrorHandler, Injectable} from '@angular/core';
 export class ClozerErrorHandler implements ErrorHandler {
   handleError(error) {
     // do something with the exception
-    console.log('Handling errors');
+    //console.log('Handling errors');
   }
 }

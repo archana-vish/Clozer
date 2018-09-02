@@ -493,7 +493,6 @@ var SearchDetailsComponent = /** @class */ (function () {
         this.searchComponent = searchComponent;
     }
     SearchDetailsComponent.prototype.ngOnInit = function () {
-        console.log('oninit called');
         this.getAreaDetails();
     };
     SearchDetailsComponent.prototype.ngAfterViewInit = function () {
@@ -508,7 +507,7 @@ var SearchDetailsComponent = /** @class */ (function () {
                 _this.areaSearchResults = areaDetails;
                 _this.isLoading = false;
                 _this.searchComplete = true;
-                console.log('returned... ' + _this.areaSearchResults.length);
+                //console.log('returned... ' + this.areaSearchResults.length);
             });
         });
     };
@@ -690,7 +689,7 @@ var SearchComponent = /** @class */ (function () {
                     sector.safety_grey_stars = new Array(5 - sector.safety_score_stars);
                 });
                 _this.sectorSearchResults = sectorDetails;
-                console.log('returned... ' + _this.sectorSearchResults.length);
+                //console.log('returned... ' + this.sectorSearchResults.length);
             });
         });
     };
@@ -910,7 +909,7 @@ var ClozerErrorHandler = /** @class */ (function () {
     }
     ClozerErrorHandler.prototype.handleError = function (error) {
         // do something with the exception
-        console.log('Handling errors');
+        //console.log('Handling errors');
     };
     ClozerErrorHandler = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])()
@@ -1172,8 +1171,8 @@ var SearchAreaService = /** @class */ (function () {
         return __WEBPACK_IMPORTED_MODULE_1__environments_environment__["a" /* environment */].appServer;
     };
     SearchAreaService.prototype.getAreaDetails = function (searchModel) {
-        console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode
-            + ':' + searchModel.timeToTravel + ':' + searchModel.distanceToTravel + ':' + searchModel.travelMode);
+        //console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode
+        //+ ':' + searchModel.timeToTravel + ':' + searchModel.distanceToTravel + ':' + searchModel.travelMode);
         // return of(this.searchAreaModel);
         return this.http.get(this.serverStr +
             '/getAreaDetails?work_post_code=' + searchModel.homePostcode.replace(' ', '+') +
@@ -1187,7 +1186,7 @@ var SearchAreaService = /** @class */ (function () {
             '&nresults=6');
     };
     SearchAreaService.prototype.getSectorDetails = function (searchModel) {
-        console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode);
+        //console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode);
         // return of(this.searchSectorModel);
         // return of (null);
         return this.http.get(this.serverStr +

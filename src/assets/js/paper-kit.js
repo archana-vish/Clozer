@@ -332,7 +332,7 @@ md.startAnimationForLineChart(completedTasksChart);
 
 function rotateCard(btn){
   var $card = $(btn).closest('.card-container');
-  console.log($card);
+  //console.log($card);
   if($card.hasClass('hover')){
     $card.removeClass('hover');
   } else {

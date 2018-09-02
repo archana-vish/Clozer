@@ -252,8 +252,8 @@ export class SearchAreaService {
 
 
   getAreaDetails(searchModel: SearchModel): Observable<SearchAreaModel[]> {
-    console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode
-    + ':' + searchModel.timeToTravel + ':' + searchModel.distanceToTravel + ':' + searchModel.travelMode);
+    //console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode
+    //+ ':' + searchModel.timeToTravel + ':' + searchModel.distanceToTravel + ':' + searchModel.travelMode);
     // return of(this.searchAreaModel);
      return this.http.get<SearchAreaModel[]>(this.serverStr +
        '/getAreaDetails?work_post_code=' + searchModel.homePostcode.replace(' ','+')+
@@ -268,7 +268,7 @@ export class SearchAreaService {
   }
 
   getSectorDetails(searchModel: SearchModel): Observable<SearchSectorModel[]> {
-    console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode);
+    //console.log('in service ' + searchModel.minPrice + ':' + searchModel.maxPrice + ':' + searchModel.homePostcode + ':' + searchModel.workPostcode);
     // return of(this.searchSectorModel);
     // return of (null);
 

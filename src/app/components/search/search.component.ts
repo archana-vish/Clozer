@@ -180,7 +180,7 @@ export class SearchComponent implements OnInit {
             )
 
             this.sectorSearchResults = sectorDetails;
-            console.log('returned... ' + this.sectorSearchResults.length);
+            //console.log('returned... ' + this.sectorSearchResults.length);
 
           }
         );
