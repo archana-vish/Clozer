@@ -34,7 +34,7 @@
               <div class="col-lg-3 col-md-4">
                 <input type="text" class="form-control" id="homezipcode"
                 [(ngModel)] = "searchModel.homePostcode"
-                placeholder="First choice" name="homePostCode" required>
+                placeholder="Eg: NW1 1AA" name="homePostCode" required>
               </div>
               <!--<div class="col-xs-1">&nbsp;</div>-->
               <!--<div class="col-md-1"></div>-->
@@ -129,7 +129,7 @@
             <div class="form-group row col-md-12">
               <div class="col-lg-3 col-md-4"> </div>
               <div class="col-lg-9 col-md-8">
-                <button type="submit" class="btn btn-info btn-round" [disabled]="!searchForm.form.valid" >Search</button> &nbsp;
+                <button type="submit" class="btn btn-info btn-round" [disabled]="!searchForm.form.valid" [ngx-scroll-to]="'#searchresults'">Search</button> &nbsp;
                 <button type="button" class="btn btn-info btn-round" (click) = "resetFields()">Reset</button>
               </div>
             </div>
@@ -562,6 +562,13 @@
                       Assume you change your search criteria (eg: increase travel time) and now we have 15 areas. These 15 areas are compared and a relative score is assigned.
                       If an area previously had a score of 200, it could drop because another newly found area is better.
                       This helps Clozer rank and provide suggestions most suited to you.
+                    </div>
+                  </div>
+                  <hr style="border:3px solid #f1f1f1">
+                  <span class="heading-faq">What is the maximum Clozer score for an area?</span>
+                  <div class="row no-gutters">
+                    <div class="col-md-12">
+                      500
                     </div>
                   </div>
                   <hr style="border:3px solid #f1f1f1">
