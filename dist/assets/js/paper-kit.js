@@ -117,6 +117,7 @@ $(document).ready(function(){
   //card
   $('[rel="tooltip"]').tooltip();
 
+
 });
 
 
@@ -148,6 +149,16 @@ $(document).on('click', '.navbar-toggler', function(){
         pk.misc.navbar_menu_visible = 1;
     }
 });
+
+$(document).on('click','.navbar-nav li a', function() {
+  $('html').removeClass('nav-open');
+  pk.misc.navbar_menu_visible = 0;
+  setTimeout(function(){
+    $toggle.removeClass('toggled');
+    $('#bodyClick').remove();
+  }, 550);
+});
+
 
 pk = {
     misc:{
