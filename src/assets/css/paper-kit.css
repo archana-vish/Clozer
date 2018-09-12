@@ -6506,4 +6506,8 @@ pre.prettyprint{
   color: #555;
 }
 
+.uppercase-text {
+  text-transform: uppercase;
+}
+
 
