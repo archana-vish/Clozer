@@ -408,7 +408,7 @@ module.exports = ""
 /***/ "./src/app/components/personalise/personalise.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row \">\n  <div class=\"col-md-8 mr-auto ml-auto\">\n    <h4 class=\"title-about\">What Clozer can do..</h4>\n  </div>\n</div>\n<div class=\"video\">\n  <div class=\"embed-responsive embed-responsive-4by3\">\n    <iframe class=\"embed-responsive-item\" width=\"560\" height=\"315\"  src=\"https://www.youtube.com/embed/rCrVCm-qdNE\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>\n  </div>\n</div>\n"
+module.exports = "<div class=\"row \">\n  <div class=\"col-md-8 mr-auto ml-auto\">\n    <h4 class=\"title-about\">What Clozer can do..</h4>\n  </div>\n</div>\n<div class=\"video\">\n  <div class=\"embed-responsive embed-responsive-4by3\">\n    <iframe class=\"embed-responsive-item\" width=\"560\" height=\"315\"  src=\"https://www.youtube.com/embed/qL9zcT-K8p8\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>\n  </div>\n</div>\n"
 
 /***/ }),
 
