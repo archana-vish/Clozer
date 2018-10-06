@@ -1175,7 +1175,7 @@ var SearchAreaService = /** @class */ (function () {
         //+ ':' + searchModel.timeToTravel + ':' + searchModel.distanceToTravel + ':' + searchModel.travelMode);
         // return of(this.searchAreaModel);
         return this.http.get(this.serverStr +
-            '/getAreaDetails?work_post_code=' + searchModel.homePostcode.replace(' ', '+') +
+            '/getAreaDetails?work_post_code=' + encodeURIComponent(searchModel.homePostcode) +
             '&additional_post_code=' +
             '&max_journey_time=' + searchModel.timeToTravel +
             '&max_journey_distance=' + searchModel.distanceToTravel +
@@ -1190,7 +1190,7 @@ var SearchAreaService = /** @class */ (function () {
         // return of(this.searchSectorModel);
         // return of (null);
         return this.http.get(this.serverStr +
-            '/getSectorDetails?work_post_code=' + searchModel.homePostcode.replace(' ', '+') +
+            '/getSectorDetails?work_post_code=' + encodeURIComponent(searchModel.homePostcode) +
             '&additional_post_code=' +
             '&max_journey_time=' + searchModel.timeToTravel +
             '&max_journey_distance=' + searchModel.distanceToTravel +
