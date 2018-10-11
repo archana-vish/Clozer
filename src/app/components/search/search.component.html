@@ -1,0 +1,587 @@
+<div class="section section-dark-blue search-screen" id="search" >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="search col-md-12">
+          <form (ngSubmit) = "getAreaSearchResults()" #searchForm = "ngForm">
+            <!--<div class=" form-group row col-md-12">-->
+              <!--<div class="col-md-6">-->
+                <!--<h6> Get Clozer to your home..</h6>-->
+              <!--</div>-->
+              <!--&lt;!&ndash;<div col="col-md-4"></div>&ndash;&gt;-->
+              <!--<div class="col-md-6"></div>-->
+            <!--</div>-->
+            <br>
+            <div class=" form-group row col-md-12">
+              <div class="col-lg-3 col-md-4">
+                <label for="housePriceTo" class="col-form-label">My maximum budget </label>
+              </div>
+              <div class="col-lg-3 col-md-4">
+                <!--<input type="text" class="form-control" id="housePrice"  placeholder="Enter your work postcode">-->
+                <select class="form-control" id="housePriceTo" [(ngModel)] = "searchModel.maxPrice" name="maxPrice">
+                  <option *ngFor="let price of priceRange" value="{{price}}">
+                    {{price | currency : 'GBP' : '£' : '1.0'}}
+                  </option>
+                </select>
+              </div>
+              <!--<div col="col-md-4"></div>-->
+              <div class="col-lg-3 col-md-4"></div>
+            </div>
+            <div class="form-group row col-md-12">
+              <div class="col-lg-3 col-md-4">
+                <label for="homezipcode" class="col-form-label">Postcodes that matter to me </label>
+              </div>
+              <div class="col-lg-3 col-md-4">
+                <input type="text" class="form-control uppercase-text" id="homezipcode"
+                [(ngModel)] = "searchModel.homePostcode"
+                placeholder="Eg: NW1 1AA" name="homePostCode" required>
+              </div>
+              <!--<div class="col-xs-1">&nbsp;</div>-->
+              <!--<div class="col-md-1"></div>-->
+              <!--<label for="homezipcode" class="col-md-2 col-form-label">I currently live at..</label>-->
+              <!--<div class="col-md-1"></div>-->
+              <div class="col-lg-3 col-md-4">
+                <!--<input type="text" class="form-control" id="homezipcode"-->
+                       <!--[(ngModel)] = "searchModel.homePostcode"-->
+                       <!--placeholder="Second choice" name="homePostCode">-->
+                <!--<input type="text" class="form-control" id="workzipcode"-->
+                       <!--[(ngModel)] = "searchModel.workPostcode"-->
+                       <!--placeholder="First choice" name="workPostCode" required>-->
+              </div>
+              <div class="col-lg-3"></div>
+            </div>
+            <div class="form-group row col-lg-12">
+              <div class="col-lg-3 col-md-4">
+                <label for="timeToTravel" class="col-form-label">Can travel up to</label>
+              </div>
+              <div class="col-lg-3 col-md-4">
+                <!--<input type="text" class="form-control" id="timeToTravel"  placeholder="time">-->
+                <select class="form-control" id="timeToTravel" [(ngModel)] = "searchModel.timeToTravel" name="timeToTravel">
+                  <option *ngFor="let t of time" value="{{t}}">
+                    {{t}} min
+                  </option>
+                </select>
+              </div>
+              <div class="col-xs-1"> </div>
+              <!--<label for="distanceToTravel" class="col-md-2 col-form-label">and not more than</label>-->
+              <div class="col-lg-3 col-md-4">
+                <!--<input type="text" class="form-control" id="distanceToTravel" placeholder="distance">-->
+                <select class="form-control" id="distanceToTravel" [(ngModel)] = "searchModel.distanceToTravel" name="distanceToTravel">
+                  <option *ngFor="let dist of distance" value="{{dist}}">
+                    {{dist}} mile
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class=" form-group row col-md-12">
+              <div class="col-lg-3 col-md-4">
+                <label class="col-form-label">I prefer to travel by </label>
+              </div>
+                <div class="form-check col-md-7" id="travelmode1" >
+                  <label class="form-check-label">
+                    <input type="radio" name="travelMode" class="form-check-input"
+                           [(ngModel)] = "searchModel.travelMode" name="travelMode" value="any">
+                    <i class="fas fa-bus"></i> Any
+                  </label>
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input"
+                         checked
+                         name="travelMode" value="Train"
+                         [(ngModel)] = "searchModel.travelMode" name="travelMode" value="train">
+                    <i class="fa fa-train"></i> Train
+                  </label>
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input"
+                         [(ngModel)] = "searchModel.travelMode" name="travelMode" value="car">
+                    <i class="fas fa-car"></i> Car
+                  </label>
+
+                <!--<label class="form-check-label">-->
+                    <!--<input type="radio" class="form-check-input"-->
+                          <!--name="travelMode" value="cycle" disabled="true">-->
+                  <!--<i class="fas fa-bicycle"></i> Cycle-->
+                  <!--</label>-->
+                <!--<label class="form-check-label">-->
+                    <!--<input type="radio" class="form-check-input"-->
+                          <!--name="travelMode" value="walk" disabled="true">-->
+                  <!--<i class="fas fa-walking"></i> Walk-->
+                  <!--</label>-->
+                </div>
+              </div>
+            <div class=" form-group row col-md-12">
+              <div class="col-lg-3 col-md-4">
+                <label class="col-form-label">I prefer to live in a</label>
+              </div>
+              <div class="form-check col-lg-7 col-md-6" id="houseType" >
+                <label class="form-check-label">
+                  <input type="radio" name="houseType" class="form-check-input"
+                         [(ngModel)] = "searchModel.houseType" name="houseType" value="H">
+                  <i class="fas fa-home"></i> House
+                </label>
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input"
+                         checked
+                         [(ngModel)] = "searchModel.houseType" name="houseType" value="A">
+                  <i class="fas fa-building"></i> Flat
+                </label>
+              </div>
+            </div>
+            <div class="form-group row col-md-12">
+              <div class="col-lg-3 col-md-4"> </div>
+              <div class="col-lg-9 col-md-8">
+                <button type="submit" class="btn btn-info btn-round" [disabled]="!searchForm.form.valid" [ngx-scroll-to]="'#searchresults'">Search</button> &nbsp;
+                <button type="button" class="btn btn-info btn-round" (click) = "resetFields()">Reset</button>
+              </div>
+            </div>
+          </form>
+          <!--<span *ngIf="isLoading" class="glyphicon glyphicon-repeat fast-right-spinner"></span>-->
+          <!--<div class="searchresults" *ngIf="submitted">-->
+            <!--<app-search-details [searchModel]="outputSearchModel"></app-search-details>-->
+          <!--</div>-->
+        <!--</div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End search form -->
+<!-- Search results -->
+<div class="section section-dark-blue areasearch-results-summary" id="searchresults" align="center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="spinning" *ngIf="isLoading">
+          <i class="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>
+        </div>
+        <!-- REsults -->
+        <div class="search" *ngIf="hasLoaded">
+          <div class="row col-md-12" *ngIf="areaSearchResults == null">
+            <p> Server error. Please try again </p>
+          </div>
+          <div class="row col-md-12" *ngIf="areaSearchResults != null">
+            <p> You have {{areaSearchResults.length}} area(s) matching your criteria </p>
+          </div>
+          <br>
+          <!-- Adding rotating cards -->
+          <div class="container-fluid" *ngIf="areaSearchResults != null">
+              <div class="card-group ">
+                <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let searchDetail of areaSearchResults">
+                  <div class="card-container card-plain manual-flip">
+                    <div class="card">
+                      <div class="front">
+                        <div class="cover">
+                          <!--<img src="assets/img/rotating_card_thumb2.png"/>-->
+                          <img src="assets/img/cardbgtop.jpg"/>
+                        </div>
+                        <div class="user">
+                          <!--<img class="img-circle" src="assets/img/rotating_card_thumb.jpg">-->
+                          <img class="img-circle" src="assets/img/cardbginner.jpg">
+                          <div class="img-text"><strong>{{searchDetail.area_code}}</strong></div>
+                        </div>
+                        <div class="card-body">
+                          <div class="main">
+                            <h3 class="line-height">Clozer score: {{searchDetail.total_score}}</h3>
+                            <!--<h5 class="code">{{searchDetail.area_code}}</h5>-->
+                            <br>
+                            <p class="text-center">{{searchDetail.area_name}}</p>
+                            <div class="header">
+                              <h5 class="topheader">Travel Time: {{searchDetail.average_journey_time | number: '1.0-0'}} min </h5>
+                              <h5 class="topheader">Travel Distance: {{searchDetail.distance_to_work | number: '1.0-0'}} mi </h5>
+                              <h5 class="topheader">Train Stations: {{searchDetail.stations_count}} </h5>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="front-card-footer">
+                          <button class="btn btn-neutral" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
+                            <i class="fas fa-share"></i> Know More
+                          </button>
+                        </div>
+                      </div> <!-- end front panel -->
+                      <div class="back">
+                          <h5 class="motto-end"><strong>{{searchDetail.area_code}}</strong></h5>
+                        <div class="content">
+                          <div class="main">
+                            <div class="row stats-container">
+                              <div class="col-md-12 ">
+                                <p align="center" class="make-it-bold"> House Price  </p>
+                              </div>
+                              <div class="stats">
+                                <h4 class="h4-card">{{searchDetail.average_detached_house_price | housePricePipe}}</h4>
+                                <p class="card-p">
+                                  Detached
+                                </p>
+                              </div>
+                              <div class="stats">
+                                <h4 class="h4-card">{{searchDetail.average_semi_detached_house_price | housePricePipe}}</h4>
+                                <p class="card-p">
+                                  Semi-detached
+                                </p>
+                              </div>
+                              <div class="stats">
+                                <h4 class="h4-card">{{searchDetail.average_flat_price | housePricePipe}}</h4>
+                                <p class="card-p">
+                                   Flats
+                                </p>
+                              </div>
+                            </div>
+                            <div class="row stats-container">
+                              <div class="col-md-12">
+                                <p align="center" class="make-it-bold"> Schools </p>
+                              </div>
+                              <div class="stats">
+                                <h4 class="h4-card">{{searchDetail.primary_schools}}</h4>
+                                <p class="card-p">
+                                  Primary
+                                </p>
+                              </div>
+                              <div class="stats">
+                                <h4 class="h4-card">{{searchDetail.secondary_schools}}</h4>
+                                <p class="card-p">
+                                  Secondary
+                                </p>
+                              </div>
+                              <div class="stats">
+                                <h4 class="h4-card">{{searchDetail.private_schools}}</h4>
+                                <p class="card-p">
+                                  Private
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="back-card-footer">
+                          <div class="social-links text-center ">
+                            <button class="btn  btn-simple-card btn-round btn-info" rel="tooltip" title="Flip Card" onclick="rotateCard(this)">
+                              <i class="fas fa-reply"></i> Back
+                            </button>
+                            <button type="button" class="btn  btn-simple-card btn-round btn-info" (click) = "getSectorSearchResults(searchDetail)" data-toggle="modal" data-target="#sectorModal">Explore</button>
+                          </div>
+                        </div>
+                      </div> <!-- end back panel -->
+                    </div> <!-- end card -->
+                  </div> <!-- end card-container -->
+                </div> <!-- end col sm 3 -->
+              </div>
+            </div>
+          </div>
+        <!-- End Results -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End search results -->
+<!-- Modal -->
+<div class="modal fadeOutUp" id="sectorModal" tabindex="-1" role="dialog" aria-labelledby="sectorModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header" *ngIf="sectorLoaded">
+        <h5 class="modal-title" id="sectorModalTitle">Search Results for {{searchModel.areaCode}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="no-gutters">
+          <div class="row no-gutters">
+            <div class="col-md-12 no-gutters">
+              <div class="search col-md-12 no-gutters">
+                <div class="spinning" *ngIf="sectorLoading">
+                  <i class="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>
+                </div>
+                <div *ngIf="sectorLoaded">
+                  <div class="row col-md-12" *ngIf="sectorSearchResults == null">
+                    <p> Server error. Please try again </p>
+                  </div>
+                  <div class="row col-md-12" *ngIf="sectorSearchResults != null && sectorSearchResults.length ==0">
+                    <p> No sectors returned </p>
+                  </div>
+                  <div class="togglebutton" *ngIf="sectorSearchResults != null && sectorSearchResults.length > 0">
+                    <label>
+                      <input type="checkbox" id="sortOrder" checked="{{checked}}" (click)="toggle()">
+                      <span class="toggle"></span>
+                      {{seachCriteria}}
+                    </label>
+                  </div>
+                  <div class="" *ngIf="compareByArea">
+                  <div class=""  *ngFor="let sector of sectorSearchResults">
+                    <!-- Progress bars -->
+                    <!--<div class="col-md-12 no-gutters">-->
+                    <hr style="border:3px solid #f1f1f1">
+                      <span class="heading-faq">{{sector.sector_code | uppercase }} ({{sector.sector_name | uppercase}})</span>
+                    <hr style="border:3px solid #f1f1f1">
+                    <!--</div>-->
+                    <div class="row no-gutters">
+                      <div class="side">
+                        <div>Safety</div>
+                      </div>
+                      <div class="middle">
+                        <div class="bar-container">
+                          <div class="bar-5" *ngIf="sector.safety_score_stars === 5" [style.width.%]="sector.safety_score"></div>
+                          <div class="bar-4" *ngIf="sector.safety_score_stars === 4" [style.width.%]="sector.safety_score"></div>
+                          <div class="bar-3" *ngIf="sector.safety_score_stars === 3" [style.width.%]="sector.safety_score"></div>
+                          <div class="bar-2" *ngIf="sector.safety_score_stars === 2" [style.width.%]="sector.safety_score"></div>
+                          <div class="bar-1" *ngIf="sector.safety_score_stars === 1" [style.width.%]="sector.safety_score"></div>
+                        </div>
+                      </div>
+                      <div class="side right">
+                        <div>{{sector.safety_score}}</div>
+                      </div>
+                      <div class="side">
+                        <div>Schools</div>
+                      </div>
+                      <div class="middle">
+                        <div class="bar-container">
+                          <div class="bar-5" *ngIf="sector.school_score_stars === 5" [style.width.%]="sector.school_score"></div>
+                          <div class="bar-4" *ngIf="sector.school_score_stars === 4" [style.width.%]="sector.school_score"></div>
+                          <div class="bar-3" *ngIf="sector.school_score_stars === 3" [style.width.%]="sector.school_score"></div>
+                          <div class="bar-2" *ngIf="sector.school_score_stars === 2" [style.width.%]="sector.school_score"></div>
+                          <div class="bar-1" *ngIf="sector.school_score_stars === 1" [style.width.%]="sector.school_score"></div>
+                        </div>
+                      </div>
+                      <div class="side right">
+                        <div>{{sector.school_score}}</div>
+                      </div>
+                      <div class="side">
+                        <div>Travel</div>
+                      </div>
+                      <div class="middle">
+                        <div class="bar-container">
+                          <div class="bar-5" *ngIf="sector.travel_score_stars === 5" [style.width.%]="sector.travel_score"></div>
+                          <div class="bar-4" *ngIf="sector.travel_score_stars === 4" [style.width.%]="sector.travel_score"></div>
+                          <div class="bar-3" *ngIf="sector.travel_score_stars === 3" [style.width.%]="sector.travel_score"></div>
+                          <div class="bar-2" *ngIf="sector.travel_score_stars === 2" [style.width.%]="sector.travel_score"></div>
+                          <div class="bar-1" *ngIf="sector.travel_score_stars === 1" [style.width.%]="sector.travel_score"></div>
+                        </div>
+                      </div>
+                      <div class="side right">
+                        <div>{{sector.travel_score}}</div>
+                      </div>
+                      <div class="side">
+                        <div>Facilities</div>
+                      </div>
+                      <div class="middle">
+                        <div class="bar-container">
+                          <div class="bar-5" *ngIf="sector.facilities_score_stars === 5" [style.width.%]="sector.facilities_score"></div>
+                          <div class="bar-4" *ngIf="sector.facilities_score_stars === 4" [style.width.%]="sector.facilities_score"></div>
+                          <div class="bar-3" *ngIf="sector.facilities_score_stars === 3" [style.width.%]="sector.facilities_score"></div>
+                          <div class="bar-2" *ngIf="sector.facilities_score_stars === 2" [style.width.%]="sector.facilities_score"></div>
+                          <div class="bar-1" *ngIf="sector.facilities_score_stars === 1" [style.width.%]="sector.facilities_score"></div>
+                        </div>
+                      </div>
+                      <div class="side right">
+                        <div>{{sector.facilities_score}}</div>
+                      </div>
+                    </div>
+
+                    <!-- End progress bars -->
+                  </div>
+                  </div>
+                  <div *ngIf="!compareByArea">
+                    <div class="" >
+                      <!-- Progress bars -->
+                      <div>
+                      <hr style="border:3px solid #f1f1f1">
+                      <span class="heading-faq">SAFETY</span>
+                      <hr style="border:3px solid #f1f1f1">
+                      </div>
+                      <div class="row no-gutters"  *ngFor="let sector of sectorSearchResults">
+                        <div class="side-facility">
+                          <div data-toggle="tooltip" data-placement="top" title="{{sector.sector_name}}">
+                            {{sector.sector_code | uppercase}} ({{sector.sector_name}})
+                          </div>
+                        </div>
+                        <div class="middle-facility">
+                          <div class="bar-container">
+                            <div class="bar-5" *ngIf="sector.safety_score_stars === 5" [style.width.%]="sector.safety_score"></div>
+                            <div class="bar-4" *ngIf="sector.safety_score_stars === 4" [style.width.%]="sector.safety_score"></div>
+                            <div class="bar-3" *ngIf="sector.safety_score_stars === 3" [style.width.%]="sector.safety_score"></div>
+                            <div class="bar-2" *ngIf="sector.safety_score_stars === 2" [style.width.%]="sector.safety_score"></div>
+                            <div class="bar-1" *ngIf="sector.safety_score_stars === 1" [style.width.%]="sector.safety_score"></div>
+                          </div>
+                        </div>
+                        <div class="side-score-facility right">
+                          <div>{{sector.safety_score}}</div>
+                        </div>
+                      </div>
+                      <div>
+                      <hr style="border:3px solid #f1f1f1">
+                      <span class="heading-faq">SCHOOLS</span>
+                      <hr style="border:3px solid #f1f1f1">
+                      </div>
+                      <div class="row no-gutters"  *ngFor="let sector of sectorSearchResults">
+                        <div class="side-facility">
+                          <div data-toggle="tooltip" data-placement="top" title="{{sector.sector_name}}">
+                            {{sector.sector_code | uppercase}} ({{sector.sector_name}})</div>
+                        </div>
+                        <div class="middle-facility">
+                          <div class="bar-container">
+                            <div class="bar-5" *ngIf="sector.school_score_stars === 5" [style.width.%]="sector.school_score"></div>
+                            <div class="bar-4" *ngIf="sector.school_score_stars === 4" [style.width.%]="sector.school_score"></div>
+                            <div class="bar-3" *ngIf="sector.school_score_stars === 3" [style.width.%]="sector.school_score"></div>
+                            <div class="bar-2" *ngIf="sector.school_score_stars === 2" [style.width.%]="sector.school_score"></div>
+                            <div class="bar-1" *ngIf="sector.school_score_stars === 1" [style.width.%]="sector.school_score"></div>
+                          </div>
+                        </div>
+                        <div class="side-score-facility right">
+                          <div>{{sector.school_score}}</div>
+                        </div>
+                      </div>
+                      <div>
+                      <hr style="border:3px solid #f1f1f1">
+                      <span class="heading-faq">TRAVEL</span>
+                      <hr style="border:3px solid #f1f1f1">
+                      </div>
+                      <div class="row no-gutters"  *ngFor="let sector of sectorSearchResults">
+                        <div class="side-facility">
+                          <div data-toggle="tooltip" data-placement="top" title="{{sector.sector_name}}">
+                            {{sector.sector_code | uppercase}} ({{sector.sector_name}})</div>
+                        </div>
+                        <div class="middle-facility">
+                          <div class="bar-container">
+                            <div class="bar-5" *ngIf="sector.travel_score_stars === 5" [style.width.%]="sector.travel_score"></div>
+                            <div class="bar-4" *ngIf="sector.travel_score_stars === 4" [style.width.%]="sector.travel_score"></div>
+                            <div class="bar-3" *ngIf="sector.travel_score_stars === 3" [style.width.%]="sector.travel_score"></div>
+                            <div class="bar-2" *ngIf="sector.travel_score_stars === 2" [style.width.%]="sector.travel_score"></div>
+                            <div class="bar-1" *ngIf="sector.travel_score_stars === 1" [style.width.%]="sector.travel_score"></div>
+                          </div>
+                        </div>
+                        <div class="side-score-facility right">
+                          <div>{{sector.travel_score}}</div>
+                        </div>
+                      </div>
+                      <div>
+                      <hr style="border:3px solid #f1f1f1">
+                      <span class="heading-faq">FACILITIES</span>
+                      <hr style="border:3px solid #f1f1f1">
+                      </div>
+                      <div class="row no-gutters"  *ngFor="let sector of sectorSearchResults">
+                        <div class="side-facility">
+                          <div data-toggle="tooltip" data-placement="top" title="{{sector.sector_name}}">
+                            {{sector.sector_code | uppercase}} ({{sector.sector_name}})</div>
+                        </div>
+                        <div class="middle-facility">
+                          <div class="bar-container">
+                            <div class="bar-5" *ngIf="sector.facilities_score_stars === 5" [style.width.%]="sector.facilities_score"></div>
+                            <div class="bar-4" *ngIf="sector.facilities_score_stars === 4" [style.width.%]="sector.facilities_score"></div>
+                            <div class="bar-3" *ngIf="sector.facilities_score_stars === 3" [style.width.%]="sector.facilities_score"></div>
+                            <div class="bar-2" *ngIf="sector.facilities_score_stars === 2" [style.width.%]="sector.facilities_score"></div>
+                            <div class="bar-1" *ngIf="sector.facilities_score_stars === 1" [style.width.%]="sector.facilities_score"></div>
+                          </div>
+                        </div>
+                        <div class="side-score-facility right">
+                          <div>{{sector.facilities_score}}</div>
+                        </div>
+                      </div>
+                      <!-- End progress bars -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End modal -->
+
+
+<!-- FAQ Modal -->
+<div class="modal fadeOutUp" id="faqModal" tabindex="-1" role="dialog" aria-labelledby="faqModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="faqModalTitle">FAQ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="no-gutters">
+          <div class="row no-gutters">
+            <div class="col-md-12 no-gutters">
+              <div class="search col-md-12 no-gutters">
+                <div class="" >
+                  <span class="heading-faq">What is Clozer?</span>
+                  <div class="row no-gutters">
+                    <div class="col-md-12">
+                      Clozer is a platform to help home buyers find a suitable area to settle down based on personal preferences.
+                    </div>
+                  </div>
+                  <hr style="border:3px solid #f1f1f1">
+                  <span class="heading-faq">How is this different from Rightmove or Zoopla then?</span>
+                  <div class="row no-gutters">
+                    <div class="col-md-12">
+                      Rightmove and Zoopla are platforms where you go search for properties once you know where you want to live.
+                      Clozer is few stages prior to that. We help you identify areas that might be suitable and then use this to find properties using Rightmove or Zoopla.
+                      <br>
+
+                      Clozer helps answer questions such as-
+                      <i>
+                      "I work in Reading and my partner works in London Canary Wharf. We have a 2 year old. Our maximum budget is $600,000.
+                        What areas should we consider assuming both of us dont want to spend more than 45 mins traveling to work?"</i>
+                    </div>
+                  </div>
+                  <hr style="border:3px solid #f1f1f1">
+                  <span class="heading-faq">But I could ask my friends or colleagues and shortlist areas?</span>
+                  <div class="row no-gutters">
+                    <div class="col-md-12">
+                      Yes, that is an option. But if you get 15 recommendations, how do you isloate personal bias and look at these areas objectively?
+                      How do you know you are not missing areas that could be better suited for you and your family?
+
+
+                    </div>
+                  </div>
+                  <hr style="border:3px solid #f1f1f1">
+                  <span class="heading-faq">How should I use Clozer?</span>
+                  <div class="row no-gutters">
+                    <div class="col-md-12">
+                      Tell Clozer where you work (or some reference postcode), your budget and your maximum commute time/distance.
+
+                      Clozer will shortlist areas & sectors and rank them based on a score calculated using several attributes.
+
+                      The score and the shortlisted areas can change if you modify your search parameters. This is because Clozer evaluates and scores individual areas by comparing against all shortlisted areas.
+                    </div>
+                  </div>
+                  <hr style="border:3px solid #f1f1f1">
+                  <span class="heading-faq">How is this Clozer Score calculated?</span>
+                  <div class="row no-gutters">
+                    <div class="col-md-12">
+                      Assume for your search criteria, Clozer has shortlisted 10 areas.
+                      An independent score for these 10 areas is calculated using factors such as House Prices, Crime, Travel, Schools and
+                      Facilities (high street shops, gas stations, grocery stores, etc.).
+                      The scoring is relative (i.e) the scoring is specific to these 10 areas and is used to rank the suitability
+                      of the 20 areas based on your search criteria.
+                    </div>
+                  </div>
+                  <hr style="border:3px solid #f1f1f1">
+                  <span class="heading-faq">What do you mean by relative ranking/scoring?</span>
+                  <div class="row no-gutters">
+                    <div class="col-md-12">
+                      Assume you change your search criteria (eg: increase travel time) and now we have 15 areas. These 15 areas are compared and a relative score is assigned.
+                      If an area previously had a score of 200, it could drop because another newly found area is better.
+                      This helps Clozer rank and provide suggestions most suited to you.
+                    </div>
+                  </div>
+                  <hr style="border:3px solid #f1f1f1">
+                  <span class="heading-faq">What is the maximum Clozer score for an area?</span>
+                  <div class="row no-gutters">
+                    <div class="col-md-12">
+                      500
+                    </div>
+                  </div>
+                  <hr style="border:3px solid #f1f1f1">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End modal -->
+
+
+
