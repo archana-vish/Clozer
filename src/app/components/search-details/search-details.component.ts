@@ -6,6 +6,7 @@ import {SearchModel} from '../../model/SearchModel';
 import {SearchComponent} from '../search/search.component';
 import {Observable} from 'rxjs/Observable';
 
+
 @Component({
   selector: 'app-search-details',
   templateUrl: './search-details.component.html',
@@ -19,11 +20,14 @@ export class SearchDetailsComponent implements OnInit {
   isLoading: boolean;
   searchComplete: boolean;
 
+
   constructor(private router: Router, private searchAreaService: SearchAreaService,
               private searchComponent: SearchComponent) { }
 
 
   ngOnInit() {
+
+
     this.getAreaDetails();
   }
 

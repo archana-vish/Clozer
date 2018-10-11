@@ -6510,4 +6510,13 @@ pre.prettyprint{
   text-transform: uppercase;
 }
 
+agm-map {
+  height: 300px;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+  background-color: grey;
+}
 
