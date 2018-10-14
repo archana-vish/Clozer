@@ -34,7 +34,7 @@
               <div class="col-lg-3 col-md-4">
                 <input type="text" class="form-control uppercase-text" id="homezipcode"
                 [(ngModel)] = "searchModel.homePostcode"
-                placeholder="Eg: NW1 1AA" name="homePostCode" required>
+                placeholder="Eg: NW1 1AA" name="homePostCode" required (mouseout)="transformPostcode(searchModel.homePostcode)">
               </div>
               <!--<div class="col-xs-1">&nbsp;</div>-->
               <!--<div class="col-md-1"></div>-->
@@ -145,6 +145,25 @@
   </div>
 </div>
 <!-- End search form -->
+<!-- Try alignment -->
+<!--<div class="togglebutton row" >-->
+  <!--<div class="col-8">-->
+    <!--<label>-->
+      <!--<input type="checkbox" id="sortOrder1" checked="{{checked}}" (click)="toggle()">-->
+      <!--<span class="toggle"></span>-->
+      <!--{{seachCriteria}}-->
+    <!--</label>-->
+  <!--</div>-->
+  <!--<div class="col-4">-->
+    <!--<label>-->
+      <!--<input type="checkbox" id="mapView1" checked="{{checked}}" (click)="toggle()">-->
+      <!--<span class="toggle"></span>-->
+      <!--View Map aaaaa {{myicon}} {{myicon.url}}-->
+    <!--</label>-->
+  <!--</div>-->
+<!--</div>-->
+
+<!-- End try -->
 <!-- Search results -->
 <div class="section section-dark-blue areasearch-results-summary" id="searchresults" align="center">
   <div class="container">
@@ -161,6 +180,55 @@
           <div class="row col-md-12" *ngIf="areaSearchResults != null">
             <p> You have {{areaSearchResults.length}} area(s) matching your criteria </p>
           </div>
+          <!-- Include maps here -->
+          <div class="section section-dark-blue search-screen" id="search-maps" *ngIf="areaSearchResults != null">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="maps col-md-12">
+                    <!--<agm-map *ngFor="let area of areaSearchResults" [(latitude)]="area.ref_postcode_lat" [(longitude)]="area.ref_postcode_lng" zoom="12" [disableDefaultUI]="true" [zoomControl]="true">-->
+                    <!--<agm-marker [(latitude)]="area.ref_postcode_lat" [(longitude)]="area.ref_postcode_lng" markerDraggable=false></agm-marker>-->
+                    <!--</agm-map>-->
+                    <!--<agm-map [latitude]="areaSearchResults[0].ref_postcode_lat" [longitude]="areaSearchResults[0].ref_postcode_lng" [zoom]="15">-->
+                      <!--<agm-marker *ngFor="let area of areaSearchResults" [(latitude)]="area.ref_postcode_lat" [(longitude)]="area.ref_postcode_lng"> </agm-marker>-->
+                    <!--</agm-map>-->
+                    <!--<agm-map [latitude]="locs[0].lat" [longitude]="locs[0].lng" [zoom]="12">-->
+                      <!--<agm-marker  *ngFor="let loc of locs" [(latitude)]="loc.lat" [(longitude)]="loc.lng" title="bb"  ></agm-marker>-->
+                    <!--</agm-map>-->
+
+                    <agm-map [latitude]="areaSearchResults[0].ref_postcode_lat" [longitude]="areaSearchResults[0].ref_postcode_lng" [zoom]="10">
+                    <!--<agm-marker *ngFor="let area of areaSearchResults" [(latitude)]="area.ref_postcode_lat" [(longitude)]="area.ref_postcode_lng" [title]="area.area_code" [label]="area.area_code" [iconUrl]="{-->
+                      <!--url: '../../../assets/img/logo/icon.png',-->
+                      <!--scaledSize: {-->
+                        <!--width: 20,-->
+                        <!--height: 20-->
+                      <!--}-->
+                    <!--}">-->
+                      <div *ngFor="let area of areaSearchResults">
+                        <agm-marker [latitude]="location.lat"
+                                    [longitude]="location.lng"
+                                    [title]="searchModel.homePostcode | uppercase">
+                        </agm-marker>
+                      <agm-marker #amap
+                                  [(latitude)]="area.ref_postcode_lat"
+                                  [(longitude)]="area.ref_postcode_lng"
+                                  [title]="area.area_code"
+                                  [iconUrl]="iconUrl"
+                                  size="10"
+                                  [animation]="'DROP'"
+                                  >
+                        <agm-info-window class="label-maps">{{area.area_code}}</agm-info-window>
+                    </agm-marker>
+                      </div>
+                    </agm-map>
+                  </div>
+                  <div class="container-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End of maps -->
           <br>
           <!-- Adding rotating cards -->
           <div class="container-fluid" *ngIf="areaSearchResults != null">
@@ -295,12 +363,58 @@
                   <div class="row col-md-12" *ngIf="sectorSearchResults != null && sectorSearchResults.length ==0">
                     <p> No sectors returned </p>
                   </div>
-                  <div class="togglebutton" *ngIf="sectorSearchResults != null && sectorSearchResults.length > 0">
-                    <label>
-                      <input type="checkbox" id="sortOrder" checked="{{checked}}" (click)="toggle()">
-                      <span class="toggle"></span>
-                      {{seachCriteria}}
-                    </label>
+                  <div class="togglebutton row" *ngIf="sectorSearchResults != null && sectorSearchResults.length > 0">
+                    <div class="col-8">
+                      <label>
+                        <input type="checkbox" id="sortOrder" checked="{{checked}}" (click)="toggle()">
+                        <span class="toggle"></span>
+                        {{seachCriteria}}
+                      </label>
+                    </div>
+                    <div class="col-4">
+                      <label>
+                        <input type="checkbox" id="mapView" checked="{{checkedMap}}" (click)="toggleMap()">
+                        <span class="toggle"></span>
+                        {{mapTitle}}
+                      </label>
+                    </div>
+                  </div>
+                  <div class="" *ngIf="showMap">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="maps col-md-12">
+                            <!--<agm-map *ngFor="let area of areaSearchResults" [(latitude)]="area.ref_postcode_lat" [(longitude)]="area.ref_postcode_lng" zoom="12" [disableDefaultUI]="true" [zoomControl]="true">-->
+                            <!--<agm-marker [(latitude)]="area.ref_postcode_lat" [(longitude)]="area.ref_postcode_lng" markerDraggable=false></agm-marker>-->
+                            <!--</agm-map>-->
+                            <!--<agm-map [latitude]="areaSearchResults[0].ref_postcode_lat" [longitude]="areaSearchResults[0].ref_postcode_lng" [zoom]="15">-->
+                            <!--<agm-marker *ngFor="let area of areaSearchResults" [(latitude)]="area.ref_postcode_lat" [(longitude)]="area.ref_postcode_lng"> </agm-marker>-->
+                            <!--</agm-map>-->
+                            <!--<agm-map [latitude]="locs[0].lat" [longitude]="locs[0].lng" [zoom]="12">-->
+                            <!--<agm-marker  *ngFor="let loc of locs" [(latitude)]="loc.lat" [(longitude)]="loc.lng" title="bb"  ></agm-marker>-->
+                            <!--</agm-map>-->
+                            <div  >
+                            <agm-map [latitude]="sectorSearchResults[0].ref_postcode_lat" [longitude]="sectorSearchResults[0].ref_postcode_lng" [zoom]="12">
+                              <agm-marker [latitude]="location.lat"
+                                          [longitude]="location.lng"
+                                          [title]="searchModel.homePostcode | uppercase">
+                              </agm-marker>
+                              <agm-marker *ngFor="let area of sectorSearchResults"
+                                          [(latitude)]="area.ref_postcode_lat"
+                                          [(longitude)]="area.ref_postcode_lng"
+                                          [title]="area.sector_name"
+                                          [iconUrl]="iconUrl"
+                                          [animation]="'DROP'">
+                                <agm-info-window class="label-maps">{{area.sector_code | uppercase }} ({{area.sector_name | uppercase}})</agm-info-window>
+                              </agm-marker>
+                            </agm-map>
+                            </div>
+                          </div>
+                          <div class="container-fluid">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div class="" *ngIf="compareByArea">
                   <div class=""  *ngFor="let sector of sectorSearchResults">

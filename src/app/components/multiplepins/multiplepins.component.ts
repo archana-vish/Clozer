@@ -3,6 +3,8 @@ import { Input, ViewChild, NgZone } from '@angular/core';
 import { MapsAPILoader, AgmMap } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core/services';
 import {MapPoints} from '../../model/MapPointsModel';
+import {} from '@types/googlemaps';
+import {Size} from  '@agm/core/services/google-maps-types';
 
 interface Marker {
 
@@ -45,6 +47,7 @@ export class MultiplepinsComponent implements OnInit {
   geocoder: any;
   locations= new Array();
   locs: any;
+  icon: any;
 
   ngOnInit() {
     this.location.marker.draggable = false;
@@ -79,10 +82,15 @@ export class MultiplepinsComponent implements OnInit {
     this.mapsApiLoader.load().then(() => {
       this.geocoder = new google.maps.Geocoder();
     });
-    this.locs = [];
-    /*[
+    // this.icon = {
+    //   url: '../../../assets/img/logo/Clozer.png',
+    //   size: new this.google.maps.Size(64,64),
+    //   scaledSize: new this.google.maps.Size(128,64)
+    // }
+    this.locs =
+    [
       {'lat':51.4151862, 'lng': 0.07603349999999409},
-      {'lat':51.4414439, 'lng': 0.07603349999999409}];*/
+      {'lat':51.4414439, 'lng': 0.07603349999999409}];
   }
 
   updateOnMap() {
@@ -128,7 +136,7 @@ export class MultiplepinsComponent implements OnInit {
           // this.locs.push({'lat':this.mapPoints.lat, 'lng':this.mapPoints.lng});
           this.locs.push(results[0].geometry.location.toJSON());
 
-
+          console.log(results[0].geometry.viewport);
           console.log(results[0].geometry.location.toJSON());
           // TODO
           //this.locs.push(this.mapPoints);

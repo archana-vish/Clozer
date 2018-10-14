@@ -28,4 +28,6 @@ export class SearchAreaModel {
  travel_score_rating: string;
  school_score_rating: string;
  total_score: number;
+ ref_postcode_lat: number;
+ ref_postcode_lng: number;
 }

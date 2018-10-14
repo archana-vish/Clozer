@@ -14,6 +14,7 @@ export class AreamapsComponent implements OnInit {
   lat: number;
   lng: number;
   google: any;
+  numbers = [1,2,3];
 
   ngOnInit() {
     this.findUser();
@@ -35,6 +36,7 @@ export class AreamapsComponent implements OnInit {
 
     var geocoder = new google.maps.Geocoder();
     var address = 'BR7';
+
 
     geocoder.geocode( { 'address': address}, function(results, status) {
 

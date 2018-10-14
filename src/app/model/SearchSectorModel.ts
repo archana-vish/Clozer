@@ -41,4 +41,6 @@ export class SearchSectorModel {
   school_stars: Array<number>;
   school_grey_stars: Array<number>;
   total_score: number;
+  ref_postcode_lat: number;
+  ref_postcode_lng: number;
 }
