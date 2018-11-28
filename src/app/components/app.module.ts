@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import { VideoComponent } from './video/video.component';
@@ -22,6 +24,10 @@ import {DataTableModule} from 'angular5-data-table';
 import {MatTableModule} from '@angular/material/table';
 import {HousePricePipe} from '../pipes/HousePricePipe';
 import {ClozerErrorHandler} from '../services/ClozerErrorHandler';
+import { AreamapsComponent } from './areamaps/areamaps.component';
+import { FindaddressonmapComponent } from './findaddressonmap/findaddressonmap.component';
+import { MultiplepinsComponent } from './multiplepins/multiplepins.component';
+
 
 
 @NgModule({
@@ -36,7 +42,10 @@ import {ClozerErrorHandler} from '../services/ClozerErrorHandler';
     FaqComponent,
     SearchDetailsComponent,
     LandingpageComponent,
-    HousePricePipe
+    HousePricePipe,
+    AreamapsComponent,
+    FindaddressonmapComponent,
+    MultiplepinsComponent
   ],
   imports: [
     BrowserModule,
@@ -45,9 +54,12 @@ import {ClozerErrorHandler} from '../services/ClozerErrorHandler';
     AppRoutingModule,
     ScrollToModule.forRoot(),
     DataTableModule.forRoot(),
-    MatTableModule
+    MatTableModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCxS2trHOjgbAMnJsJZfjK14NKJ75eDj44'
+    })
   ],
-  providers: [SearchAreaService, {provide: ErrorHandler, useClass: ClozerErrorHandler}],
+  providers: [SearchAreaService, {provide: ErrorHandler, useClass: ClozerErrorHandler}, GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

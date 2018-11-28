@@ -1,8 +1,10 @@
-import { Component, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, NgZone, OnInit, Output, ViewChild} from '@angular/core';
 import { SearchModel } from '../../model/SearchModel';
 import {SearchAreaService} from '../../services/search-area.service';
 import {SearchAreaModel} from '../../model/SearchAreaModel';
 import {Router} from '@angular/router';
+import { MapsAPILoader, AgmMap } from '@agm/core';
+import { GoogleMapsAPIWrapper } from '@agm/core/services';
 
 
 @Component({
@@ -10,6 +12,9 @@ import {Router} from '@angular/router';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
+
+
+
 export class SearchComponent implements OnInit {
 
   priceRange: Array<any> = [];
@@ -22,16 +27,37 @@ export class SearchComponent implements OnInit {
   sectorLoading: boolean;
   showDetails: boolean;
   compareByArea: boolean;
+  showMap:boolean;
   checked: string;
+  checkedMap:string;
   counts : Array<any>;
   seachCriteria: string;
+  mapTitle:string;
   @Input() searchModel: SearchModel = new SearchModel();
   @Output() areaSearchResults;
   @Output() sectorSearchResults;
   @Output() outputSearchModel: SearchModel;
   displayedColumns: Array<any>;
+  locs: any;
+  marker: google.maps.Marker;
+  iconUrl: any;
+  google: any;
+  geocoder: any;
+  location: any;
 
-  constructor(private searchAreaService: SearchAreaService, private router: Router ) { }
+
+  constructor(private searchAreaService: SearchAreaService,
+              private router: Router,
+              public mapsApiLoader: MapsAPILoader,
+              private zone: NgZone,
+              private wrapper: GoogleMapsAPIWrapper) {
+    this.mapsApiLoader = mapsApiLoader;
+    this.zone = zone;
+    this.wrapper = wrapper;
+    this.mapsApiLoader.load().then(() => {
+      this.geocoder = new google.maps.Geocoder();
+    });
+  }
 
   ngOnInit() {
 
@@ -42,6 +68,7 @@ export class SearchComponent implements OnInit {
     this.sectorLoading = false;
 
     this.showDetails = false;
+    this.showMap = true;
 
     this.counts = new Array(3);
 
@@ -78,8 +105,19 @@ export class SearchComponent implements OnInit {
       {name: 'Walk', value: 'walk', checked: false}
     ];
 
+    this.locs =
+      [
+        {'lat':51.4151862, 'lng': 0.07603349999999409},
+        {'lat':51.4414439, 'lng': 0.07603349999999409}];
 
 
+  this.iconUrl = {
+      url: '../../../assets/img/logo/icon.png',
+      scaledSize: {
+        height: 20,
+        width: 20
+      }
+    };
   }
 
   resetFields() : void {
@@ -93,6 +131,11 @@ export class SearchComponent implements OnInit {
     this.searchModel.houseType = 'H';
   }
 
+  showAreaDetails(areaCode: string): void {
+    var infowindow =  new google.maps.InfoWindow({});
+    infowindow.setContent(areaCode);
+  }
+
 
   getAreaSearchResults(): void {
 
@@ -100,57 +143,48 @@ export class SearchComponent implements OnInit {
       this.hasLoaded = false;
       this.areaSearchResults = [];
 
-    // console.log('##############################');
-    // console.log('Printing search Model for Area');
-    //   console.log(this.searchModel.minPrice);
-    //   console.log(this.searchModel.maxPrice);
-    //   console.log(this.searchModel.distanceToTravel);
-    //   console.log(this.searchModel.timeToTravel);
-    //   console.log(this.searchModel.homePostcode);
-    //   console.log(this.searchModel.workPostcode);
-    //   console.log(this.searchModel.travelMode);
-    //   console.log('##############################');
-
-
+      this.transformPostcode(this.searchModel.homePostcode);
 
     setTimeout( () => {
+        this.findLocation(this.searchModel.homePostcode);
         this.searchAreaService.getAreaDetails(this.searchModel).subscribe(
           areaDetails => {
             this.areaSearchResults = areaDetails;
             this.isLoading = false;
             this.hasLoaded = true;
-            // console.log('returned... ' + this.areaSearchResults.length);
           }
         );
       });
     }
 
+  findLocation(address) {
+    if (!this.geocoder) this.geocoder = new google.maps.Geocoder();
+    this.geocoder.geocode({
+      'address': address
+    }, (results, status) => {
+
+      if (status == google.maps.GeocoderStatus.OK) {
+        // decompose the result
+        if (results[0].geometry.location) {
+          this.location = {'lat':results[0].geometry.location.lat(),
+          'lng':results[0].geometry.location.lng()};
+          this.location.viewport = results[0].geometry.viewport;
+        }
+
+      //  this.map.triggerResize();
+      } else {
+        // alert("Sorry, this search produced no results.");
+      }
+    })
+  }
+
 
     getSectorSearchResults(areaDetail: SearchAreaModel): void {
 
-      // console.log(areaDetail.area_code);
       this.searchModel.areaCode = areaDetail.area_code;
       this.sectorSearchResults = [];
       this.sectorLoading = true;
       this.sectorLoaded = false;
-
-       // this.searchModel.areaCode = this.areaCode;
-
-
-      // console.log('********************************');
-      // console.log('Printing search Model for Sector');
-      // console.log(this.searchModel.minPrice);
-      // console.log(this.searchModel.maxPrice);
-      // console.log(this.searchModel.distanceToTravel);
-      // console.log(this.searchModel.timeToTravel);
-      // console.log(this.searchModel.homePostcode);
-      // console.log(this.searchModel.workPostcode);
-      // console.log(this.searchModel.travelMode);
-      // console.log(this.searchModel.houseType);
-      //
-      // console.log(this.searchModel.areaCode);
-      // console.log('********************************');
-
 
       this.displayedColumns = ['areaName', 'totalScore'];
 
@@ -163,6 +197,7 @@ export class SearchComponent implements OnInit {
             this.compareByArea = true;
             this.showDetails = true;
             this.seachCriteria = 'View by Features';
+            this.mapTitle='Hide Map';
             this.sectorSearchResults = sectorDetails;
 
 
@@ -180,13 +215,18 @@ export class SearchComponent implements OnInit {
             )
 
             this.sectorSearchResults = sectorDetails;
-            //console.log('returned... ' + this.sectorSearchResults.length);
-
           }
         );
       });
 
     }
+
+
+  transformPostcode(postcode):string {
+    postcode=postcode.replace(/\s/g,'');
+      this.searchModel.homePostcode = postcode.substring(0, postcode.length - 3) + ' ' + postcode.substring(postcode.length - 3);
+      return (postcode.substring(0, postcode.length - 3) + ' ' + postcode.substring(postcode.length - 3));
+  }
 
 
   toggle(): void {
@@ -201,4 +241,15 @@ export class SearchComponent implements OnInit {
       }
   }
 
+  toggleMap(): void {
+    if (this.showMap) {
+      this.mapTitle = 'Show Map';
+      this.checkedMap = '';
+      this.showMap = false;
+    } else {
+      this.mapTitle = 'Hide Map';
+      this.checkedMap = 'checked';
+      this.showMap = true;
+    }
+  }
 }

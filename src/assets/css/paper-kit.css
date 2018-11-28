@@ -6510,4 +6510,21 @@ pre.prettyprint{
   text-transform: uppercase;
 }
 
+agm-map {
+  height: 300px;
+  width: 100%;
+  background-color: grey;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+  background-color: grey;
+}
+
+.gm-style .gm-style-iw  {
+  color: black;
+}
+
+
 

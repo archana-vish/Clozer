@@ -42,7 +42,9 @@ export class SearchAreaService {
     safety_score_rating: 'PLATINUM',
     travel_score_rating: 'PLATINUM',
     school_score_rating: 'GOLD',
-    total_score: 350
+    total_score: 350,
+    ref_postcode_lat: 51.409156,
+    ref_postcode_lng: 0.054646
   },{
      area_code: 'SE9',
      area_name: 'Eltham, Mottingham, New Eltham, Falconwood, Chinbrook, Longlands, Kidbrooke',
@@ -72,7 +74,9 @@ export class SearchAreaService {
      safety_score_rating: 'PLATINUM',
      travel_score_rating: 'PLATINUM',
      school_score_rating: 'GOLD',
-     total_score: 375
+     total_score: 375,
+     ref_postcode_lat: 51.409156,
+     ref_postcode_lng: 0.054646
    },{
      area_code: 'BR1',
      area_name: 'Bromley, Bickley, Downham',
@@ -102,7 +106,9 @@ export class SearchAreaService {
      safety_score_rating: 'PLATINUM',
      travel_score_rating: 'PLATINUM',
      school_score_rating: 'PLATINUM',
-     total_score: 400
+     total_score: 400,
+     ref_postcode_lat: 51.409156,
+     ref_postcode_lng: 0.054646
    }];
 
 
@@ -150,7 +156,9 @@ export class SearchAreaService {
       school_score_stars: 3,
       school_stars: [],
       school_grey_stars: [],
-      total_score: 350
+      total_score: 350,
+      ref_postcode_lat: 51.409156,
+      ref_postcode_lng: 0.054646
     },{
       area_code: 'SE9',
       area_name: 'Eltham, Mottingham, New Eltham, Falconwood, Chinbrook, Longlands, Kidbrooke',
@@ -193,7 +201,9 @@ export class SearchAreaService {
       school_score_stars: 3,
       school_stars: [],
       school_grey_stars: [],
-      total_score: 375
+      total_score: 375,
+      ref_postcode_lat: 51.409156,
+      ref_postcode_lng: 0.054646
     },{
       area_code: 'BR1',
       area_name: 'Bromley, Bickley, Downham',
@@ -236,7 +246,9 @@ export class SearchAreaService {
       school_score_stars: 3,
       school_stars: [],
       school_grey_stars: [],
-      total_score: 400
+      total_score: 400,
+      ref_postcode_lat: 51.409156,
+      ref_postcode_lng: 0.054646
     }];
 
 

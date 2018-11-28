@@ -5,5 +5,7 @@
 
 export const environment = {
   production: false,
-  appServer : 'https://pettai-rap.herokuapp.com'
+  appServer : 'https://pettai-rap.herokuapp.com',
+  mapKey: 'AIzaSyCxS2trHOjgbAMnJsJZfjK14NKJ75eDj44'
 };
+

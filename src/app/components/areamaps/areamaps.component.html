@@ -1,0 +1,13 @@
+<div class="section section-dark-blue search-screen" id="search" >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="maps col-md-12">
+          <agm-map #agm [latitude]="lat" [longitude]="lng" [zoom]="15" style="width: 100%">
+            <agm-marker *ngFor="let n of numbers" [latitude]="lat" [longitude]="lng"> </agm-marker>
+          </agm-map>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

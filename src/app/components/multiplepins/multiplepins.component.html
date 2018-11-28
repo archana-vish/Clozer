@@ -1,0 +1,16 @@
+<div class="section section-dark-blue search-screen" id="search" >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="maps col-md-12">
+          <agm-map [latitude]="locs[0].lat" [longitude]="locs[0].lng" [zoom]="12">
+            <agm-marker  *ngFor="let loc of locs" [(latitude)]="loc.lat" [(longitude)]="loc.lng" title="bb"></agm-marker>
+          </agm-map>
+        </div>
+        <div class="container-fluid">
+          <button (click)='updateOnMap()' type="submit" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

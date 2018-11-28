@@ -1,12 +1,48 @@
+<div class="section section-dark-blue search-screen" id="search" >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="maps col-md-12">
+          <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="15">
+            <agm-marker [latitude]="latitude" [longitude]="longitude"> </agm-marker>
+          </agm-map>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="spinning" *ngIf="isLoading">
   <i class="fa fa-cog fa-spin fa-2x fa-fw" aria-hidden="true"></i>
-  <span class="sr-only">Saving. Hang tight!</span>
 </div>
 <div class="search container-fluid col-md-12" *ngIf="areaSearchResults">
   <div class="row">
     <p> You have {{areaSearchResults.length}} area(s) matching your criteria </p>
     <br>
   </div>
+
+  <!-- Include maps here -->
+  <div class="section section-dark-blue search-screen" id="search" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="maps col-md-12">
+            aaaaa
+            <!--<agm-map *ngFor="let area of areaSearchResults" [(latitude)]="area.ref_postcode_lat" [(longitude)]="area.ref_postcode_lng" zoom="12" [disableDefaultUI]="true" [zoomControl]="true">-->
+              <!--<agm-marker [(latitude)]="area.ref_postcode_lat" [(longitude)]="area.ref_postcode_lng" markerDraggable=false></agm-marker>-->
+            <!--</agm-map>-->
+            <agm-map latitude=51.409156 longitude=0.054646 zoom="12">
+              <agm-marker *ngFor="let area of areaSearchResults" [(latitude)]="area.ref_postcode_lat" [(longitude)]="area.ref_postcode_lng"> </agm-marker>
+            </agm-map>
+          </div>
+          <div class="container-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of maps -->
+
   <div id="myCarousel" class="carousel slide col-md-12" data-ride="carousel">
       <div class="carousel-inner row w-100 mx-auto">
         <div class="carousel-item col-md-4 active">
@@ -19,14 +55,14 @@
             </div>
           </div>
         </div>
-        <div class="carousel-item col-md-4 " *ngFor="let searchDetail of areaSearchResults.splice(1)">
+        <div class="carousel-item col-md-4 " *ngFor="let searchDetail of areaSearchResults">
           <div class="card-deck">
             <div class="card-plain bg-dark text-white text-center">
               <img class="card-img" src="../../../assets/img/gradient-card.png" alt="Card image">
               <div class="card-img-overlay">
-                <h5 class="card-title text-white">{{searchDetail.areaCode}}</h5>
-                <p class="card-text">Area Names :  {{searchDetail.areaName}}</p>
-                <p class="card-text">Total Score: {{searchDetail.totalScore}}</p>
+                <h5 class="card-title text-white">{{searchDetail.area_code}}</h5>
+                <p class="card-text">Area Names :  {{searchDetail.area_name}}</p>
+                <p class="card-text">Total Score: {{searchDetail.total_score}}</p>
               </div>
             </div>
           </div>
@@ -42,51 +78,6 @@
         </a>
   </div>
 </div>
-
-
-<!--<div class="col-md-8 ml-auto mr-auto">-->
-  <!--<div class="card page-carousel">-->
-    <!--<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">-->
-
-      <!--<div class="carousel-inner" role="listbox">-->
-        <!--<div class="carousel-item active">-->
-          <!--<div class="card-plain bg-dark text-white text-center">-->
-            <!--<img class="card-img" src="../../../assets/img/gradient-card.png" alt="Card image">-->
-            <!--<div class="card-img-overlay">-->
-              <!--<h5 class="card-title text-white">{{areaSearchResults[0].areaCode}}</h5>-->
-              <!--<p class="card-text">Area Names :  {{areaSearchResults[0].areaName}}</p>-->
-              <!--<p class="card-text">Total Score: {{areaSearchResults[0].totalScore}}</p>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="carousel-item" *ngFor="let area of areaSearchResults.splice(1); let odd = odd; let even = even;">-->
-          <!--<div class="card-plain bg-dark text-white text-center">-->
-            <!--<div *ngIf="odd">-->
-              <!--<img class="card-img" src="../../../assets/img/urban-night.jpg" alt="Card image">-->
-            <!--</div>-->
-            <!--<div *ngIf="even">-->
-              <!--<img class="card-img" src="../../../assets/img/bruno-abatti.jpg" alt="Card image">-->
-            <!--</div>-->
-            <!--<div class="card-img-overlay">-->
-              <!--<h5 class="card-title text-white">{{area.areaCode}} {{i}}</h5>-->
-              <!--<p class="card-text">Area Names :  {{area.areaName}}</p>-->
-              <!--<p class="card-text">Total Score: {{area.totalScore}}</p>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-
-      <!--<a class="left carousel-control carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">-->
-        <!--<span class="fa fa-angle-left"></span>-->
-        <!--<span class="sr-only">Previous</span>-->
-      <!--</a>-->
-      <!--<a class="right carousel-control carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">-->
-        <!--<span class="fa fa-angle-right"></span>-->
-        <!--<span class="sr-only">Next</span>-->
-      <!--</a>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
 
 
 

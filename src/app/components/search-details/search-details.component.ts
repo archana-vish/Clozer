@@ -5,6 +5,9 @@ import {SearchAreaModel} from '../../model/SearchAreaModel';
 import {SearchModel} from '../../model/SearchModel';
 import {SearchComponent} from '../search/search.component';
 import {Observable} from 'rxjs/Observable';
+import { MapsAPILoader, AgmMap } from '@agm/core';
+import { GoogleMapsAPIWrapper } from '@agm/core/services';
+
 
 @Component({
   selector: 'app-search-details',
@@ -19,11 +22,18 @@ export class SearchDetailsComponent implements OnInit {
   isLoading: boolean;
   searchComplete: boolean;
 
+  latitude:51.409156;
+  longitude:0.054646;
+
+
+
   constructor(private router: Router, private searchAreaService: SearchAreaService,
               private searchComponent: SearchComponent) { }
 
 
   ngOnInit() {
+
+
     this.getAreaDetails();
   }
 
